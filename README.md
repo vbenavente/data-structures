@@ -5,3 +5,4 @@
 
 
 ## resources and collaborations  
+- https://www.codefellows.org/blog/implementing-a-singly-linked-list-in-python/
