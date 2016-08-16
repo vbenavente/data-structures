@@ -1,32 +1,35 @@
 # -*- coding: utf-8 -*-
+
+
 class Node(object):
     """This sets our Node class"""
-    def __init__(self, data, next_node):
+    def __init__(self, data):
         self.data = data
-        self.next_node = next_node
+        self.next_node = None
 
 
 class LinkedList(object):
-    def __init__(self):
+    def __init__(self, data):
         self.head = None
+        if data:
+            for item in data:
+                self.push(item)
 
+    def push(self, data):
+        new_node = Node(data)
+        new_node.next_node = self.head
+        self.head = new_node
+        return self.head
 
-    def insert(self, new_node):
-        if self.head is None:
-            self.head = new_node
-        elif self.next_node is None:
-            self.next_node = self.new_node
-        else:
-            self.next_node = None
+    def pop(self):
+        pop_node = self.head
+        self.head = self.head.next_node
+        return pop_node
 
-    def remove(data):
-        pass
-
-    def search(data):
-        pass
-
-    def display():
-        pass
-
-    def pop():
-        pass
+    # def size()
+    #
+    # def search(data)
+    #
+    # def remove(node)
+    #
+    # def display()
