@@ -11,9 +11,12 @@ class Node(object):
 class LinkedList(object):
     def __init__(self, data):
         self.head = None
-        if data:
-            for item in data:
-                self.push(item)
+        try:
+            if data:
+                for item in data:
+                    self.push(item)
+        except TypeError:
+            print('this object is not iterable')
 
     def push(self, data):
         new_node = Node(data)
