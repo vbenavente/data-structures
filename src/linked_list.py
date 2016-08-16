@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+import sys
 
 class Node(object):
     """This sets our Node class"""
@@ -16,7 +16,8 @@ class LinkedList(object):
                 for item in data:
                     self.push(item)
         except TypeError:
-            print('this object is not iterable')
+            print('Please enter an iterable object.')
+
 
     def push(self, data):
         new_node = Node(data)
@@ -36,3 +37,6 @@ class LinkedList(object):
     # def remove(node)
     #
     # def display()
+
+# if __name__ == '__main__':
+#     LinkedList(sys.argv[1])
