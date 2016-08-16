@@ -19,6 +19,10 @@ TEST_POP_DATA = [
     ("encyclopedia", "a"),
     ([1, 3, 5], 5)
 ]
+TEST_SIZE_DATA = [
+    ("taco", 4),
+    ([1, 2, 3], 3)
+]
 
 
 @pytest.mark.parametrize("data, output", TEST_LINKED_LIST_INIT_DATA)
@@ -41,6 +45,13 @@ def test_pop(data, output):
     """Test the pop method of LinkedList class."""
     test_case = LinkedList(data)
     assert test_case.pop().data == output
+
+
+@pytest.mark.parametrize("data, output", TEST_SIZE_DATA)
+def test_size(data, output):
+    """Test the size method of LinkedList class."""
+    test_case = LinkedList(data)
+    assert test_case.size() == output
 
 # @pytest.mark.parametrize("initial, search, output", TEST_REMOVE_DATA)
 # def test_remove(initial, search, output):
