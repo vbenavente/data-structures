@@ -58,9 +58,13 @@ class LinkedList(object):
             current = current.next_node
         return current.data
 
-    # def remove(node)
-    #
+    def remove(self, node):
+        """Function build remove method of LinkedList class."""
+        node.data = node.next_node
+        next_node = node.next_node.next_node
+        return next_node.data
+
     # def display():
 
-# if __name__ == '__main__':
-#     LinkedList(sys.argv[1])
+if __name__ == '__main__':
+    LinkedList(sys.argv[1])
