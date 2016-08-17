@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 """This file implements a basic linked list data structure."""
-import sys
 
 
 class Node(object):
@@ -54,17 +53,19 @@ class LinkedList(object):
     def search(self, data):
         """Function builds search method of LinkedList class."""
         current = self.head
-        while current is not None and data != current.data:
-            current = current.next_node
-        return current.data
+        try:
+            while current is not None and data != current.data:
+                current = current.next_node
+            return current
+        except:
+            return None
 
     def remove(self, node):
         """Function build remove method of LinkedList class."""
-        node.data = node.next_node
-        next_node = node.next_node.next_node
-        return next_node.data
-
+        current = self.head
+        while current is not None and node.data != current.data:
+            previous = current
+            current = current.next_node
+        previous.next_node = current.next_node.next_node
+        return current
     # def display():
-
-if __name__ == '__main__':
-    LinkedList(sys.argv[1])

@@ -28,7 +28,8 @@ TEST_SEARCH_DATA = [
     ([1, 2, 7, 8], 8, 8)
 ]
 TEST_REMOVE_DATA = [
-    ("encyclopedia", "i", "i")
+    ("encyclopedia", "i", "i"),
+    ("zebrasarecool", "b", "b"),
 ]
 
 
@@ -72,13 +73,12 @@ def test_dunder_len(data, output):
 def test_search(initial, query, output):
     """Test the search method of LinkedList with test data."""
     test_case = LinkedList(initial)
-    assert test_case.search(query) == output
+    assert test_case.search(query).data == output
 
 
-@pytest.mark.parametrize("initial, rem", TEST_POP_DATA)
-def test_remove(initial, rem):
+@pytest.mark.parametrize("initial, data, result", TEST_REMOVE_DATA)
+def test_remove(initial, data, result):
     """Test the remove method of LinkedList class."""
     test_case = LinkedList(initial)
-    temp = test_case.search(rem)
-    # test_case.remove(rem)
-    assert test_case.remove(temp) == temp
+    test_case_node = test_case.search(data)
+    assert test_case.remove(test_case_node).data == result
