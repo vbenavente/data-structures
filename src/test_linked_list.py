@@ -23,6 +23,10 @@ TEST_SIZE_DATA = [
     ("taco", 4),
     ([1, 2, 3], 3)
 ]
+TEST_SEARCH_DATA = [
+    ("initial", "i", "i"),
+    ([1, 2, 7, 8], 8, 8)
+]
 
 
 @pytest.mark.parametrize("data, output", TEST_LINKED_LIST_INIT_DATA)
@@ -53,6 +57,21 @@ def test_size(data, output):
     test_case = LinkedList(data)
     assert test_case.size() == output
 
+
+@pytest.mark.parametrize("data, output", TEST_SIZE_DATA)
+def test_dunder_len(data, output):
+    """Test the dunder len method of LinkedList class."""
+    test_case = LinkedList(data)
+    assert len(test_case) == output
+
+
 # @pytest.mark.parametrize("initial, search, output", TEST_REMOVE_DATA)
 # def test_remove(initial, search, output):
     # """Test the remove method of LinkedList class."""
+
+
+@pytest.mark.parametrize("initial, query, output", TEST_SEARCH_DATA)
+def test_search(initial, query, output):
+    """Test the search method of LinkedList with test data."""
+    test_case = LinkedList(initial)
+    assert test_case.search(query) == output

@@ -39,6 +39,7 @@ class LinkedList(object):
         return pop_node
 
     def size(self):
+        """Function builds size method of LinkedList class."""
         count = 0
         current = self.head
         while current is not None:
@@ -46,11 +47,17 @@ class LinkedList(object):
             current = current.next_node
         return count
 
+    def __len__(self):
+        """Function binds LinkedList to __len__ builtin so len() works."""
+        return self.size()
 
+    def search(self, data):
+        """Function builds search method of LinkedList class."""
+        current = self.head
+        while current is not None and data != current.data:
+            current = current.next_node
+        return current.data
 
-
-    # def search(data)
-    #
     # def remove(node)
     #
     # def display():
