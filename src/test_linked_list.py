@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-"""Summary."""
+"""File tests LinkedList functionality."""
+from __future__ import unicode_literals
 import pytest
-# from linked_list import Node
 from linked_list import LinkedList
 
 TEST_LINKED_LIST_INIT_DATA = [
@@ -30,6 +30,10 @@ TEST_SEARCH_DATA = [
 TEST_REMOVE_DATA = [
     ("encyclopedia", "i", "i"),
     ("zebrasarecool", "b", "b"),
+]
+TEST_DISPLAY = [
+    ("zebra", "(a, r, b, e, z)"),
+    ([1, 2, 3], "(3, 2, 1)")
 ]
 
 
@@ -82,3 +86,10 @@ def test_remove(initial, data, result):
     test_case = LinkedList(initial)
     test_case_node = test_case.search(data)
     assert test_case.remove(test_case_node).data == result
+
+
+@pytest.mark.parametrize("initial, result", TEST_DISPLAY)
+def test_display(initial, result):
+    """Test the display method of LinkedList class."""
+    test_case = LinkedList(initial)
+    assert test_case.display() == result

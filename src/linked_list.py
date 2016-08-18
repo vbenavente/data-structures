@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 """This file implements a basic linked list data structure."""
+from __future__ import unicode_literals
 
 
 class Node(object):
@@ -68,4 +69,14 @@ class LinkedList(object):
             current = current.next_node
         previous.next_node = current.next_node.next_node
         return current
-    # def display():
+
+    def display(self):
+        """Function builds display method of LinkedList class."""
+        current = self.head
+        accumulator = []
+        while current is not None:
+            accumulator.append(str(current.data))
+            current = current.next_node
+        accum_string = ", ".join(accumulator)
+        display_string = "({})".format(accum_string)
+        return display_string
