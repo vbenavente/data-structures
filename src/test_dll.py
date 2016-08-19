@@ -37,4 +37,15 @@ def test_dll_pop(dll_initial_2):
 
 
 def test_dll_shift(dll_initial_2):
-    assert dll_initial_2.shift() == "booksarecool"
+    assert dll_initial_2.shift() == ("booksarecool",)
+
+
+def test_remove_one(dll_initial_1):
+    """remove value that is in the list"""
+    assert dll_initial_1.remove("taco") == "taco"
+
+
+def test_remove_two(dll_initial_1):
+    """remove value not in the list"""
+    with pytest.raises(IndexError):
+        dll_initial_1.remove("burrito")

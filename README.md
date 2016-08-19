@@ -10,6 +10,9 @@
 ## Doubly-Linked List  
 - this is an implementation of a doubly linked list in Python  
 
+#### Cited Sources:
+  - http://stackoverflow.com/questions/23337471/how-to-properly-assert-that-exception-raises-in-pytest
+
 ### Singly vs. Doubly Linked Lists  
 - Singly Linked-List  
   - easier to implement  

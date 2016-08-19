@@ -1,20 +1,19 @@
 # -*- coding: utf-8 -*-
-"""Docstring."""
+"""File implements a simple doubly linked list in python."""
+from __future__ import unicode_literals
 
 
 class Node(object):
-    """Docstring."""
+    """Class implements Nodes for use in our dll."""
     def __init__(self, data=None, nxt=None, prev=None):
-        """Docstring."""
         self.data = data
         self._next = nxt
         self._prev = prev
 
 
 class DoublyLinkedList(object):
-    """Docstring."""
+    """Class implements a simple doubly linked list."""
     def __init__(self, iterable=None):
-        """Docstring."""
         self.head = None
         self.tail = None
         try:
@@ -25,7 +24,7 @@ class DoublyLinkedList(object):
             raise TypeError("Please enter an object that is iterable.")
 
     def push(self, data):
-        """Docstring."""
+        """Insert data at the head of the list."""
         new_node = Node(data)
         new_node._prev = None
         new_node._next = self.head
@@ -36,7 +35,7 @@ class DoublyLinkedList(object):
             self.tail = new_node
 
     def append(self, data):
-        """Docstring."""
+        """Inserts data at the tail of the list."""
         new_node = Node(data)
         new_node._next = None
         new_node._prev = self.tail
@@ -47,19 +46,29 @@ class DoublyLinkedList(object):
             self.head = new_node
 
     def pop(self):
-        """Docstring."""
+        """Remove data from the head of the list and return it."""
         pop_node = self.head
         self.head._next._prev = None
         self.head = self.head._next
         return pop_node.data
 
     def shift(self):
-        """Docstring."""
+        """Remove data from the tail of the list and return it."""
         shift_node = self.tail
         self.tail._prev._next = None
         self.tail = self.tail._prev
         return shift_node.data
 
-    def remove(data):
-        """Docstring."""
-        pass
+    def remove(self, rem_val):
+        """Remove first instance of data from anywhere in the list,
+        starting at the head."""
+        current = self.head
+        # import pdb; pdb.set_trace()
+        try:
+            while current.data != rem_val:
+                current = current._next
+        except AttributeError:
+            raise IndexError("That value is not in the list.")
+        current._prev._next = current._next
+        current._next._prev = current._prev
+        return current.data

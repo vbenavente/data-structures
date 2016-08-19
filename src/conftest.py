@@ -1,15 +1,17 @@
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 import pytest
 
 TEST_DLL_INIT_DATA = [
-    ("encyclopedia"),
-    ("zebra"),
+    ("encyclopedia",),
+    "taco",
+    "zebra",
     [1, 2, 3],
 ]
 
 TEST_DLL_INIT_DATA2 = [
-    ("booksarecool"),
-    ("rhino"),
+    ("booksarecool",),
+    "rhino",
     [1, 99, 7],
 ]
 
