@@ -51,11 +51,14 @@ class DoublyLinkedList(object):
         pop_node = self.head
         self.head._next._prev = None
         self.head = self.head._next
-        return pop_node
+        return pop_node.data
 
-    def shift():
+    def shift(self):
         """Docstring."""
-        pass
+        shift_node = self.tail
+        self.tail._prev._next = None
+        self.tail = self.tail._prev
+        return shift_node.data
 
     def remove(data):
         """Docstring."""

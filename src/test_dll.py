@@ -33,4 +33,8 @@ def test_dll_append(value, output, dll_initial_2):
 
 
 def test_dll_pop(dll_initial_2):
-    assert dll_initial_2.pop().data == [1, 99, 7]
+    assert dll_initial_2.pop() == [1, 99, 7]
+
+
+def test_dll_shift(dll_initial_2):
+    assert dll_initial_2.shift() == "booksarecool"
