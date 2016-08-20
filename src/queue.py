@@ -16,7 +16,7 @@ class Queue(object):
 
     def dequeue(self):
         """Remove a value from the tail of the queue."""
-        return self.dll.remove(self.tail)
+        return self.dll.remove(self.dll.tail.data)
 
     def peek(self):
         """Return value of tail's previous node w/o removing it."""
