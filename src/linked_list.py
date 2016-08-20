@@ -18,25 +18,24 @@ class LinkedList(object):
     def __init__(self, data=None):
         """Initial setup of LinkedList class."""
         self.head = None
-        try:
-            if data:
+        if data is not None:
+            try:
                 for item in data:
                     self.push(item)
-        except TypeError:
-            raise TypeError('Please enter an object that is iterable.')
+            except TypeError:
+                raise TypeError('Please enter an object that is iterable.')
 
     def push(self, data):
         """Function builds push method of LinkedList class."""
         new_node = Node(data)
         new_node.next_node = self.head
         self.head = new_node
-        return self.head
 
     def pop(self):
         """Function builds pop method of LinkedList class."""
         pop_node = self.head
         self.head = self.head.next_node
-        return pop_node
+        return pop_node.data
 
     def size(self):
         """Function builds size method of LinkedList class."""

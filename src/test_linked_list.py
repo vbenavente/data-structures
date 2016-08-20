@@ -56,7 +56,7 @@ def test_push(data, data2, output):
 def test_pop(data, output):
     """Test the pop method of LinkedList class."""
     test_case = LinkedList(data)
-    assert test_case.pop().data == output
+    assert test_case.pop() == output
 
 
 @pytest.mark.parametrize("data, output", TEST_SIZE_DATA)
