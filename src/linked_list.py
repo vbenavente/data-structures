@@ -63,19 +63,23 @@ class LinkedList(object):
     def remove(self, node):
         """Function build remove method of LinkedList class."""
         current = self.head
-        while current is not None and node.data != current.data:
+        previous = None
+        while node.data != current.data:
             previous = current
             current = current.next_node
+        if previous is None:
+            return current
         previous.next_node = current.next_node.next_node
         return current
 
     def display(self):
         """Function builds display method of LinkedList class."""
         current = self.head
-        accumulator = []
+        accumulator = "("
         while current is not None:
-            accumulator.append(str(current.data))
+            accumulator = "".join(accumulator + str(current.data) + ", ")
+            # accumulator += ", "
             current = current.next_node
-        accum_string = ", ".join(accumulator)
-        display_string = "({})".format(accum_string)
-        return display_string
+        accumulator = accumulator[:-2]
+        accumulator += ")"
+        return accumulator

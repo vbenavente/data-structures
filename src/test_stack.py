@@ -37,4 +37,4 @@ def test_stack_pop(initial, result):
     """Function tests Stack pop method."""
     test_case = Stack(initial)
     assert test_case.pop().data == result
-
+    #this test fails, we'll fix it in our stack branch
