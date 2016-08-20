@@ -8,20 +8,14 @@ TEST_LINKED_LIST_INIT_DATA = [
     ("frog", 'g'),
     (["one", "two", "three"], "three")
 ]
-TEST_PUSH_DATA = [
-    ("taco", "burrito", "burrito"),
-    ("a", "b", "b"),
-    ("cat", "dog", "dog"),
-    ("z", [1, 2, 3], [1, 2, 3])
-]
 TEST_POP_DATA = [
     ("zebra", "a"),
     ("encyclopedia", "a"),
     ([1, 3, 5], 5)
 ]
 TEST_SIZE_DATA = [
-    ("taco", 4),
-    ([1, 2, 3], 3)
+    ("taco"),
+    ([1, 2, 3])
 ]
 TEST_SEARCH_DATA = [
     ("string", "i", "i"),
@@ -44,33 +38,41 @@ def test_linked_list_init(data, output):
     assert test_case.head.data == output
 
 
-@pytest.mark.parametrize("data, data2, output", TEST_PUSH_DATA)
-def test_push(data, data2, output):
+def test_push():
     """Test the push method of LinkedList class."""
-    test_case = LinkedList(data)
-    test_case.push(data2)
-    assert test_case.head.data == output
+    test_case = LinkedList()
+    test_case.push("taco")
+    assert test_case.head.data is not None
+    assert test_case.head.data == "taco"
 
 
 @pytest.mark.parametrize("data, output", TEST_POP_DATA)
 def test_pop(data, output):
     """Test the pop method of LinkedList class."""
     test_case = LinkedList(data)
-    assert test_case.pop().data == output
+    assert test_case.pop() == output
 
 
-@pytest.mark.parametrize("data, output", TEST_SIZE_DATA)
-def test_size(data, output):
+def test_pop_empty_list():
+    """Test pop method against an empty list."""
+    test_case = LinkedList()
+    with pytest.raises(IndexError) as message:
+        test_case.pop()
+    assert "You cannot pop from an empty list." in str(message)
+
+
+@pytest.mark.parametrize("data", TEST_SIZE_DATA)
+def test_size(data):
     """Test the size method of LinkedList class."""
     test_case = LinkedList(data)
-    assert test_case.size() == output
+    assert test_case.size() == len(data)
 
 
-@pytest.mark.parametrize("data, output", TEST_SIZE_DATA)
-def test_dunder_len(data, output):
+@pytest.mark.parametrize("data", TEST_SIZE_DATA)
+def test_dunder_len(data):
     """Test the dunder len method of LinkedList class."""
     test_case = LinkedList(data)
-    assert len(test_case) == output
+    assert len(test_case) == len(data)
 
 
 @pytest.mark.parametrize("initial, query, output", TEST_SEARCH_DATA)
@@ -80,12 +82,28 @@ def test_search(initial, query, output):
     assert test_case.search(query).data == output
 
 
+def test_search_not_there():
+    """Test search method for value not in list."""
+    test_case = LinkedList()
+    with pytest.raises(IndexError) as message:
+        test_case.search("taco")
+    assert "That value is not in the list." in str(message)
+
+
 @pytest.mark.parametrize("initial, data, result", TEST_REMOVE_DATA)
 def test_remove(initial, data, result):
     """Test the remove method of LinkedList class."""
     test_case = LinkedList(initial)
     test_case_node = test_case.search(data)
     assert test_case.remove(test_case_node).data == result
+
+
+def test_remove_empty():
+    """Test remove method against an empty list."""
+    test_case = LinkedList()
+    with pytest.raises(IndexError) as message:
+        test_case.remove("taco")
+    assert "That value is not in the list." in str(message)
 
 
 @pytest.mark.parametrize("initial, result", TEST_DISPLAY)

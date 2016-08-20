@@ -1,4 +1,4 @@
-# data-structures  
+# Data-Structures
 - sample code for a number of classic data structures implemented in Python  
 
 ## Singly-Linked List  
@@ -18,7 +18,7 @@
   - http://stackoverflow.com/questions/23337471/how-to-properly-assert-that-exception-raises-in-pytest
 
 ### Singly vs. Doubly Linked Lists  
-- A singly Linked-List
+- A Singly Linked-List
   - easier to implement  
   - takes up less memory  
   - faster to add or delete if you are only concerned with the next node   
@@ -31,4 +31,4 @@
 
 ### resources and collaborations  
 - https://www.codefellows.org/blog/implementing-a-singly-linked-list-in-python/  
-- http://stackoverflow.com/questions/10708790/microsoft-asks-singly-list-or-doubly-list-what-are-the-pros-and-cons-of-using
+- http://stackoverflow.com/questions/10708790/  microsoft-asks-singly-list-or-doubly-list-what-are-the-pros-and-cons-of-using
