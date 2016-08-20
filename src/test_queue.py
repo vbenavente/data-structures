@@ -37,3 +37,15 @@ def test_queue_peek_none():
     """Test peek returns none if queue is empty."""
     test_queue = Queue()
     assert test_queue.peek() is None
+
+
+def test_queue_size():
+    """Test size returns size of queue."""
+    test_queue = Queue(TEST_QUEUE_DATA)
+    assert test_queue.size() == 2
+
+
+def test_queue_size_empty():
+    """Test empty queue has size 0."""
+    test_queue = Queue()
+    assert test_queue.size() == 0

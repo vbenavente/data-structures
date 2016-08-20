@@ -26,4 +26,11 @@ class Queue(object):
 
     def size(self):
         """Return size of the queue, 0 if empty."""
-        pass
+        if self.dll.head is None:
+            return 0
+        count = 0
+        current = self.dll.head
+        while current is not None:
+            count += 1
+            current = current._next
+        return count

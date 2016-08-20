@@ -10,6 +10,10 @@
 ## Doubly-Linked List  
 - this is an implementation of a doubly linked list in Python  
 
+## Queue  
+- this is an implementation of a queue in Python  
+- inherited methods from our doubly linked list
+
 #### Cited Sources:
   - http://stackoverflow.com/questions/23337471/how-to-properly-assert-that-exception-raises-in-pytest
 
