@@ -36,5 +36,12 @@ def test_stack_push(initial, value, result):
 def test_stack_pop(initial, result):
     """Function tests Stack pop method."""
     test_case = Stack(initial)
-    assert test_case.pop().data == result
-    #this test fails, we'll fix it in our stack branch
+    assert test_case.pop() == result
+
+
+def test_stack_pop_from_empty():
+    """Tests pop from empty stack."""
+    test_case = Stack()
+    with pytest.raises(IndexError) as message:
+        test_case.pop()
+    assert "You cannot pop from an empty list." in str(message)

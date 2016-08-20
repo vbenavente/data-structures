@@ -1,34 +1,18 @@
 # -*- coding: utf-8 -*-
-"""Docstring."""
+"""File implements a basic stack data structure."""
 import linked_list
 
 
 class Stack(object):
-    """Summary.
-
-    Args:
-        object (TYPE): Description
-
-    Returns:
-        TYPE: Description
-    """
+    """Building our stack class."""
 
     def __init__(self, iterable=None):
-        """Summary."""
         self.ll = linked_list.LinkedList(iterable)
 
     def push(self, value):
-        """Summary.
-
-        Returns:
-            TYPE: Description
-        """
-        return self.ll.push(value)
+        """Adds a node with a value to the stack."""
+        self.ll.push(value)
 
     def pop(self):
-        """Summary.
-
-        Returns:
-            TYPE: Description
-        """
+        """Removes a value from the stack and returns it."""
         return self.ll.pop()
