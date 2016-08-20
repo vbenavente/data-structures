@@ -14,13 +14,15 @@
   - http://stackoverflow.com/questions/23337471/how-to-properly-assert-that-exception-raises-in-pytest
 
 ### Singly vs. Doubly Linked Lists  
-- Singly Linked-List  
+- A singly Linked-List
   - easier to implement  
   - takes up less memory  
   - faster to add or delete if you are only concerned with the next node   
 - Doubly Linked-List  
   - easy access to both ends of the list  
-  - can delete previous node without traversing from head node
+  - can delete previous node without traversing from head node  
+
+  A singly linked list has a few advantages over a doubly linked list.  Singly linked lists are easier to implement, take up less memory on the host machine, and it is faster to add or delete node from the list.  Doubly linked lists have a few advantages over singly linked lists, such as: easy access to both ends of the list and you can delete a node from anywhere in the list without traversing from the head.  Choosing between these different list types is a complicated question of performance vs memory concerns.
 
 
 ### resources and collaborations  

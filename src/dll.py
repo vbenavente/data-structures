@@ -63,7 +63,6 @@ class DoublyLinkedList(object):
         """Remove first instance of data from anywhere in the list,
         starting at the head."""
         current = self.head
-        # import pdb; pdb.set_trace()
         try:
             while current.data != rem_val:
                 current = current._next
