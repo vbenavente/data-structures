@@ -41,11 +41,18 @@ def test_dll_shift(dll_initial_2):
 
 
 def test_remove_one(dll_initial_1):
-    """remove value that is in the list"""
+    """Remove value that is in the list."""
     assert dll_initial_1.remove("taco") == "taco"
 
 
 def test_remove_two(dll_initial_1):
-    """remove value not in the list"""
+    """Remove value not in the list."""
     with pytest.raises(IndexError):
         dll_initial_1.remove("burrito")
+
+
+def test_remove_empty_list():
+    """Throw an error for attempting to remove from an empty list"""
+    empty_list = DoublyLinkedList()
+    with pytest.raises(IndexError):
+        empty_list.remove("taco")

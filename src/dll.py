@@ -69,6 +69,11 @@ class DoublyLinkedList(object):
                 current = current._next
         except AttributeError:
             raise IndexError("That value is not in the list.")
-        current._prev._next = current._next
-        current._next._prev = current._prev
+        if current._next is None and current._prev is None:
+            self.head = None
+            return current.data
+        if current._prev is not None:
+            current._prev._next = current._next
+        if current._next is not None:
+            current._next._prev = current._prev
         return current.data
