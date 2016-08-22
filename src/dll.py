@@ -40,7 +40,7 @@ class DoublyLinkedList(object):
         new_node._next = None
         new_node._prev = self.tail
         if self.tail:
-            self.tail._next = new_node._prev
+            self.tail._next = new_node
         self.tail = new_node
         if self.head is None:
             self.head = new_node

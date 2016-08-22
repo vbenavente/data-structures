@@ -80,7 +80,7 @@ def test_deque_appendleft_one():
     original_size = test_case.size()
     test_case.appendleft("string")
     assert test_case.dll.tail.data == "string"
-    # assert test_case.size() == original_size + 1
+    assert test_case.size() == original_size + 1
 
 
 def test_deque_appendleft_several():
@@ -90,7 +90,7 @@ def test_deque_appendleft_several():
     test_case.appendleft("two")
     test_case.appendleft("three")
     assert test_case.dll.tail.data == "three"
-    # assert test_case.size() == 8
+    assert test_case.size() == 8
 
 
 def test_deque_appendleft_empty():
