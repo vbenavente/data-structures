@@ -11,11 +11,11 @@ class Deque(object):
 
     def append(self, data):
         """Append a node containing data to the head(end) of the deque."""
-        pass
+        self.dll.push(data)
 
     def appendleft(self, data):
         """Append a node containing data to the tail(front) of the deque."""
-        pass
+        self.dll.append(data)
 
     def pop(self):
         """Remove a value from the head(end) of the deque and return it.

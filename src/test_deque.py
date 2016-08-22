@@ -43,3 +43,61 @@ def test_deque_size_empty():
     """Test the size method against an empty list."""
     test_case = Deque()
     assert test_case.size() == 0
+
+
+def test_deque_append_one():
+    """Test that append method adds specified data to the deque."""
+    test_case = Deque(TEST_DEQUE_INIT_DATA)
+    original_size = test_case.size()
+    test_case.append("string")
+    assert test_case.dll.head.data == "string"
+    assert test_case.size() == original_size + 1
+
+
+def test_deque_append_several():
+    """Test that the append method adds specified data to the deque."""
+    test_case = Deque(TEST_DEQUE_INIT_DATA)
+    test_case.append("one")
+    test_case.append("two")
+    test_case.append("three")
+    assert test_case.dll.head.data == "three"
+    assert test_case.size() == 8
+
+
+def test_deque_append_empty():
+    """Test that the append method properly hooks up the tail when you
+    add to an empty list."""
+    test_case = Deque()
+    test_case.append("a value")
+    assert test_case.dll.head.data == "a value"
+    assert test_case.dll.tail.data == "a value"
+    assert test_case.size() == 1
+
+
+def test_deque_appendleft_one():
+    """Test that appendleft method adds specified data to the deque."""
+    test_case = Deque(TEST_DEQUE_INIT_DATA)
+    original_size = test_case.size()
+    test_case.appendleft("string")
+    assert test_case.dll.tail.data == "string"
+    # assert test_case.size() == original_size + 1
+
+
+def test_deque_appendleft_several():
+    """Test that appendleft method adds specified data to the deque."""
+    test_case = Deque(TEST_DEQUE_INIT_DATA)
+    test_case.appendleft("one")
+    test_case.appendleft("two")
+    test_case.appendleft("three")
+    assert test_case.dll.tail.data == "three"
+    # assert test_case.size() == 8
+
+
+def test_deque_appendleft_empty():
+    """Test that appendleft method properly hooks up the head when you
+    add to an empty list."""
+    test_case = Deque()
+    test_case.appendleft("a value")
+    assert test_case.dll.head.data == "a value"
+    assert test_case.dll.tail.data == "a value"
+    assert test_case.size() == 1
