@@ -29,7 +29,7 @@ class DoublyLinkedList(object):
         new_node._prev = None
         new_node._next = self.head
         if self.head:
-            self.head._prev = new_node._next
+            self.head._prev = new_node
         self.head = new_node
         if self.tail is None:
             self.tail = new_node
@@ -60,8 +60,10 @@ class DoublyLinkedList(object):
         """Remove data from the tail of the list and return it."""
         shift_node = self.tail
         try:
-            self.tail._prev._next = None
+            print("Self.tail", self.tail.data)
             self.tail = self.tail._prev
+            self.tail._next = None
+            print("2", self.tail.data)
         except AttributeError:
             self.tail = None
             self.head = None

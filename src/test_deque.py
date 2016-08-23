@@ -132,7 +132,7 @@ def test_deque_popleft():
     print(test_case.size())
     plop = test_case.popleft()
     print(test_case.size())
-    import pdb; pdb.set_trace()
+    # import pdb; pdb.set_trace()
     assert plop == [1, 2, 3, 4, 5]
     assert test_case.size() == 4
 
