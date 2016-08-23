@@ -101,3 +101,52 @@ def test_deque_appendleft_empty():
     assert test_case.dll.head.data == "a value"
     assert test_case.dll.tail.data == "a value"
     assert test_case.size() == 1
+
+
+def test_deque_pop():
+    """Test pop removes a value from the head(end) of the deque."""
+    test_case = Deque(TEST_DEQUE_INIT_DATA)
+    plop = test_case.pop()
+    assert plop == ("cup", "coffee", "pastry")
+    assert test_case.size() == 4
+
+
+def test_deque_pop_empty():
+    """Test pop from empty deque raises appropriate error."""
+    test_case = Deque()
+    with pytest.raises(IndexError) as message:
+        test_case.pop()
+    assert "The deque is empty." in str(message)
+
+
+def test_deque_pop_from_one():
+    """Test pop from deque with only one node."""
+    test_case = Deque("e")
+    assert test_case.pop() == "e"
+    assert test_case.size() == 0
+
+
+def test_deque_popleft():
+    """Test popleft removes a value from the tail(front) of the deque."""
+    test_case = Deque(TEST_DEQUE_INIT_DATA)
+    print(test_case.size())
+    plop = test_case.popleft()
+    print(test_case.size())
+    import pdb; pdb.set_trace()
+    assert plop == [1, 2, 3, 4, 5]
+    assert test_case.size() == 4
+
+
+def test_deque_popleft_empty():
+    """Test popleft from empty deque raises appropriate error."""
+    test_case = Deque()
+    with pytest.raises(IndexError) as message:
+        test_case.popleft()
+    assert "The deque is empty." in str(message)
+
+
+def test_deque_popleft_from_one():
+    """Test popleft from deque with only one node."""
+    test_case = Deque("e")
+    assert test_case.popleft() == "e"
+    assert test_case.size() == 0

@@ -21,13 +21,19 @@ class Deque(object):
         """Remove a value from the head(end) of the deque and return it.
 
         Will raise an exception if the deque is empty."""
-        pass
+        try:
+            return self.dll.pop()
+        except AttributeError:
+            raise IndexError("The deque is empty.")
 
     def popleft(self):
         """Remove a value from the tail(front) of the deque and return it.
 
         Will raise an exception if the deque is empty."""
-        pass
+        try:
+            return self.dll.shift()
+        except AttributeError:
+            raise IndexError("The deque is empty.")
 
     def peek(self):
         """Returns the value of the head(end) of the deque.
