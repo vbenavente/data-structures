@@ -29,7 +29,7 @@ class DoublyLinkedList(object):
         new_node._prev = None
         new_node._next = self.head
         if self.head:
-            self.head._prev = new_node._next
+            self.head._prev = new_node
         self.head = new_node
         if self.tail is None:
             self.tail = new_node
@@ -40,7 +40,7 @@ class DoublyLinkedList(object):
         new_node._next = None
         new_node._prev = self.tail
         if self.tail:
-            self.tail._next = new_node._prev
+            self.tail._next = new_node
         self.tail = new_node
         if self.head is None:
             self.head = new_node
@@ -48,15 +48,25 @@ class DoublyLinkedList(object):
     def pop(self):
         """Remove data from the head of the list and return it."""
         pop_node = self.head
-        self.head._next._prev = None
-        self.head = self.head._next
+        try:
+            self.head._next._prev = None
+            self.head = self.head._next
+        except AttributeError:
+            self.head = None
+            self.tail = None
         return pop_node.data
 
     def shift(self):
         """Remove data from the tail of the list and return it."""
         shift_node = self.tail
-        self.tail._prev._next = None
-        self.tail = self.tail._prev
+        try:
+            print("Self.tail", self.tail.data)
+            self.tail = self.tail._prev
+            self.tail._next = None
+            print("2", self.tail.data)
+        except AttributeError:
+            self.tail = None
+            self.head = None
         return shift_node.data
 
     def remove(self, rem_val):
