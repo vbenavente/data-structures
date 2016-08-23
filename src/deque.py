@@ -39,13 +39,17 @@ class Deque(object):
         """Returns the value of the head(end) of the deque.
 
         Returns None if the deque is empty."""
-        pass
+        if self.dll.head is None:
+            return None
+        return self.dll.head.data
 
     def peekleft(self):
         """Returns a value from the tail(front) of the deque.
 
         Returns None if the deque is empty."""
-        pass
+        if self.dll.tail is None:
+            return None
+        return self.dll.tail.data
 
     def size(self):
         """Returns the count of nodes in the queue, 0 if empty."""

@@ -129,9 +129,7 @@ def test_deque_pop_from_one():
 def test_deque_popleft():
     """Test popleft removes a value from the tail(front) of the deque."""
     test_case = Deque(TEST_DEQUE_INIT_DATA)
-    print(test_case.size())
     plop = test_case.popleft()
-    print(test_case.size())
     # import pdb; pdb.set_trace()
     assert plop == [1, 2, 3, 4, 5]
     assert test_case.size() == 4
@@ -150,3 +148,31 @@ def test_deque_popleft_from_one():
     test_case = Deque("e")
     assert test_case.popleft() == "e"
     assert test_case.size() == 0
+
+
+def test_deque_peek():
+    """Test peek returns the next value that would be returned by pop."""
+    test_case = Deque(TEST_DEQUE_INIT_DATA)
+    test_size = test_case.size()
+    assert test_case.peek() == test_case.dll.head.data
+    assert test_case.size() == test_size
+
+
+def test_deque_peek_empty():
+    """Test peek returns None when called on empty deque."""
+    test_case = Deque()
+    assert test_case.peek() is None
+
+
+def test_deque_peekleft():
+    """Test peekleft returns next value that would be returned by popleft."""
+    test_case = Deque(TEST_DEQUE_INIT_DATA)
+    test_size = test_case.size()
+    assert test_case.peekleft() == test_case.dll.tail.data
+    assert test_case.size() == test_size
+
+
+def test_deque_peekleft_empty():
+    """Test peekleft returns None when called on empty deque."""
+    test_case = Deque()
+    assert test_case.peekleft() is None
