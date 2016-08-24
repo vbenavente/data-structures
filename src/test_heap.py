@@ -17,16 +17,21 @@ def test_heap_init(heap_fix_one):
     assert heap.heap[0] == expected
 
 
-def test_heap_push_empty():
+def test_heap_push_empty(heap_fix_empty):
     """Test push onto an empty Heap."""
+    heap_fix_empty.push(63)
+    assert heap_fix_empty.heap[0] == 63
 
 
-def test_heap_push():
+def test_heap_push(heap_fix_one):
     """Ensure that the push method adds a value to binary heap."""
+    heap_fix_one[0].push(63)
+    assert heap_fix_one[0].heap[-1] == 63
 
 
 def test_heap_pop_empty():
     """Test pop from an empty list returns None."""
+    pass
 
 
 def test_heap_pop():

@@ -16,9 +16,9 @@ class Heap(object):
         except TypeError:
             raise TypeError("Please enter an object that is iterable.")
 
-    def push(self):
+    def push(self, data):
         """Adds value into the heap, maintaining shape and heap properties."""
-        pass
+        self.heap.append(data)
 
     def pop(self):
         """Removes value from heap, maintaining shape and heap properties."""
