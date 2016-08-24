@@ -7,6 +7,7 @@ class Node(object):
     """Building our Node class."""
 
     def __init__(self, data):
+        """Init node with attributes, data is assigned a value from the arg."""
         self.data = data
         self.next_node = None
 
@@ -15,6 +16,8 @@ class LinkedList(object):
     """Building our LinkedList class."""
 
     def __init__(self, data=None):
+        """Init singly linked list, set head to None and iterate through data
+         if provided as an argument."""
         self.head = None
         if data is not None:
             try:

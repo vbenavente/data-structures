@@ -7,6 +7,7 @@ class Deque(object):
     """Deque implements a simple Python deque data structure."""
 
     def __init__(self, iterable=None):
+        """Init deque, iterate through data if provided as an argument."""
         self.dll = DoublyLinkedList(iterable)
 
     def append(self, data):
