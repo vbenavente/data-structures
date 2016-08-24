@@ -6,6 +6,7 @@ from __future__ import unicode_literals
 class Node(object):
     """Class implements Nodes for use in our dll."""
     def __init__(self, data=None, nxt=None, prev=None):
+        """Init node with attributes."""
         self.data = data
         self._next = nxt
         self._prev = prev
@@ -14,6 +15,8 @@ class Node(object):
 class DoublyLinkedList(object):
     """Class implements a simple doubly linked list."""
     def __init__(self, iterable=None):
+        """Init doubly linked list, iterate through iterable data
+         if provided as an argument."""
         self.head = None
         self.tail = None
         try:

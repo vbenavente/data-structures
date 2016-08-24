@@ -7,6 +7,7 @@ class Stack(object):
     """Building our stack class."""
 
     def __init__(self, iterable=None):
+        """Init stack, iterate through data if provided as an argument."""
         self.ll = linked_list.LinkedList(iterable)
 
     def push(self, value):

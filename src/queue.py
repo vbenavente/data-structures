@@ -8,6 +8,7 @@ class Queue(object):
     """Queue class implements a simple queue data structure."""
 
     def __init__(self, iterable=None):
+        """Init queue, iterate through data if provided as an argument."""
         self.dll = dll.DoublyLinkedList(iterable)
 
     def enqueue(self, data):
