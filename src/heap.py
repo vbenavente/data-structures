@@ -7,6 +7,7 @@ class Heap(object):
     """Class implements a simple binary heap data structure in Python."""
 
     def __init__(self, iterable=None):
+        """Init method of Heap class, sets heap property as empty list."""
         if iterable is None:
             self.heap = []
             return
