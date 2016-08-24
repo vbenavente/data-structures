@@ -14,6 +14,14 @@
 - this is an implementation of a queue in Python  
 - inherited methods from our doubly linked list
 
+## Deque
+ - this is an implementation of a deque in Python
+ - inherits methods from our doubly linked list
+
+## Heap
+ - this is an implementation of a heap in Python
+ - Uses the builtin Python list
+
 #### Cited Sources:
   - http://stackoverflow.com/questions/23337471/how-to-properly-assert-that-exception-raises-in-pytest
 
