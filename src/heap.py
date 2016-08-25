@@ -22,16 +22,24 @@ class Heap(object):
 
     def pop(self):
         """Removes value from heap, maintaining shape and heap properties."""
+        # should return the value popped
         pass
 
     def _swap(self):
         """Swaps the values of two list indexes."""
         pass
 
-    def _find_parent(self):
+    def sort_parent(self):
         """Uses math to find our index's parent value."""
-        pass
-
-    def _find_children(self):
-        """Uses math to find our value's children."""
-        pass
+        c_idx = len(self.heap) - 1
+        c_val = self.heap[c_idx]
+        p_idx = (c_idx - 1) // 2
+        p_val = self.heap[p_idx]
+        while p_val > c_val:
+            self.heap[p_idx], self.heap[c_idx] = self.heap[c_idx], self.heap[p_idx]
+            c_idx = p_idx
+            p_idx = (p_idx - 1) // 2
+            p_val = self.heap[p_idx]
+            c_val = self.heap[c_idx]
+            if p_val < c_val:
+                break

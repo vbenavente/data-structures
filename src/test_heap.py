@@ -1,8 +1,18 @@
 # -*- coding: utf-8 -*-
 """File tests our heap data structure implementation."""
 from __future__ import unicode_literals
+import pytest
 
-A_CONSTANT = [
+HEAP_FIX_ONE_PARENT_DATA = [
+    (63, 1),
+    (63, 2),
+    (63, 2),
+    (63, 5),
+    (63, 6),
+    (63, 8),
+    (63, 9),
+    (63, 3),
+    (63, 17),
 ]
 
 
@@ -37,3 +47,18 @@ def test_heap_pop_empty():
 def test_heap_pop():
     """Ensure that the pop method removes a value from binary heap."""
     pass
+
+
+def test_heap_swap(self):
+    """Swaps the values of two list indexes."""
+    pass
+
+
+@pytest.mark.parametrize("data, index", HEAP_FIX_ONE_PARENT_DATA)
+def test_heap_sort_parent(data, index, heap_fix_one):
+    """Uses math to find our index's parent value."""
+    # instance = heap_fix_one[0]
+    heap_fix_one[0].push(data)
+    heap_fix_one[0].sort_parent()
+    print('after', heap_fix_one[0].heap.index(data))
+    assert (heap_fix_one[0].heap).index(data) == index
