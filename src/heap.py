@@ -52,7 +52,45 @@ class Heap(object):
             self.heap[0], self.heap[-1] = self.heap[-1], self.heap[0]
         except IndexError:
             raise IndexError("You're a dumbass you can't pop an empty heap.")
-        tail = self.heap[-1]
+        tail = self.heap.pop()
+        cur_idx = 0
+        ch_a_idx = 1
+        ch_b_idx = 2
+        cur_val = self.heap[0]
+        ch_a_val = self.heap[1]
+        ch_b_val = self.heap[2]
+        while cur_val > ch_a_val or ch_b_val:
+            if cur_val > ch_a_val:
+                self.heap[cur_idx], self.heap[ch_a_idx] = self.heap[ch_a_idx], self.heap[cur_idx]
+                cur_idx = ch_a_idx
+            else:
+                self.heap[cur_idx], self.heap[ch_b_idx] = self.heap[ch_b_idx], self.heap[cur_idx]
+                cur_idx = ch_b_idx
+
+            ch_a_idx = cur_idx * 2 + 1
+            ch_b_idx = cur_idx * 2 + 2
+            print("ch a idx before", ch_a_idx)
+            print("ch b idx before", ch_b_idx)
+            if ch_a_idx > len(self.heap) - 1:
+                ch_a_idx == len(self.heap) - 1
+                # break
+            if ch_b_idx > len(self.heap) - 1:
+                ch_b_idx == len(self.heap) - 1
+                # break
+            print("ch a idx after", ch_a_idx)
+            print("ch b idx after", ch_b_idx)
+            print("1", self.heap)
+            print("cur val", cur_val)
+            print("cur idx", cur_idx)
+            # import pdb; pdb.set_trace()
+
+
+            ch_a_val = self.heap[ch_a_idx]
+            ch_b_val = self.heap[ch_b_idx]
+            cur_val = self.heap[cur_idx]
+            if cur_val > ch_a_val or ch_b_val:
+                break
+            print("2", self.heap)
         return tail
 
     def _pop_from(self):
