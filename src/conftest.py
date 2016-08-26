@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+from collections import namedtuple
 import pytest
 
 
@@ -35,16 +36,28 @@ def dll_initial_2():
 
 """Heap Fixtures"""
 
+Heap_Fix = namedtuple("Heap_Fix", ("heap",
+                                   "data",
+                                   "result",
+                                   "output",
+                                   "input",
+                                   "instance",
+                                   "expected",
+                                   ))
+Heap_Fix.__new__.__defaults__ = (None,) * len(Heap_Fix._fields)
+# the above line sourced from:
+# http://stackoverflow.com/questions/11351032/named-tuple-and-optional-keyword-arguments
+
 HEAP_FIX_ONE_DATA = [
-    (1, ),
-    (1, 2),
-    (2, 1),
-    (45, 87, 3, 27),
-    (7, 5, 9, 345, 43, 873),
-    (8, 7, 6, 5, 4, 3, 2, 1),
-    (1, 2, 3, 4, 5, 6, 7, 8, 9),
-    (34, 0, 77, 95, 21, 8009, 788324),
-    range(700)
+    ((1, ), (1,)),
+    ((1, 2), (2,)),
+    ((2, 1), (2,)),
+    ((45, 87, 3, 27), (5,)),
+    ((7, 5, 9, 345, 43, 873), (6,)),
+    ((8, 7, 6, 5, 4, 3, 2, 1), (8,)),
+    ((1, 2, 3, 4, 5, 6, 7, 8, 9), (9,)),
+    ((34, 0, 77, 95, 21, 8009, 788324), (3,)),
+    (list(range(700)), (17,)),
 ]
 
 
@@ -60,6 +73,8 @@ def heap_fix_empty():
 def heap_fix_one(request):
     """Return a new test instance of Heap class."""
     from heap import Heap
-    instance = Heap(request.param)
-    expected = sorted(request.param)[0]
-    return instance, expected
+    heap = Heap(request.param)
+    result = sorted(request.param)[0][0]
+    expected = request.param[0][1]
+    named_tuple = Heap_Fix(heap=heap, result=result, expected=expected)
+    return named_tuple

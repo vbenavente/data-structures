@@ -10,6 +10,9 @@
 ## Doubly-Linked List  
 - this is an implementation of a doubly linked list in Python  
 
+### Cited Sources:
+  - http://stackoverflow.com/questions/23337471/how-to-properly-assert-that-exception-raises-in-pytest
+
 ## Queue  
 - this is an implementation of a queue in Python  
 - inherited methods from our doubly linked list
@@ -20,10 +23,13 @@
 
 ## Heap
  - this is an implementation of a heap in Python
- - Uses the builtin Python list
+ - our implementation is a min heap
+ - we used the builtin Python list
 
-#### Cited Sources:
-  - http://stackoverflow.com/questions/23337471/how-to-properly-assert-that-exception-raises-in-pytest
+### Cited Sources
+  - http://stackoverflow.com/questions/11351032/named-tuple-and-optional-keyword-arguments
+  - https://github.com/clessor88/data-structures/blob/binheap/src/bin_heap.py
+
 
 ### Singly vs. Doubly Linked Lists  
 - A Singly Linked-List
