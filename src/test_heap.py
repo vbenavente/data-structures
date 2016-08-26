@@ -45,5 +45,4 @@ def test_heap_push(heap_fix_one):
     """Uses math to find our index's parent value."""
     # instance = heap_fix_one[0]
     heap_fix_one.instance.push(63)
-    print('after', heap_fix_one.instance.heap.index(63))
     assert (heap_fix_one.instance.heap).index(63) == heap_fix_one.expected

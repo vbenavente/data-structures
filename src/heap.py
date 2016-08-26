@@ -36,12 +36,13 @@ class Heap(object):
         p_idx = (c_idx - 1) // 2
         p_val = self.heap[p_idx]
         while p_val > c_val:
+            # import pdb; pdb.set_trace()
             self.heap[p_idx], self.heap[c_idx] = self.heap[c_idx], self.heap[p_idx]
             c_idx = p_idx
-            p_idx = (p_idx - 1) // 2
+            p_idx = (c_idx - 1) // 2
             p_val = self.heap[p_idx]
             c_val = self.heap[c_idx]
-            if p_val < c_val:
+            if p_val < c_val or c_idx is 0:
                 break
 
     def pop(self):
