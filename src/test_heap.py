@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """File tests our heap data structure implementation."""
 from __future__ import unicode_literals
-import pytest
+# import pytest
 
 
 def test_heap_init_empty(heap_fix_empty):
@@ -11,7 +11,7 @@ def test_heap_init_empty(heap_fix_empty):
 
 def test_heap_init(heap_fix_one):
     """Ensure that the init method of Heap class works correctly."""
-    assert heap_fix_one.heap.heap[0][0] == heap_fix_one.result
+    assert heap_fix_one.instance.heap[0] == heap_fix_one.result
 
 
 def test_heap_push_onto_empty(heap_fix_empty):
@@ -22,8 +22,8 @@ def test_heap_push_onto_empty(heap_fix_empty):
 
 def test_heap_push_onto(heap_fix_one):
     """Ensure that the push method adds a value to binary heap."""
-    heap_fix_one.heap._push_onto(63)
-    assert heap_fix_one.heap.heap[-1] == 63
+    heap_fix_one.instance._push_onto(63)
+    assert heap_fix_one.instance.heap[-1] == 63
 
 
 def test_heap_pop_empty():
@@ -41,10 +41,9 @@ def test_heap_swap():
     pass
 
 
-# @pytest.mark.parametrize("data, index", HEAP_FIX_ONE_PARENT_DATA)
-# def test_heap_sort_parent(data, index, heap_fix_one):
-#     """Uses math to find our index's parent value."""
-#     # instance = heap_fix_one[0]
-#     heap_fix_one.heap.push(data)
-#     print('after', heap_fix_one.heap.heap.index(data))
-#     assert (heap_fix_one.heap.heap).index(data) == index
+def test_heap_push(heap_fix_one):
+    """Uses math to find our index's parent value."""
+    # instance = heap_fix_one[0]
+    heap_fix_one.instance.push(63)
+    print('after', heap_fix_one.instance.heap.index(63))
+    assert (heap_fix_one.instance.heap).index(63) == heap_fix_one.expected
