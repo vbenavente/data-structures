@@ -25,10 +25,10 @@
  - this is an implementation of a heap in Python
  - our implementation is a min heap
  - we used the builtin Python list
+ - Cris helped us out
 
 ### Cited Sources
   - http://stackoverflow.com/questions/11351032/named-tuple-and-optional-keyword-arguments
-  - https://github.com/clessor88/data-structures/blob/binheap/src/bin_heap.py
 
 
 ### Singly vs. Doubly Linked Lists  
