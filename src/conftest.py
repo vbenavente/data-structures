@@ -42,22 +42,24 @@ Heap_Fix = namedtuple("Heap_Fix", ("data",
                                    "input",
                                    "instance",
                                    "expected",
+                                   "initial",
+                                   "childs",
                                    ))
 Heap_Fix.__new__.__defaults__ = (None,) * len(Heap_Fix._fields)
 # the above line sourced from:
 # http://stackoverflow.com/questions/11351032/named-tuple-and-optional-keyword-arguments
 
 HEAP_FIX_ONE_DATA = [
-    ((1, ), 1),
-    ((1, 2), 2),
-    ((2, 1), 2),
-    ((45, 87, 3, 27), 4),
-    ((7, 5, 9, 345, 43, 873), 6),
-    ((8, 7, 6, 5, 4, 3, 2, 1), 8),
-    ((1, 2, 3, 4, 5, 6, 7, 8, 9), 9),
-    ((34, 0, 77, 95, 21, 8009, 788324), 3),
-    (list(range(64, 200)), 0),
-    (list(range(-15, 50)), 65)
+    ((1, ), 1, (None, None)),
+    ((1, 2), 2, (None, None)),
+    ((2, 1), 2, (None, None)),
+    ((45, 87, 3, 27), 4, (None, None)),
+    ((7, 5, 9, 345, 43, 873), 6, (None, None)),
+    ((8, 7, 6, 5, 4, 3, 2, 1), 8, (7, None)),
+    ((1, 2, 3, 4, 5, 6, 7, 8, 9), 9, (7, 8)),
+    ((34, 0, 77, 95, 21, 8009, 788324), 3, (None, None)),
+    (list(range(64, 200)), 0, (7, 8)),
+    (list(range(-15, 50)), 65, (7, 8))
 ]
 
 
@@ -76,5 +78,12 @@ def heap_fix_one(request):
     instance = Heap(request.param[0])
     result = sorted(request.param[0])[0]
     expected = request.param[1]
-    named_tuple = Heap_Fix(instance=instance, result=result, expected=expected)
+    initial = sorted(request.param[0])
+    childs = request.param[2]
+    named_tuple = Heap_Fix(instance=instance,
+                           result=result,
+                           expected=expected,
+                           initial=initial,
+                           childs=childs
+                           )
     return named_tuple

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """File tests our heap data structure implementation."""
 from __future__ import unicode_literals
-# import pytest
+import pytest
 
 
 def test_heap_init_empty(heap_fix_empty):
@@ -26,23 +26,41 @@ def test_heap_push_onto(heap_fix_one):
     assert heap_fix_one.instance.heap[-1] == 63
 
 
-def test_heap_pop_empty():
+def test_heap_push(heap_fix_one):
+    """Uses math to find our index's parent value."""
+    heap_fix_one.instance.push(63)
+    assert (heap_fix_one.instance.heap).index(63) == heap_fix_one.expected
+
+
+def test_heap_pop_empty(heap_fix_empty):
     """Test pop from an empty list returns None."""
-    pass
+    with pytest.raises(IndexError) as message:
+        heap_fix_empty.pop()
+    assert "You're a silly head, we can't pop an empty heap." in str(message)
 
 
-def test_heap_pop():
+def test_heap_pop(heap_fix_one):
     """Ensure that the pop method removes a value from binary heap."""
-    pass
+    catcher = []
+    while len(heap_fix_one.instance.heap) > 0:
+        (catcher).append(heap_fix_one.instance.pop())
+        print(catcher)
+    assert heap_fix_one.initial == catcher
 
 
-def test_heap_swap():
+def test_heap_find_childs(heap_fix_one):
+    """Ensure that find childs method returns childs index."""
+    assert heap_fix_one.instance._find_childs(3) == heap_fix_one.childs
+
+
+def test_heap_min_child():
     """Swaps the values of two list indexes."""
     pass
 
 
-def test_heap_push(heap_fix_one):
-    """Uses math to find our index's parent value."""
-    # instance = heap_fix_one[0]
-    heap_fix_one.instance.push(63)
-    assert (heap_fix_one.instance.heap).index(63) == heap_fix_one.expected
+def test_heap_push_pop():
+    pass
+
+
+def test_heap_pop_push():
+    pass

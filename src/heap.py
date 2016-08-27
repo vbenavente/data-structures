@@ -67,6 +67,9 @@ class Heap(object):
                 return tail
 
     def _min_child(self, ch_a_idx, ch_b_idx):
+        """Returns index of min child.
+
+        Returns None if index is past end of list."""
         try:
             if self.heap[ch_a_idx] > self.heap[ch_b_idx]:
                 min_ch_idx = ch_b_idx
@@ -78,6 +81,7 @@ class Heap(object):
             return None
 
     def _find_childs(self, cur_idx):
+        """Finds the index of children of a given index."""
         ch_a_idx = cur_idx * 2 + 1
         ch_b_idx = cur_idx * 2 + 2
         if ch_a_idx > len(self.heap) - 1:
