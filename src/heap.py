@@ -70,24 +70,27 @@ class Heap(object):
         """Returns index of min child.
 
         Returns None if index is past end of list."""
+        ch_a_val = None
+        ch_b_val = None
         try:
-            if self.heap[ch_a_idx] > self.heap[ch_b_idx]:
-                min_ch_idx = ch_b_idx
-                return min_ch_idx
+            ch_a_val = self.heap[ch_a_idx]
+            ch_b_val = self.heap[ch_b_idx]
+            if ch_a_val > ch_b_val:
+                return ch_b_idx
             else:
-                min_ch_idx = ch_a_idx
-                return min_ch_idx
+                return ch_a_idx
         except TypeError:
-            return None
-        except IndexError:
-            return None
+            if ch_a_val is not None:
+                return ch_a_idx
+            else:
+                return None
 
     def _find_childs(self, cur_idx):
         """Finds the index of children of a given index."""
         ch_a_idx = cur_idx * 2 + 1
         ch_b_idx = cur_idx * 2 + 2
         if ch_a_idx > len(self.heap) - 1:
-            ch_a_idx = len(self.heap) - 1
+            ch_a_idx = None
         if ch_b_idx > len(self.heap) - 1:
-            ch_b_idx = len(self.heap) - 1
+            ch_b_idx = None
         return ch_a_idx, ch_b_idx

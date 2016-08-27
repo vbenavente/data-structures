@@ -25,7 +25,7 @@
  - this is an implementation of a heap in Python
  - our implementation is a min heap
  - we used the builtin Python list
- - Cris helped us out
+ - Cris helped us out twice
 
 ### Cited Sources
   - http://stackoverflow.com/questions/11351032/named-tuple-and-optional-keyword-arguments

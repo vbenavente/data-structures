@@ -10,6 +10,7 @@ def test_heap_init_empty(heap_fix_empty):
 
 
 def test_heap_init_non_iterable():
+    """Tests that heap init w/ invalid value throws the appropriate error."""
     from heap import Heap
     with pytest.raises(TypeError) as message:
         Heap(1)
