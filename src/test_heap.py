@@ -9,6 +9,13 @@ def test_heap_init_empty(heap_fix_empty):
     assert heap_fix_empty.heap == []
 
 
+def test_heap_init_non_iterable():
+    from heap import Heap
+    with pytest.raises(TypeError) as message:
+        Heap(1)
+    assert "Please enter an object that is iterable." in str(message)
+
+
 def test_heap_init(heap_fix_one):
     """Ensure that the init method of Heap class works correctly."""
     assert heap_fix_one.instance.heap[0] == heap_fix_one.result
@@ -39,15 +46,6 @@ def test_heap_pop_empty(heap_fix_empty):
     assert "You're a silly head, we can't pop an empty heap." in str(message)
 
 
-def test_heap_pop(heap_fix_one):
-    """Ensure that the pop method removes a value from binary heap."""
-    catcher = []
-    while len(heap_fix_one.instance.heap) > 0:
-        (catcher).append(heap_fix_one.instance.pop())
-        print(catcher)
-    assert heap_fix_one.initial == catcher
-
-
 def test_heap_find_childs(heap_fix_one):
     """Ensure that find childs method returns childs index."""
     assert heap_fix_one.instance._find_childs(3) == heap_fix_one.childs
@@ -55,12 +53,33 @@ def test_heap_find_childs(heap_fix_one):
 
 def test_heap_min_child():
     """Swaps the values of two list indexes."""
-    pass
+    from heap import Heap
+    test_case = Heap([2, 4, 6, 9, 3, 5, 7])
+    assert test_case._min_child(1, 2) == 1
 
 
-def test_heap_push_pop():
-    pass
+def test_heap_pop(heap_fix_one):
+    """Ensure that the pop method removes a value from binary heap."""
+    catcher = []
+    while len(heap_fix_one.instance.heap) > 0:
+        (catcher).append(heap_fix_one.instance.pop())
+    assert heap_fix_one.initial == catcher
 
 
-def test_heap_pop_push():
-    pass
+def test_heap_push_pop(heap_fix_one, heap_fix_empty):
+    """Ensue that after pushing we can successfully pop our heap."""
+    catcher = []
+    length = len(heap_fix_one.initial)
+    while len(heap_fix_one.initial) > 0:
+        heap_fix_empty.push(heap_fix_one.initial.pop())
+    while len(heap_fix_empty.heap) > 0:
+        (catcher).append(heap_fix_empty.pop())
+    print(catcher)
+    assert len(catcher) == length
+
+
+def test_heap_pop_push(heap_fix_one):
+    """Ensure that after popping we can successfully push."""
+    heap_fix_one.instance.pop()
+    heap_fix_one.instance.push(63)
+    assert 63 in heap_fix_one.instance.heap

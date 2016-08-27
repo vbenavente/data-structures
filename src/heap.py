@@ -79,13 +79,15 @@ class Heap(object):
                 return min_ch_idx
         except TypeError:
             return None
+        except IndexError:
+            return None
 
     def _find_childs(self, cur_idx):
         """Finds the index of children of a given index."""
         ch_a_idx = cur_idx * 2 + 1
         ch_b_idx = cur_idx * 2 + 2
         if ch_a_idx > len(self.heap) - 1:
-            ch_a_idx = None
+            ch_a_idx = len(self.heap) - 1
         if ch_b_idx > len(self.heap) - 1:
-            ch_b_idx = None
+            ch_b_idx = len(self.heap) - 1
         return ch_a_idx, ch_b_idx
