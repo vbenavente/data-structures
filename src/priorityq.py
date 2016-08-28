@@ -8,7 +8,7 @@ class Priorityq(object):
     """Class implements a priority queue data structure in Python."""
     order = 0
 
-    def __init__(self, iterable=None):
+    def __init__(self, iterable):
         """Init instance of priority queue class,
         iterate through data if provided as an argument."""
         pq_list = []
@@ -26,10 +26,10 @@ class Priorityq(object):
 
     def insert(self, tup):
         """Inserts an item into the priority queue."""
-        if type(tup) is not tuple:
-            raise IndexError("Enter a list of tuples, each with 2 values.")
+        if not isinstance(tup, tuple):
+            raise IndexError("Enter a tuple with 2 values.")
         elif type(tup[0]) is not int:
-            raise IndexError("First value in tuple must be an integer.")
+            raise TypeError("First value in tuple must be an integer.")
         self.order += 1
         new_tuple = (tup[0], self.order, tup[1])
         self.heap.push(new_tuple)

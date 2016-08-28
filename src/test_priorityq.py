@@ -25,7 +25,7 @@ def test_pq_init_type_tuple():
 
 
 def test_pq_init_first_tupval():
-    """Ensure first tuple value is a integer."""
+    """Ensure first value in tuple is a integer."""
     from priorityq import Priorityq
     with pytest.raises(IndexError) as message:
         Priorityq([(1, 2), ("taco", 3)])
@@ -36,6 +36,22 @@ def test_pq_insert(pq_fix_one):
     """Ensure insert adds tuple to priority queue."""
     pq_fix_one.instance.insert(pq_fix_one.pq_insert)
     assert (pq_fix_one.pq_insert[0], pq_fix_one.pq_insert_count, pq_fix_one.pq_insert[1]) in pq_fix_one.instance.heap.heap
+
+
+def test_pq_insert_error_tuple():
+    """Ensure items to be added is a tuple."""
+    from priorityq import Priorityq
+    with pytest.raises(IndexError) as message:
+        Priorityq.insert("dog", 17)
+    assert "Enter a tuple with 2 values." in str(message)
+
+
+def test_pq_insert_error_tupval():
+    """Ensure first value in tuple is an integer."""
+    from priorityq import Priorityq
+    with pytest.raises(TypeError) as message:
+        Priorityq.insert("frog", "yellow")
+    assert "First value in tuple must be an integer." in str(message)
 
 
 def test_pq_pop(pq_fix_one):
