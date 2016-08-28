@@ -87,3 +87,35 @@ def heap_fix_one(request):
                            childs=childs
                            )
     return named_tuple
+
+
+"""Priority Queue Fixtures"""
+
+
+Priorityq_Fix = namedtuple("Priorityq_Fix", ("instance",
+                                             "pq_insert",
+                                             "pq_insert_count"))
+
+Priorityq_Fix.__new__.__defaults__ = (None,) * len(Priorityq_Fix._fields)
+# the above line sourced from:
+# http://stackoverflow.com/questions/11351032/named-tuple-and-optional-keyword-arguments
+
+TEST_PQ_DATA = [
+    [[(1, "taco")], (3, "airplane")],
+    [[(1, "taco"), (88, "dolorean")], (2, "hotdog")],
+    [[(3, ["texmex", "hiyall", "yes"]), (3, 8), (3, {"key": "value"})], (4, "baseball")],
+    [[(1, "1"), (2, "2"), (3, "3"), (4, "4"), (5, "5"), (6, "6"), (7, "7")], (1, "pitcher")],
+]
+
+
+@pytest.fixture(scope="function", params=TEST_PQ_DATA)
+def pq_fix_one(request):
+    """Return a new test instance of priority queue class."""
+    from priorityq import Priorityq
+    instance = Priorityq(request.param[0])
+    pq_insert = request.param[1]
+    pq_insert_count = len(request.param[0]) + 1
+    named_tuple = Priorityq_Fix(instance=instance,
+                                pq_insert=pq_insert,
+                                pq_insert_count=pq_insert_count)
+    return named_tuple
