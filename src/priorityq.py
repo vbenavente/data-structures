@@ -26,7 +26,7 @@ class Priorityq(object):
 
     def insert(self, tup):
         """Inserts an item into the priority queue."""
-        if not isinstance(tup, tuple):
+        if type(tup) is not tuple:
             raise IndexError("Enter a tuple with 2 values.")
         elif type(tup[0]) is not int:
             raise TypeError("First value in tuple must be an integer.")
