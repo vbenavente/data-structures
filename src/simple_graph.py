@@ -80,16 +80,46 @@ class SimpleGraph(object):
 
         Only removes the edge in the direction node_1 -->  node_2.
         Raises a IndexError if that edge does not exist in graph."""
+        edge_list = self.edges()
+        tup = (node_1, node_2)
+        if tup not in edge_list:
+            raise IndexError("That edge is not in the graph.")
+        else:
+            # import pdb; pdb.set_trace()
+            val_to_remove = [val for idx, val in enumerate(self.graph[node_1]) if val[0] == node_2][0]
+            # print("EDGE TO REMOVE", edge_to_rm)
+            self.graph[node_1].remove(val_to_remove)
 
     def has_node(self, node):
         """Returns True if node exists in the graph, otherwise False."""
+        nodes = list(self.graph.keys())
+        if node in nodes:
+            return True
+        else:
+            return False
 
     def neighbors(self, node):
         """Returns a list of all nodes connected to node by edges.
 
         Raises an IndexError if node does not exist in graph."""
+        neighbors = []
+        try:
+            for i in self.graph[node]:
+                neighbors.append(i[0])
+            return neighbors
+        except KeyError:
+            raise IndexError("That node is not in the graph.")
 
     def adjacent(self, node_1, node_2):
         """Returns True if node_1 and node_2 share an edge, otherewise False.
 
         Raises an IndexError if either node does not exist in graph."""
+        if self.has_node(node_1) is False:
+            raise IndexError("First argument is not in the graph.")
+        if self.has_node(node_2) is False:
+            raise IndexError("Second argument is not in the graph.")
+        edges = self.edges()
+        if (node_1, node_2) in edges:
+            return True
+        else:
+            return False

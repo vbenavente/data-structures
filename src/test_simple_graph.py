@@ -87,35 +87,87 @@ def test_sg_del_node_error():
 
 def test_sg_del_edge():
     """Ensure supplied edge is deleted from appropriate node."""
+    from simple_graph import SimpleGraph
+    test_sg = SimpleGraph()
+    test_sg.add_edge("B", "c")
+    test_sg.del_edge("B", "c")
+    assert ("B", "c") not in test_sg.edges()
 
 
 def test_sg_del_edge_error():
     """Ensure del_edge throws IndexError if called with node not in graph."""
+    from simple_graph import SimpleGraph
+    test_sg = SimpleGraph()
+    test_sg.add_edge("a", "b")
+    with pytest.raises(IndexError) as message:
+        test_sg.del_edge("c", "b")
+    assert "That edge is not in the graph." in str(message)
 
 
 def test_sg_has_node_true():
     """Ensure has_node returns true when called with node in graph."""
+    from simple_graph import SimpleGraph
+    test_sg = SimpleGraph()
+    test_sg.add_node("a")
+    assert test_sg.has_node("a") is True
 
 
 def test_sg_has_node_false():
     """Ensure has_node returns false when called with node not in graph."""
+    from simple_graph import SimpleGraph
+    test_sg = SimpleGraph()
+    assert test_sg.has_node("a") is False
 
 
 def test_sg_neighbors():
     """Ensure neighbors for node that exists are returned."""
+    from simple_graph import SimpleGraph
+    test_sg = SimpleGraph()
+    test_sg.add_edge("b", "z")
+    assert "z" in test_sg.neighbors("b")
 
 
 def test_sg_neighbors_error():
     """Ensure error is raised if node does not exist in graph."""
+    from simple_graph import SimpleGraph
+    test_sg = SimpleGraph()
+    with pytest.raises(IndexError) as message:
+        test_sg.neighbors("a")
+    assert "That node is not in the graph." in str(message)
 
 
 def test_sg_adjacent_true():
     """Ensure adjacent returns true if a and b share an edge."""
+    from simple_graph import SimpleGraph
+    test_sg = SimpleGraph()
+    test_sg.add_edge("a", "b")
+    assert test_sg.adjacent("a", "b") is True
 
 
 def test_sg_adjacent_false():
     """Ensure adjacent returns false if a and b don't share an edge."""
+    from simple_graph import SimpleGraph
+    test_sg = SimpleGraph()
+    test_sg.add_node("a")
+    test_sg.add_node("b")
+    assert test_sg.adjacent("a", "b") is False
 
 
-def test_sg_adjace_error():
+def test_sg_adjace_error_one():
     """Ensure adjacent raises an error if either node doesn't exist."""
+    from simple_graph import SimpleGraph
+    test_sg = SimpleGraph()
+    test_sg.add_node("b")
+    with pytest.raises(IndexError) as message:
+        test_sg.adjacent("a", "b")
+    assert "First argument is not in the graph." in str(message)
+
+
+def test_sg_adjace_error_two():
+    """Ensure adjacent raises an error if either node doesn't exist."""
+    from simple_graph import SimpleGraph
+    test_sg = SimpleGraph()
+    test_sg.add_node("a")
+    with pytest.raises(IndexError) as message:
+        test_sg.adjacent("a", "b")
+    assert "Second argument is not in the graph." in str(message)
