@@ -124,7 +124,8 @@ def test_sg_neighbors():
     from simple_graph import SimpleGraph
     test_sg = SimpleGraph()
     test_sg.add_edge("b", "z")
-    assert "z" in test_sg.neighbors("b")
+    test_sg.add_edge("b", "c")
+    assert test_sg.neighbors("b") == ["z", "c"]
 
 
 def test_sg_neighbors_error():

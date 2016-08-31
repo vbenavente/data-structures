@@ -85,9 +85,7 @@ class SimpleGraph(object):
         if tup not in edge_list:
             raise IndexError("That edge is not in the graph.")
         else:
-            # import pdb; pdb.set_trace()
             val_to_remove = [val for idx, val in enumerate(self.graph[node_1]) if val[0] == node_2][0]
-            # print("EDGE TO REMOVE", edge_to_rm)
             self.graph[node_1].remove(val_to_remove)
 
     def has_node(self, node):
@@ -104,8 +102,8 @@ class SimpleGraph(object):
         Raises an IndexError if node does not exist in graph."""
         neighbors = []
         try:
-            for i in self.graph[node]:
-                neighbors.append(i[0])
+            for t in self.graph[node]:
+                neighbors.append(t[0])
             return neighbors
         except KeyError:
             raise IndexError("That node is not in the graph.")

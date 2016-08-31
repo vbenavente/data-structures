@@ -15,17 +15,26 @@
 
 ## Queue  
 - this is an implementation of a queue in Python  
-- inherited methods from our doubly linked list
+- inherited methods from our doubly linked list  
 
 ## Deque
- - this is an implementation of a deque in Python
- - inherits methods from our doubly linked list
+ - this is an implementation of a deque in Python  
+ - inherits methods from our doubly linked list  
 
 ## Heap
- - this is an implementation of a heap in Python
- - our implementation is a min heap
- - we used the builtin Python list
- - Cris helped us out twice
+ - this is an implementation of a heap in Python  
+ - our implementation is a min heap  
+ - we used the builtin Python list  
+ - Cris helped us out twice  
+
+## Priority Queue  
+ - this is an implementation of a priority queue in Python  
+
+## Graph  
+- this is an implementation of a graph in Python  
+- this implementation is a directed simple graph  
+- Nic helped us with del_edge
+
 
 ### Cited Sources
   - http://stackoverflow.com/questions/11351032/named-tuple-and-optional-keyword-arguments
@@ -45,4 +54,5 @@
 
 ### resources and collaborations  
 - https://www.codefellows.org/blog/implementing-a-singly-linked-list-in-python/  
-- http://stackoverflow.com/questions/10708790/  microsoft-asks-singly-list-or-doubly-list-what-are-the-pros-and-cons-of-using
+- http://stackoverflow.com/questions/10708790/   
+- microsoft-asks-singly-list-or-doubly-list-what-are-the-pros-and-cons-of-using  
