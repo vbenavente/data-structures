@@ -12,13 +12,13 @@ class SimpleGraph(object):
     and could have any valid python value.  The sub-list contains
     edges for every node.  For instance, node_a shares an edge with
     node_b, but node_b has no edge with node_a.  Node_b has no edges
-    of it's own, but node_a, c and d are all neighbors of b.
+    of it's own, but node_a, c and b are all neighbors of d.
 
     Graph:  {
-                "node_a": [node_b],
+                "node_a": [(node_b, 1)],
                 "node_b": [],
-                "node_c": [node_b],
-                "node_d": [node_a, node_b, node_c],
+                "node_c": [(node_b, 1)],
+                "node_d": [(node_a, 1), (node_b, 1), (node_c, 1)],
             }
     """
 
@@ -31,17 +31,14 @@ class SimpleGraph(object):
 
     def nodes(self):
         """Returns a list of all nodes in the graph."""
-        node_list = []
-        for i in self.graph:
-            node_list.append(self.graph[i])
-        return node_list
+        return list(self.graph.keys())
 
     def edges(self):
         """Returns a list of all edges in the graph."""
         edge_list = []
-        for i in self.graph:
-            for j in self.graph[i]:
-                edge_list.append(self.graph[i], self.graph[i][j])
+        for key in self.graph:
+            for n, w in self.graph[key]:
+                edge_list.append((key, n))
         return edge_list
 
     def add_node(self, node):
@@ -51,7 +48,7 @@ class SimpleGraph(object):
         else:
             self.graph[node] = []
 
-    def add_edge(self, node_1, node_2):
+    def add_edge(self, node_1, node_2, weight=1):
         """Adds an edge between node_1 and node_2.
 
         If node_1 or node_2 are not present, function adds them to the graph
@@ -60,13 +57,23 @@ class SimpleGraph(object):
             self.add_node(node_1)
         if node_2 not in self.graph:
             self.add_node(node_2)
-        self.graph[node_1].append(node_2)
+        self.graph[node_1].append((node_2, weight))
 
     def del_node(self, node):
         """Deletes a node from the graph.
 
         Removes all existing edges pointing to node before deleting node.
         Throws a IndexError if node specified does not exist."""
+        if node not in self.graph:
+            raise IndexError("That node is not in the graph.")
+        else:
+            edge_list = self.edges()
+            for n in edge_list:
+                if n[1] == node:
+                    val_list = self.graph[n[0]]
+                    for val in val_list[:]:
+                        val_list.remove(val)
+            self.graph.pop(node)
 
     def del_edge(self, node_1, node_2):
         """Deletes and edge between node_1 and node_2.
