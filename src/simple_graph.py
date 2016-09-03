@@ -121,3 +121,20 @@ class SimpleGraph(object):
             return True
         else:
             return False
+
+    def depth_first_traversal(self, starting_point):
+        """Steps through the graph depth-first.
+
+        Expects a starting point == value of a node in the graph."""
+        # from queue import Queue
+        # queue = Queue()
+        # result = []
+
+    def breadth_first_traversal(self, starting_point):
+        """Steps through the graph breadth-first.
+
+        Expects a starting point == value of a node in the graph."""
+        pass
+
+    if __name__ == '__main__':
+        pass

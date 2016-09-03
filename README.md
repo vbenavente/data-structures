@@ -35,10 +35,13 @@
 - this implementation is a directed simple graph  
 - Nic helped us with del_edge
 
-
 ### Cited Sources
   - http://stackoverflow.com/questions/11351032/named-tuple-and-optional-keyword-arguments
 
+## Graph Traversal
+- implements two new methods on our simple graph
+  - depth-first traversal walks through a data structure by fully exporing it's first selection and then moving on to the next and fully exploring it in turn
+  - breadth-first traversal walks through nodes by spreading out from the initial starting point and visiting every closer node before stepping through to visit their neighbors
 
 ### Singly vs. Doubly Linked Lists  
 - A Singly Linked-List

@@ -172,3 +172,11 @@ def test_sg_adjace_error_two():
     with pytest.raises(IndexError) as message:
         test_sg.adjacent("a", "b")
     assert "Second argument is not in the graph." in str(message)
+
+
+def test_depth_first_traversal():
+    pass
+
+
+def test_breadth_first_traversal():
+    pass
