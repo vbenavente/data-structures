@@ -126,9 +126,19 @@ class SimpleGraph(object):
         """Steps through the graph depth-first.
 
         Expects a starting point == value of a node in the graph."""
-        # from queue import Queue
-        # queue = Queue()
-        # result = []
+        from dll import DoublyLinkedList
+        dll = DoublyLinkedList()
+        if self.has_node(starting_point) is False:
+            raise IndexError("That starting point is not in the graph.")
+        dll.push(starting_point)
+        result = []
+        while dll.size > 0:
+            working_node = dll.shift()
+            if working_node not in result:
+                result.append(working_node)
+                for node in self.neighbors(working_node):
+                    dll.push(node)
+        return result
 
     def breadth_first_traversal(self, starting_point):
         """Steps through the graph breadth-first.

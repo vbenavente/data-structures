@@ -174,9 +174,31 @@ def test_sg_adjace_error_two():
     assert "Second argument is not in the graph." in str(message)
 
 
-def test_depth_first_traversal():
+def test_depth_first_traversal_empty():
+    """Ensure an empty result is handed back when called on empty graph."""
     pass
 
 
-def test_breadth_first_traversal():
+def test_depth_first_traversal_case_one():
+    """Test depth-first against test case one."""
+    pass
+
+
+def test_depth_first_traversal_case_two():
+    """Test depth-first against test case two."""
+    pass
+
+
+def test_breadth_first_traversal_empty():
+    """Ensure an empty result is handed back when called on empty graph."""
+    pass
+
+
+def test_breadth_first_traversal_case_one():
+    """Test breadth-first against test case one."""
+    pass
+
+
+def test_breadth_first_traversal_case_two():
+    """Test breadth-first against test case two."""
     pass

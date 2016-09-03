@@ -43,6 +43,10 @@
   - depth-first traversal walks through a data structure by fully exporing it's first selection and then moving on to the next and fully exploring it in turn
   - breadth-first traversal walks through nodes by spreading out from the initial starting point and visiting every closer node before stepping through to visit their neighbors
 
+### Cited Sources
+  - https://github.com/welliam/data-structures/blob/traversal/src/adjacency_list.py
+  - Code review in class from Wednesday where we went over the above
+
 ### Singly vs. Doubly Linked Lists  
 - A Singly Linked-List
   - easier to implement  
