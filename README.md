@@ -33,22 +33,22 @@
 ## Graph  
 - this is an implementation of a graph in Python  
 - this implementation is a directed simple graph  
-- Nic helped us with del_edge
+- Nic helped us with del_edge  
 
 ### Cited Sources
-  - http://stackoverflow.com/questions/11351032/named-tuple-and-optional-keyword-arguments
+  - http://stackoverflow.com/questions/11351032/named-tuple-and-optional-keyword-arguments  
 
-## Graph Traversal
-- implements two new methods on our simple graph
-  - depth-first traversal walks through a data structure by fully exporing it's first selection and then moving on to the next and fully exploring it in turn
-  - breadth-first traversal walks through nodes by spreading out from the initial starting point and visiting every closer node before stepping through to visit their neighbors
+## Graph Traversal  
+- implements two new methods on our simple graph  
+  - depth-first traversal walks through a data structure by fully exploring it's first selection and then moving on to the next and fully exploring it in turn  
+  - breadth-first traversal walks through nodes by spreading out from the initial starting point and visiting every closer node before stepping through to visit their neighbors  
 
-### Cited Sources
-  - https://github.com/welliam/data-structures/blob/traversal/src/adjacency_list.py
-  - Code review in class from Wednesday where we went over the above
+### Cited Sources  
+  - https://github.com/welliam/data-structures/blob/traversal/src/adjacency_list.py  
+  - Code review in class from Wednesday where we went over the above  
 
 ### Singly vs. Doubly Linked Lists  
-- A Singly Linked-List
+- A Singly Linked-List  
   - easier to implement  
   - takes up less memory  
   - faster to add or delete if you are only concerned with the next node   
@@ -56,7 +56,7 @@
   - easy access to both ends of the list  
   - can delete previous node without traversing from head node  
 
-  A singly linked list has a few advantages over a doubly linked list.  Singly linked lists are easier to implement, take up less memory on the host machine, and it is faster to add or delete node from the list.  Doubly linked lists have a few advantages over singly linked lists, such as: easy access to both ends of the list and you can delete a node from anywhere in the list without traversing from the head.  Choosing between these different list types is a complicated question of performance vs memory concerns.
+  A singly linked list has a few advantages over a doubly linked list.  Singly linked lists are easier to implement, take up less memory on the host machine, and it is faster to add or delete node from the list.  Doubly linked lists have a few advantages over singly linked lists, such as: easy access to both ends of the list and you can delete a node from anywhere in the list without traversing from the head.  Choosing between these different list types is a complicated question of performance vs memory concerns.  
 
 
 ### resources and collaborations  
