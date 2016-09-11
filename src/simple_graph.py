@@ -158,6 +158,16 @@ class SimpleGraph(object):
                     dll.push(node)
         return result
 
+    def find_shortest_dijkstra(self, start, end):
+        """Shortest distance implementation using our interpretation of
+        Dijkstra's algorithm."""
+        pass
+
+    def find_shortest_astar(self, start, end):
+        """Shortest distance implementation using our interpretation of
+        the A* algorithm."""
+        pass
+
 if __name__ == '__main__':
     instance = SimpleGraph()
     instance.add_edge("a", "d")
