@@ -75,7 +75,6 @@ def test_heap_push_pop(heap_fix_one, heap_fix_empty):
         heap_fix_empty.push(heap_fix_one.initial.pop())
     while len(heap_fix_empty.heap) > 0:
         (catcher).append(heap_fix_empty.pop())
-    print(catcher)
     assert len(catcher) == length
 
 

@@ -176,29 +176,41 @@ def test_sg_adjace_error_two():
 
 def test_depth_first_traversal_empty():
     """Ensure an empty result is handed back when called on empty graph."""
-    pass
+    from simple_graph import SimpleGraph
+    test_sg = SimpleGraph()
+    with pytest.raises(IndexError) as message:
+        test_sg.depth_first_traversal("a")
+    assert "That starting point is not in the graph." in str(message)
 
 
-def test_depth_first_traversal_case_one():
+def test_depth_first_traversal_case_one(graph_test_case_one):
     """Test depth-first against test case one."""
-    pass
+    test_graph_depth = graph_test_case_one.depth_first_traversal("a")
+    assert test_graph_depth[1] == "b" or test_graph_depth[-1] == "b"
 
 
-def test_depth_first_traversal_case_two():
+def test_depth_first_traversal_case_two(graph_test_case_two):
     """Test depth-first against test case two."""
-    pass
+    test_graph_depth = graph_test_case_two.depth_first_traversal("a")
+    assert test_graph_depth[1] == "c" or test_graph_depth[4] == "c" or test_graph_depth[-1] == "c" or test_graph_depth[6] == "c"
 
 
 def test_breadth_first_traversal_empty():
     """Ensure an empty result is handed back when called on empty graph."""
-    pass
+    from simple_graph import SimpleGraph
+    test_sg = SimpleGraph()
+    with pytest.raises(IndexError) as message:
+        test_sg.breadth_first_traversal("a")
+    assert "That starting point is not in the graph." in str(message)
 
 
-def test_breadth_first_traversal_case_one():
+def test_breadth_first_traversal_case_one(graph_test_case_one):
     """Test breadth-first against test case one."""
-    pass
+    test_graph_breadth = graph_test_case_one.breadth_first_traversal("a")
+    assert test_graph_breadth[1] == "b" or test_graph_breadth[2] == "b"
 
 
-def test_breadth_first_traversal_case_two():
+def test_breadth_first_traversal_case_two(graph_test_case_two):
     """Test breadth-first against test case two."""
-    pass
+    test_graph_breadth = graph_test_case_two.breadth_first_traversal("a")
+    assert test_graph_breadth[1] == "b" or test_graph_breadth[2] == "b" or test_graph_breadth[3] == "b"

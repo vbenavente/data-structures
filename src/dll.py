@@ -63,10 +63,8 @@ class DoublyLinkedList(object):
         """Remove data from the tail of the list and return it."""
         shift_node = self.tail
         try:
-            print("Self.tail", self.tail.data)
             self.tail = self.tail._prev
             self.tail._next = None
-            print("2", self.tail.data)
         except AttributeError:
             self.tail = None
             self.head = None

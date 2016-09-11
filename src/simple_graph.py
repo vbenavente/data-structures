@@ -132,8 +132,8 @@ class SimpleGraph(object):
             raise IndexError("That starting point is not in the graph.")
         dll.push(starting_point)
         result = []
-        while dll.size > 0:
-            working_node = dll.shift()
+        while dll.size() > 0:
+            working_node = dll.pop()
             if working_node not in result:
                 result.append(working_node)
                 for node in self.neighbors(working_node):
@@ -144,7 +144,29 @@ class SimpleGraph(object):
         """Steps through the graph breadth-first.
 
         Expects a starting point == value of a node in the graph."""
-        pass
+        from dll import DoublyLinkedList
+        dll = DoublyLinkedList()
+        if self.has_node(starting_point) is False:
+            raise IndexError("That starting point is not in the graph.")
+        dll.push(starting_point)
+        result = []
+        while dll.size() > 0:
+            working_node = dll.shift()
+            if working_node not in result:
+                result.append(working_node)
+                for node in self.neighbors(working_node):
+                    dll.push(node)
+        return result
 
     if __name__ == '__main__':
+        # instance = SimpleGraph()
+        # instance.add_edge("a", "d")
+        # instance.add_edge("a", "c")
+        # instance.add_edge("a", "b")
+        # instance.add_edge("d", "g")
+        # instance.add_edge("g", "h")
+        # instance.add_edge("h", "j")
+        # instance.add_edge("h", "i")
+        # instance.add_edge("b", "e")
+        # instance.add_edge("e", "f")
         pass
