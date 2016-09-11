@@ -63,10 +63,8 @@ class DoublyLinkedList(object):
         """Remove data from the tail of the list and return it."""
         shift_node = self.tail
         try:
-            print("Self.tail", self.tail.data)
             self.tail = self.tail._prev
             self.tail._next = None
-            print("2", self.tail.data)
         except AttributeError:
             self.tail = None
             self.head = None
@@ -89,3 +87,16 @@ class DoublyLinkedList(object):
         if current._next is not None:
             current._next._prev = current._prev
         return current.data
+
+    def size(self):
+        """Finds the size of our dll."""
+        count = 0
+        current = self.head
+        while current is not None:
+            count += 1
+            current = current._next
+        return count
+
+    def __len__(self):
+        """Binds .size to __len__ builtin so len() works."""
+        return self.size()

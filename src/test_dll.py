@@ -62,3 +62,24 @@ def test_remove_empty_list():
     empty_list = DoublyLinkedList()
     with pytest.raises(IndexError):
         empty_list.remove("taco")
+
+
+def test_size_zero():
+    """Test the size method of LinkedList class."""
+    test_case = DoublyLinkedList()
+    assert test_case.size() == 0
+
+
+def test_size_value():
+    """Test the size method of LinkedList class."""
+    test_case = DoublyLinkedList()
+    test_case.push("one")
+    test_case.push("two")
+    assert test_case.size() == 2
+
+
+def test_dunder_len():
+    """Test the dunder len method of LinkedList class."""
+    test_list = [1, 2, 3, 4, 5, 6, 7]
+    test_case = DoublyLinkedList(test_list)
+    assert len(test_case) == 7

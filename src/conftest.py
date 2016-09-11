@@ -119,3 +119,57 @@ def pq_fix_one(request):
                                 pq_insert=pq_insert,
                                 pq_insert_count=pq_insert_count)
     return named_tuple
+
+
+"""Graph Traversal Fixtures."""
+
+
+@pytest.fixture(scope="function")
+def graph_test_case_one():
+    """Return a test instance of graph traversal."""
+    from simple_graph import SimpleGraph
+    instance = SimpleGraph()
+    instance.add_edge("a", "b")
+    instance.add_edge("a", "c")
+    instance.add_edge("c", "d")
+    instance.add_edge("c", "e")
+    instance.add_edge("e", "h")
+    instance.add_edge("e", "g")
+    instance.add_edge("e", "f")
+    return instance
+
+
+@pytest.fixture(scope="function")
+def graph_test_case_two():
+    """Return a test instance for graph traversal."""
+    from simple_graph import SimpleGraph
+    instance = SimpleGraph()
+    instance.add_edge("a", "d")
+    instance.add_edge("a", "c")
+    instance.add_edge("a", "b")
+    instance.add_edge("d", "g")
+    instance.add_edge("g", "h")
+    instance.add_edge("h", "j")
+    instance.add_edge("h", "i")
+    instance.add_edge("b", "e")
+    instance.add_edge("e", "f")
+    return instance
+
+
+@pytest.fixture(scope="function")
+def graph_test_case_three():
+    """Return a test instance that is cyclic for graph traversal."""
+    from simple_graph import SimpleGraph
+    instance = SimpleGraph()
+    instance.add_edge("a", "b")
+    instance.add_edge("b", "c")
+    instance.add_edge("c", "d")
+    instance.add_edge("c", "e")
+    instance.add_edge("d", "h")
+    instance.add_edge("h", "d")
+    instance.add_edge("e", "f")
+    instance.add_edge("f", "g")
+    instance.add_edge("g", "a")
+    instance.add_edge("g", "i")
+    instance.add_edge("i", "j")
+    return instance

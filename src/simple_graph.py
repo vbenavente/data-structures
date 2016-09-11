@@ -121,3 +121,67 @@ class SimpleGraph(object):
             return True
         else:
             return False
+
+    def depth_first_traversal(self, starting_point):
+        """Steps through the graph depth-first.
+
+        Expects a starting point == value of a node in the graph."""
+        from dll import DoublyLinkedList
+        dll = DoublyLinkedList()
+        if self.has_node(starting_point) is False:
+            raise IndexError("That starting point is not in the graph.")
+        dll.push(starting_point)
+        result = []
+        while dll.size() > 0:
+            working_node = dll.pop()
+            if working_node not in result:
+                result.append(working_node)
+                for node in self.neighbors(working_node):
+                    dll.push(node)
+        return result
+
+    def breadth_first_traversal(self, starting_point):
+        """Steps through the graph breadth-first.
+
+        Expects a starting point == value of a node in the graph."""
+        from dll import DoublyLinkedList
+        dll = DoublyLinkedList()
+        if self.has_node(starting_point) is False:
+            raise IndexError("That starting point is not in the graph.")
+        dll.push(starting_point)
+        result = []
+        while dll.size() > 0:
+            working_node = dll.shift()
+            if working_node not in result:
+                result.append(working_node)
+                for node in self.neighbors(working_node):
+                    dll.push(node)
+        return result
+
+if __name__ == '__main__':
+    instance = SimpleGraph()
+    instance.add_edge("a", "d")
+    instance.add_edge("a", "c")
+    instance.add_edge("a", "b")
+    instance.add_edge("d", "g")
+    instance.add_edge("g", "h")
+    instance.add_edge("h", "j")
+    instance.add_edge("h", "i")
+    instance.add_edge("b", "e")
+    instance.add_edge("e", "f")
+    print("""
+          Graph:  {
+                      "node_a": [(node_b, 1), (node_c, 1), (node_d, 1)],
+                      "node_b": [(node_e, 1)],
+                      "node_c": [],
+                      "node_d": [(node_g, 1)],
+                      "node_e": [(node_f, 1)],
+                      "node_f": [],
+                      "node_g": [(node_h, 1)],
+                      "node_h": [(node_j, 1), (node_i, 1)],
+                      "node_i": [],
+                      "node_j": [],
+                  }"""
+          )
+    print('Depth First', instance.depth_first_traversal("a"))
+    print('Breadth First', instance.breadth_first_traversal("a"))
