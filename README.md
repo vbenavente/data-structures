@@ -47,6 +47,9 @@
   - https://github.com/welliam/data-structures/blob/traversal/src/adjacency_list.py  
   - Code review in class from Wednesday where we went over the above  
 
+## Graph Weights
+- implements edge weights on edges in our graph
+
 ### Singly vs. Doubly Linked Lists  
 - A Singly Linked-List  
   - easier to implement  
