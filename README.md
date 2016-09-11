@@ -2,7 +2,7 @@
 - sample code for a number of classic data structures implemented in Python  
 
 ## Singly-Linked List  
-- this is an implementation of a singly linked list in Python
+- this is an implementation of a singly linked list in Python  
 
 ## Stack  
 - this is an implementation of a simple pancake stack in Python  
@@ -10,8 +10,8 @@
 ## Doubly-Linked List  
 - this is an implementation of a doubly linked list in Python  
 
-### Cited Sources:
-  - http://stackoverflow.com/questions/23337471/how-to-properly-assert-that-exception-raises-in-pytest
+### Cited Sources:  
+  - http://stackoverflow.com/questions/23337471/how-to-properly-assert-that-exception-raises-in-pytest  
 
 ## Queue  
 - this is an implementation of a queue in Python  
@@ -61,5 +61,5 @@
 
 ### resources and collaborations  
 - https://www.codefellows.org/blog/implementing-a-singly-linked-list-in-python/  
-- http://stackoverflow.com/questions/10708790/   
+- http://stackoverflow.com/questions/10708790/  
 - microsoft-asks-singly-list-or-doubly-list-what-are-the-pros-and-cons-of-using  

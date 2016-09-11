@@ -195,6 +195,14 @@ def test_depth_first_traversal_case_two(graph_test_case_two):
     assert test_graph_depth[1] == "c" or test_graph_depth[4] == "c" or test_graph_depth[-1] == "c" or test_graph_depth[6] == "c"
 
 
+def test_depth_first_traversal_case_three(graph_test_case_three):
+    """Test depth-first against test case three, cyclic graph.
+
+    Ensure traversal does not get stuck in endless loop."""
+    test_graph_depth = graph_test_case_three.depth_first_traversal("a")
+    assert test_graph_depth[9] == "j" or test_graph_depth[7] == "j"
+
+
 def test_breadth_first_traversal_empty():
     """Ensure an empty result is handed back when called on empty graph."""
     from simple_graph import SimpleGraph
@@ -214,3 +222,11 @@ def test_breadth_first_traversal_case_two(graph_test_case_two):
     """Test breadth-first against test case two."""
     test_graph_breadth = graph_test_case_two.breadth_first_traversal("a")
     assert test_graph_breadth[1] == "b" or test_graph_breadth[2] == "b" or test_graph_breadth[3] == "b"
+
+
+def test_breadth_first_traversal_case_three(graph_test_case_three):
+    """Test breadth-first against test case three, cyclic graph.
+
+    Ensure traversal does not get stuck in endless loop."""
+    test_graph_breadth = graph_test_case_three.breadth_first_traversal("a")
+    assert test_graph_breadth[-1] == "j"

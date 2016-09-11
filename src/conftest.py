@@ -154,3 +154,22 @@ def graph_test_case_two():
     instance.add_edge("b", "e")
     instance.add_edge("e", "f")
     return instance
+
+
+@pytest.fixture(scope="function")
+def graph_test_case_three():
+    """Return a test instance that is cyclic for graph traversal."""
+    from simple_graph import SimpleGraph
+    instance = SimpleGraph()
+    instance.add_edge("a", "b")
+    instance.add_edge("b", "c")
+    instance.add_edge("c", "d")
+    instance.add_edge("c", "e")
+    instance.add_edge("d", "h")
+    instance.add_edge("h", "d")
+    instance.add_edge("e", "f")
+    instance.add_edge("f", "g")
+    instance.add_edge("g", "a")
+    instance.add_edge("g", "i")
+    instance.add_edge("i", "j")
+    return instance
