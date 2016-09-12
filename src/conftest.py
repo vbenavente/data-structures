@@ -182,4 +182,10 @@ def graph_test_case_three():
 def bst_test_case():
     """Return a test instance of a binary search tree."""
     from bst import BST
-    return BST([2, 3, 5, 6, 7])
+    instance = BST()
+    instance.insert(10)
+    instance.insert(4)
+    instance.insert(25)
+    instance.insert(37)
+    instance.insert(9)
+    return instance

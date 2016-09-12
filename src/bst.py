@@ -1,7 +1,4 @@
 # -*- coding: utf-8 -*-
-from collections import OrderedDict
-
-
 class Node(object):
     """Building our Node class."""
 
@@ -21,19 +18,23 @@ class BST(object):
             self.root = None
             return
 
-    def insert(self, val):
+    def insert(self, val, node=None):
         new_node = Node(val)
-        if not self.root:
+        if node is None:
+            node = self.root
+        if not node:
             self.root = new_node
-        else:
-            if val > self.root.val:
-                if not self.root.right:
-                    self.root.right = new_node
-
-        # for key, val in self.bst:
-        #     if val > self.bst[key] and
-        #     current = self.bst.val
-        #     if val > current
+            return
+        if val > node.val:
+            if not node.right:
+                node.right = new_node
+            else:
+                self.insert(val, node.right)
+        elif val < node.val:
+            if not node.left:
+                node.left = new_node
+            else:
+                self.insert(val, node.left)
 
     def contains(self, val):
         pass
