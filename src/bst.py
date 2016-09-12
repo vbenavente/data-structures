@@ -18,6 +18,11 @@ class Node(object):
         self.parent = parent
         self.data = data
 
+        def has_left_child(self):
+            return self.left.val
+
+        def has_right_child(self):
+            return self.right.val
 
 class BinarySearchTree(object):
     """BinarySearchTree implements a Binary Search Tree data structure
@@ -26,15 +31,37 @@ class BinarySearchTree(object):
     def __init__(self, root=None):
         """Create an instance of our Binary Search Tree w/ supplied
         input, or an emptry tree."""
-        self.root = root
+        self.length = 0
+        if root:
+            self.root = Node(root)
+            self.length += 1
+        else:
+            self.root = root
 
     def __iter__(self):
         """Allows this data structures to be iterated on."""
         return self.root.__iter__()
 
-    def insert(self, val):
+    def insert(self, val, data=None):
         """Inserts a value  into the BST.  If the value is already in
         the BST it will be ingored."""
+        if self.root:
+            self._insert(val, data, self.root)
+        else:
+            self.root = Node(val, data)
+        self.length += 1
+
+    def _insert(self, val, data=None, current_node):
+        if val < current_node.val:
+            if current_node.has_left_child():
+                self._insert(val, data, current_node.left)
+            else:
+                current_node.left = Node(val, data, parent=current_node)
+        else:
+            if current_node.has_right_child():
+                self._insert(val, data, current_node)
+            else:
+                current_node.right = Node(val, data, parent=current_node)
 
     def contains(self, val):
         """Will return True if val is in the BST, or False if it's not."""
