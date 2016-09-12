@@ -48,7 +48,10 @@
   - Code review in class from Wednesday where we went over the above  
 
 ## Graph Weights
-- implements edge weights on edges in our graph
+- implements edge weights on edges in our graph  
+
+## Binary Search Tree  
+- http://interactivepython.org/runestone/static/pythonds/Trees/SearchTreeImplementation.html
 
 ### Singly vs. Doubly Linked Lists  
 - A Singly Linked-List  
@@ -66,3 +69,4 @@
 - https://www.codefellows.org/blog/implementing-a-singly-linked-list-in-python/  
 - http://stackoverflow.com/questions/10708790/  
 - microsoft-asks-singly-list-or-doubly-list-what-are-the-pros-and-cons-of-using  
+- http://interactivepython.org/runestone/static/pythonds/Trees/SearchTreeImplementation.html
