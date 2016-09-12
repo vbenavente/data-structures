@@ -4,6 +4,9 @@
 ## Binary Search Tree
 -
 
+### Cited Sources:
+[Binary Tree Implementation](http://interactivepython.org/runestone/static/pythonds/Trees/SearchTreeImplementation.html)
+
 # All work below this point was before the fork and by Derek Hewitt and Victor Benavente.
 
 ## Singly-Linked List  
