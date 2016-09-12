@@ -1,19 +1,10 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from bst import BST
-import pytest
-
-
-# def test_insert_val_exists():
-#     """Test cannot insert val that already exists."""
-#     bst = BST()
-#     with pytest.raises(ValueError) as message:
-#         bst.insert(10)
-#     assert "That value already exists." in str(message)
 
 
 def test_insert_from_empty():
-    """Test can insert into empty binary search tree."""
+    """Test insert into empty binary search tree."""
     bst = BST()
     bst.insert(1)
     assert bst.root.val == 1
@@ -33,13 +24,8 @@ def test_insert_from_existing(bst_test_case):
     assert bst_test_case.root.left.left.val == 3
 
 
-# def test_insert_at_start_from_existing(bst_test_case):
-#     """Test insert at correct position of bst that has existing values."""
-#     bst_test_case.insert(22)
-#     assert
-#
-#
+# do this test when we finish size method
 # def test_insert_at_end_from_existing(bst_test_case):
-#     """Test insert at correct position of bst that has existing values."""
-#     bst_test_case.insert(88)
+#     """Test insert existing value is ignored."""
+#     bst_test_case.insert(10)
 #     assert
