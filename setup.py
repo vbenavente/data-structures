@@ -2,10 +2,11 @@ from setuptools import setup
 
 setup(
     name="data-structures",
-    description="A Python implementation of data structures.",
+    description="""A Python implementation of data structures.
+    Some previous work by Victor Benavente, vbenavente@hotmail.com""",
     version=0.1,
-    author="Derek Hewitt, Victor Benavente",
-    author_email="derekmhewitt@gmail.com, vbenavente@hotmail.com",
+    author="Derek Hewitt, Jeff Torres",
+    author_email="derekmhewitt@gmail.com, jeffrey.n.torres@gmail.com",
     license="MIT",
     py_modules=["linked_list"],
     package_dir={"": "src"},

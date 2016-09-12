@@ -1,6 +1,11 @@
 # Data-Structures
 - sample code for a number of classic data structures implemented in Python  
 
+## Binary Search Tree
+-
+
+# All work below this point was before the fork and by Derek Hewitt and Victor Benavente.
+
 ## Singly-Linked List  
 - this is an implementation of a singly linked list in Python  
 
