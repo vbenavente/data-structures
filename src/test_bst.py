@@ -55,3 +55,13 @@ def test_size_empty():
     """Test size returns 0 if passed an empty bst."""
     bst = BST()
     assert bst.size() == 0
+
+
+def test_depth_empty():
+    """Test depth empty."""
+    bst = BST()
+    assert bst.depth() == 0
+    
+
+def test_depth_existing_bst(bst_test_case):
+    assert bst_test_case.depth() == 3

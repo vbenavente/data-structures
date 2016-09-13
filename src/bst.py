@@ -15,6 +15,8 @@ class BST(object):
     def __init__(self, iterable=None):
         """Init method of bst class."""
         self.length = 0
+        self.depth_left = 0
+        self.depth_right = 0
         if iterable is None:
             self.root = None
             return
@@ -63,8 +65,14 @@ class BST(object):
     def size(self):
         return self.length
 
-    def depth(self):
-        pass
+    def depth(self, root):
+        if self.root is None:
+            return 0
+        if self.root.right is None and self.root.left is None:
+            return 1
+        self.depth = max(self.depth(self.root.right), self.depth(self.root.left)
+        return self.depth
+
 
     def balance(self):
         pass
