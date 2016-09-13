@@ -24,8 +24,34 @@ def test_insert_from_existing(bst_test_case):
     assert bst_test_case.root.left.left.val == 3
 
 
-# do this test when we finish size method
-# def test_insert_at_end_from_existing(bst_test_case):
-#     """Test insert existing value is ignored."""
-#     bst_test_case.insert(10)
-#     assert
+def test_insert_ignore_existing(bst_test_case):
+    """Test insert existing value is ignored."""
+    bst_test_case.insert(10)
+    assert bst_test_case.size() == 5
+
+
+def test_contains_true(bst_test_case):
+    """Test contains returns true if value is in tree."""
+    assert bst_test_case.contains(25)
+
+
+def test_contains_false(bst_test_case):
+    """Test contains returns false if value is not in tree."""
+    assert bst_test_case.contains(13) is False
+
+
+def test_contains_empty():
+    """Test contains returns false if passed an empty bst."""
+    bst = BST()
+    assert bst.contains(1) is False
+
+
+def test_size(bst_test_case):
+    """Test size."""
+    assert bst_test_case.size() == 5
+
+
+def test_size_empty():
+    """Test size returns 0 if passed an empty bst."""
+    bst = BST()
+    assert bst.size() == 0
