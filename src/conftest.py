@@ -173,3 +173,19 @@ def graph_test_case_three():
     instance.add_edge("g", "i")
     instance.add_edge("i", "j")
     return instance
+
+
+"""Binary Search Tree Fixtures"""
+
+
+@pytest.fixture(scope="function")
+def bst_test_case():
+    """Return a test instance of a binary search tree."""
+    from bst import BST
+    instance = BST()
+    instance.insert(10)
+    instance.insert(4)
+    instance.insert(25)
+    instance.insert(37)
+    instance.insert(9)
+    return instance
