@@ -27,6 +27,7 @@ class BST(object):
             self.insert(value)
 
     def insert(self, val, node=None):
+        """Insert new node into bst."""
         new_node = Node(val)
         if not self.root:
             self.root = new_node
@@ -47,6 +48,7 @@ class BST(object):
                 self.insert(val, node.left)
 
     def contains(self, val):
+        """Check if value exists in bst."""
         current_node = self.root
         if current_node is None:
             return False
@@ -65,9 +67,11 @@ class BST(object):
                 return False
 
     def size(self):
+        """Determine number of nodes in bst."""
         return self.length
 
     def breadth_first_traversal(self, start, depth):
+        """Helper function to determine depth."""
         if start is None:
             return 0
         pending_list = deque()
@@ -84,9 +88,11 @@ class BST(object):
 
 
     def depth(self):
+        """Determine max depth of bst."""
         return self.breadth_first_traversal(self.root, 1)
 
     def balance(self):
+        """Determine balance of bst."""
         if self.root is None:
             return 0
         left_depth = self.breadth_first_traversal(self.root.left, 1)

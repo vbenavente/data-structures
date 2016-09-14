@@ -80,10 +80,12 @@ def test_depth_empty():
 
 
 def test_depth_existing_bst(bst_test_case):
+    """Test depth existing bst."""
     assert bst_test_case.depth() == 3
 
 
 def test_depth_changes_after_insert(bst_test_case):
+    """Test depth changes bst after insert."""
     starting_depth = bst_test_case.depth()
     bst_test_case.insert(88)
     new_depth = bst_test_case.depth()
@@ -91,27 +93,32 @@ def test_depth_changes_after_insert(bst_test_case):
 
 
 def test_balance_empty_bst():
+    """Test balance is 0 if bst is empty."""
     bst = BST()
     assert bst.balance() == 0 
 
 
 def test_balance_root_only():
+    """Test balance is 0 if bst only has root."""
     bst = BST()
     bst.insert(5)
     assert bst.balance() == 0 
 
 
 def test_balance_balanced(bst_test_case):
+    """Test balance is 0 if left and right depths are equal."""
     assert bst_test_case.balance() == 0
 
 
 def test_balance_left_heavy(bst_test_case):
+    """Test balance is positive if left is greater than right depth."""
     bst_test_case.insert(1)
     bst_test_case.insert(3)
     assert bst_test_case.balance() == 1
 
 
 def test_balance_left_super_heavy():
+    """Test balance is positive if left is much greater than right depth."""
     bst = BST()
     bst.insert(100)
     bst.insert(90)
@@ -121,11 +128,13 @@ def test_balance_left_super_heavy():
 
 
 def test_balance_right_heavy(bst_test_case):
+    """Test balance is negative if right is greater than left depth."""
     bst_test_case.insert(38)
     assert bst_test_case.balance() == -1
 
 
 def test_balance_right_super_heavy(bst_test_case):
+    """Test balance is negative if right is much greater than left depth."""
     bst_test_case.insert(38)
     bst_test_case.insert(40)
     bst_test_case.insert(50)
