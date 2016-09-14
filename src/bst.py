@@ -33,10 +33,6 @@ class BST(object):
             self.length = 1
         if node is None:
             node = self.root
-        if not node:
-            self.root = new_node
-            self.length += 1
-            return
         if val > node.val:
             if not node.right:
                 node.right = new_node
