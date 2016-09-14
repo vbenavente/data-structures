@@ -1,4 +1,6 @@
-# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-o
+from collections import deque
+
 class Node(object):
     """Building our Node class."""
 
@@ -65,14 +67,28 @@ class BST(object):
     def size(self):
         return self.length
 
-    def depth(self, root):
+    # def depth(self, root):
+        # if self.root is None:
+            # return 0
+        # if self.root.right is None and self.root.left is None:
+            # return 1
+        # self.depth = max(self.depth(self.root.right), self.depth(self.root.left)
+        # return self.depth
+
+    def depth(self):
         if self.root is None:
             return 0
-        if self.root.right is None and self.root.left is None:
-            return 1
-        self.depth = max(self.depth(self.root.right), self.depth(self.root.left)
-        return self.depth
-
+        pending_list = deque()
+        pending_list.append((self.root, 1))
+        while len(pending_list) > 0:
+            next_in_line = pending_list.popleft()
+            current_node = next_in_line[0]
+            depth = next_in_line[1]
+            if current_node.left is not None:
+                pending_list.append((current_node.left, depth + 1))
+            if current_node.right is not None:
+                pending_list.append((current_node.right, depth + 1))
+        return depth
 
     def balance(self):
         pass
