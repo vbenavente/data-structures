@@ -10,6 +10,12 @@ def test_insert_from_empty():
     assert bst.root.val == 1
 
 
+def test_iterable_passed_to_BST():
+    """Test iterable can be passed to initialize BST."""
+    bst = BST([1, 2, 3])
+    assert bst.contains(1) is True
+
+
 def test_insert_correct_place_start_empty():
     """Test insert into correct place from empty bst."""
     bst = BST()
@@ -33,6 +39,16 @@ def test_insert_ignore_existing(bst_test_case):
 def test_contains_true(bst_test_case):
     """Test contains returns true if value is in tree."""
     assert bst_test_case.contains(25)
+
+
+def test_contains_true_root_is_value(bst_test_case):
+    """Test true returned when root is the value searched."""
+    assert bst_test_case.contains(10)
+
+
+def test_contains_true_left_side_tree(bst_test_case):
+    """Test true returned when val is found on left side of BST."""
+    assert bst_test_case.contains(4)
 
 
 def test_contains_false(bst_test_case):
@@ -61,7 +77,14 @@ def test_depth_empty():
     """Test depth empty."""
     bst = BST()
     assert bst.depth() == 0
-    
+
 
 def test_depth_existing_bst(bst_test_case):
     assert bst_test_case.depth() == 3
+
+
+def test_depth_changes_after_insert(bst_test_case):
+    starting_depth = bst_test_case.depth()
+    bst_test_case.insert(88)
+    new_depth = bst_test_case.depth()
+    assert starting_depth < new_depth

@@ -16,6 +16,7 @@ class BST(object):
 
     def __init__(self, iterable=None):
         """Init method of bst class."""
+        self.root = None
         self.length = 0
         self.depth_left = 0
         self.depth_right = 0
@@ -27,6 +28,9 @@ class BST(object):
 
     def insert(self, val, node=None):
         new_node = Node(val)
+        if not self.root:
+            self.root = new_node
+            self.length = 1
         if node is None:
             node = self.root
         if not node:
