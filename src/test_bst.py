@@ -88,3 +88,48 @@ def test_depth_changes_after_insert(bst_test_case):
     bst_test_case.insert(88)
     new_depth = bst_test_case.depth()
     assert starting_depth < new_depth
+
+
+def test_balance_empty_bst():
+    bst = BST()
+    assert bst.balance() == 0 
+
+
+def test_balance_root_only():
+    bst = BST()
+    bst.insert(5)
+    assert bst.balance() == 0 
+
+
+def test_balance_balanced(bst_test_case):
+    assert bst_test_case.balance() == 0
+
+
+def test_balance_left_heavy(bst_test_case):
+    bst_test_case.insert(1)
+    bst_test_case.insert(3)
+    assert bst_test_case.balance() == 1
+
+
+def test_balance_left_super_heavy():
+    bst = BST()
+    bst.insert(100)
+    bst.insert(90)
+    bst.insert(88)
+    bst.insert(70)
+    assert bst.balance() == 3
+
+
+def test_balance_right_heavy(bst_test_case):
+    bst_test_case.insert(38)
+    assert bst_test_case.balance() == -1
+
+
+def test_balance_right_super_heavy(bst_test_case):
+    bst_test_case.insert(38)
+    bst_test_case.insert(40)
+    bst_test_case.insert(50)
+    bst_test_case.insert(132)
+    bst_test_case.insert(200)
+    bst_test_case.insert(1000)
+    assert bst_test_case.balance() == -6

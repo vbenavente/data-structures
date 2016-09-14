@@ -67,19 +67,11 @@ class BST(object):
     def size(self):
         return self.length
 
-    # def depth(self, root):
-        # if self.root is None:
-            # return 0
-        # if self.root.right is None and self.root.left is None:
-            # return 1
-        # self.depth = max(self.depth(self.root.right), self.depth(self.root.left)
-        # return self.depth
-
-    def depth(self):
-        if self.root is None:
+    def breadth_first_traversal(self, start, depth):
+        if start is None:
             return 0
         pending_list = deque()
-        pending_list.append((self.root, 1))
+        pending_list.append((start, depth))
         while len(pending_list) > 0:
             next_in_line = pending_list.popleft()
             current_node = next_in_line[0]
@@ -90,5 +82,13 @@ class BST(object):
                 pending_list.append((current_node.right, depth + 1))
         return depth
 
+
+    def depth(self):
+        return self.breadth_first_traversal(self.root, 1)
+
     def balance(self):
-        pass
+        if self.root is None:
+            return 0
+        left_depth = self.breadth_first_traversal(self.root.left, 1)
+        right_depth = self.breadth_first_traversal(self.root.right, 1)
+        return left_depth - right_depth
