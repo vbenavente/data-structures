@@ -170,6 +170,18 @@ def test_in_order_traversal_second_val(bst_test_case):
     assert next(gen) == 9
 
 
+def test_in_order_traversal_complete_traversal(bst_test_case):
+    """Test generator returns correct value in BST from right side."""
+    gen = bst_test_case.in_order()
+    next(gen)
+    next(gen)
+    next(gen)
+    next(gen)
+    next(gen)
+    with pytest.raises(StopIteration):
+        next(gen)
+
+
 def test_pre_order():
     """Test the right order is returned."""
     pass
