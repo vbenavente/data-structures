@@ -19,11 +19,88 @@ class Node(object):
         self.data = data
         self.depth = 1
 
-        def has_left_child(self):
-            return self.left.val
+    def has_left_child(self):
+        return self.left
 
-        def has_right_child(self):
-            return self.right.val
+    def has_right_child(self):
+        return self.right
+
+    def _in_order(self):
+        """
+        This internal method is a generator that will output in order traversal
+        of a binary tree(left child, parent, right child), one value at a time.
+        """
+        try:
+            for node in self.left._in_order():
+                if node is None:
+                    pass
+                else:
+                    yield node
+        except AttributeError:
+            pass
+
+        yield self.val
+
+        try:
+            for node in self.right._in_order():
+                if node is None:
+                    pass
+                else:
+                    yield node
+        except AttributeError:
+            pass
+
+
+    def _pre_order(self):
+        """
+        This internal method is a generator that will output preorder traversal
+        of a binary tree(parent, left child, right child), one value at a time.
+        """
+
+        yield self.val
+
+        try:
+            for node in self.left._pre_order():
+                if node is None:
+                    pass
+                else:
+                    yield node
+        except AttributeError:
+            pass
+
+        try:
+            for node in self.right._pre_order():
+                if node is None:
+                    pass
+                else:
+                    yield node
+        except AttributeError:
+            pass
+
+    def _post_order(self):
+        """
+        This internal method is a generator that will output postorder traversal
+        of a binary tree(left child, right child, parent), one value at a time.
+        """
+        try:
+            for node in self.left._post_order():
+                if node is None:
+                    pass
+                else:
+                    yield node
+        except AttributeError:
+            pass
+
+        try:
+            for node in self.right._post_order():
+                if node is None:
+                    pass
+                else:
+                    yield node
+        except AttributeError:
+            pass
+
+        yield self.val
 
 
 class BinarySearchTree(object):
@@ -39,19 +116,20 @@ class BinarySearchTree(object):
             self.length = 1
         else:
             self.root = root
-            self.length = 0
 
     def insert(self, val, data=None):
         """Inserts a value  into the BST.  If the value is already in
         the BST it will be ingored."""
         if self.root:
-            self._insert(val, data, self.root)
+            self._insert(val, self.root, data)
         else:
             self.root = Node(val, data)
         self.length += 1
 
     def _insert(self, val, current_node, data=None):
         keep_going = True
+        new_depth = 0
+        current_node = current_node
         while keep_going:
             if val < current_node.val:
                 if current_node.has_left_child():
@@ -67,24 +145,31 @@ class BinarySearchTree(object):
                     keep_going = False
             else:
                 keep_going = False
-        self.length += 1
         self.depth = new_depth + 1
         return self.depth
 
     def contains(self, val):
         """Will return True if val is in the BST, or False if it's not."""
-        for node in self.__iter__():
-            if node.val == val:
-                return True
-        return False
+        result = _contains(val, self.root)
+        return result
+
+    def _contanins(val, current_node):
+        if val == current_node.val:
+            return True
+        elif current_node.right and val > current_node.val:
+            return _contains(val, current_node.right)
+        elif current_node.left and val < current_node.val:
+            return _contains(val, current_node.left)
+        else:
+            return False
 
     def size(self):
         """Will return the integer size of the BST, zero if BST is empty."""
         return self.length
 
     def __len__(self):
-        """Calls self.size and returns value from there."""
-        return self.size()
+        """Returns size of tree using builtin length method."""
+        return self.length
 
     def depth(self, starting_point=None):
         """Will return the depth of the tree by counting "levels".  An empty
@@ -101,3 +186,56 @@ class BinarySearchTree(object):
         if starting_point is None:
             starting_point = self.root
         return starting_point.left - starting_point.right
+
+    def in_order(self, starting_point=None):
+        """
+        This function will return a generator that will return the values
+        of the tree using in-order traversal, one value at a time.
+        In order =
+        """
+        if starting_point is None:
+            starting_point = self.root
+        return starting_point._in_order()
+
+    def pre_order(self, starting_point=None):
+        """
+        This function will return a generator that will return the values
+        of the tree using pre_order traversal, one value at a time.
+        """
+        if starting_point is None:
+            starting_point = self.root
+        return starting_point._pre_order()
+
+    def post_order(self, starting_point=None):
+        """
+        This function will return a generator that will return the values
+        of the tree using post_order traversal, one value at a time.
+        """
+        if starting_point is None:
+            starting_point = self.root
+        return starting_point._post_order()
+
+    def breadth_first(self, starting_point=None):
+        """
+        This internal method is a generator that will output breadth first
+        traversal of a binary tree(left child, right child, parent),
+        one value at a time.
+        """
+
+        from dll import DoublyLinkedList
+        unvisited = DoublyLinkedList()
+        if starting_point is None:
+            starting_point = self.root
+        elif self.contains(starting_point) is False:
+            raise IndexError('Starting point is not in the tree')
+        unvisited.push(starting_point)
+        visited = []
+        while unvisited.size() > 0:
+            current = unvisited.shift()
+            if current not in vistied:
+                visited.append(current)
+                if current.left:
+                    unvisited.push(current.left)
+                if current.right:
+                    unvisited.push(current.right)
+                yield current
