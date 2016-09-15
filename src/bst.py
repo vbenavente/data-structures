@@ -70,7 +70,7 @@ class BST(object):
         """Determine number of nodes in bst."""
         return self.length
 
-    def breadth_first_traversal(self, start, depth):
+    def _depth_helper(self, start, depth):
         """Helper function to determine depth."""
         if start is None:
             return 0
@@ -86,15 +86,53 @@ class BST(object):
                 pending_list.append((current_node.right, depth + 1))
         return depth
 
-
     def depth(self):
         """Determine max depth of bst."""
-        return self.breadth_first_traversal(self.root, 1)
+        return self._depth_helper(self.root, 1)
 
     def balance(self):
         """Determine balance of bst."""
         if self.root is None:
             return 0
-        left_depth = self.breadth_first_traversal(self.root.left, 1)
-        right_depth = self.breadth_first_traversal(self.root.right, 1)
+        left_depth = self._depth_helper(self.root.left, 1)
+        right_depth = self._depth_helper(self.root.right, 1)
         return left_depth - right_depth
+
+    def in_order(self):
+        """Return a generator that returns values in bst using in-order traversal."""
+        if self.root is None:
+            raise StopIteration("Nothing to traverse.")
+        cur = self.root
+        yielded = {"suckit": "fuck"}
+        while cur:
+            import pdb; pdb.set_trace()
+            if cur.left:
+                if cur.left.val not in yielded:
+                    yielded[cur.left.val] = None
+                    yield cur.left.val
+                    cur = cur.left
+                yield cur.left.val
+            elif cur:
+                if cur.val not in yielded:
+                    yielded[cur.val] = None
+                    yield cur.val
+                    print(yielded)
+            elif cur.right:
+                if cur.right.val not in yielded:
+                    yielded[cur.right.val] = None
+                    yield cur.right.val
+                    print(yielded)
+                    cur = cur.right
+
+
+    def pre_order(self):
+        """Return a generator that returns values in bst using pre-order traversal."""
+        pass
+
+    def post_order(self):
+        """Return a generator that returns values in bst using post_order traversal."""
+        pass
+
+    def breadth_first(self):
+        """Return a generator that returns values in bst using breadth-first traversal."""
+        pass

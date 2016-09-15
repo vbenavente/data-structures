@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from bst import BST
+import pytest
 
 
 def test_insert_from_empty():
@@ -95,14 +96,14 @@ def test_depth_changes_after_insert(bst_test_case):
 def test_balance_empty_bst():
     """Test balance is 0 if bst is empty."""
     bst = BST()
-    assert bst.balance() == 0 
+    assert bst.balance() == 0
 
 
 def test_balance_root_only():
     """Test balance is 0 if bst only has root."""
     bst = BST()
     bst.insert(5)
-    assert bst.balance() == 0 
+    assert bst.balance() == 0
 
 
 def test_balance_balanced(bst_test_case):
@@ -142,3 +143,42 @@ def test_balance_right_super_heavy(bst_test_case):
     bst_test_case.insert(200)
     bst_test_case.insert(1000)
     assert bst_test_case.balance() == -6
+
+
+def test_in_order_traversal_empty_bst():
+    """Test generator returns values in in-order traversal."""
+    bst = BST()
+    with pytest.raises(StopIteration) as message:
+        next(bst.in_order())
+    assert "Nothing to traverse." in str(message)
+
+
+def test_in_order_traversal(bst_test_case):
+    """Test generator returns values in in-order traversal."""
+    assert next(bst_test_case.in_order()) is not None
+
+
+def test_in_order_traversal_first_val(bst_test_case):
+    """Test generator returns correct value in BST in order traversal."""
+    assert next(bst_test_case.in_order()) == 4
+
+
+def test_in_order_traversal_second_val(bst_test_case):
+    """Test generator returns correct value in BST in order traversal."""
+    next(bst_test_case.in_order())
+    assert next(bst_test_case.in_order()) == 9
+
+
+def test_pre_order():
+    """Test the right order is returned."""
+    pass
+
+
+def test_post_order():
+    """Test post order returns values in expected order."""
+    pass
+
+
+def test_breadth_first():
+    """Do you even read our docstrings?"""
+    pass
