@@ -165,8 +165,9 @@ def test_in_order_traversal_first_val(bst_test_case):
 
 def test_in_order_traversal_second_val(bst_test_case):
     """Test generator returns correct value in BST in order traversal."""
-    next(bst_test_case.in_order())
-    assert next(bst_test_case.in_order()) == 9
+    gen = bst_test_case.in_order()
+    next(gen)
+    assert next(gen) == 9
 
 
 def test_pre_order():
