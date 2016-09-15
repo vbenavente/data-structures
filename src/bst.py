@@ -107,36 +107,20 @@ class BST(object):
         yielded = set()
         while True:
             if cur.left and cur.left.val not in yielded:
-                if not cur.left.left:
-                    yielded.add(cur.left.val)
-                    pending_stack.append(cur)
-                    yield cur.left.val
-                    cur = cur.left
-                else:
-                    if cur.left:
-                        pending_stack.append(cur)
-                        cur = cur.left
+                pending_stack.append(cur)
+                cur = cur.left
             elif cur and cur.val not in yielded:
                 yielded.add(cur.val)
                 pending_stack.append(cur)
                 yield cur.val
             elif cur.right and cur.right.val not in yielded:
-                if not cur.right.left:
-                    yielded.add(cur.right.val)
-                    pending_stack.append(cur)
-                    yield cur.right.val
-                    cur = cur.right
-                else:
-                    if cur.right:
-                        pending_stack.append(cur)
-                        cur = cur.right
+                pending_stack.append(cur)
+                cur = cur.right
             else:
                 if pending_stack:
                     cur = pending_stack.pop()
                 else:
                     break
-
-
 
     def post_order(self):
         """Return a generator that returns values in bst using post_order traversal."""
