@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-o
 from collections import deque
 
+
 class Node(object):
     """Building our Node class."""
 
@@ -103,27 +104,22 @@ class BST(object):
         if self.root is None:
             raise StopIteration("Nothing to traverse.")
         cur = self.root
-        yielded = {"suckit": "fuck"}
+        yielded = {}
         while cur:
-            import pdb; pdb.set_trace()
             if cur.left:
                 if cur.left.val not in yielded:
                     yielded[cur.left.val] = None
                     yield cur.left.val
                     cur = cur.left
-                yield cur.left.val
             elif cur:
                 if cur.val not in yielded:
                     yielded[cur.val] = None
                     yield cur.val
-                    print(yielded)
             elif cur.right:
                 if cur.right.val not in yielded:
                     yielded[cur.right.val] = None
                     yield cur.right.val
-                    print(yielded)
                     cur = cur.right
-
 
     def pre_order(self):
         """Return a generator that returns values in bst using pre-order traversal."""
