@@ -160,7 +160,8 @@ def test_in_order_traversal(bst_test_case):
 
 def test_in_order_traversal_first_val(bst_test_case):
     """Test generator returns correct value in BST in order traversal."""
-    assert next(bst_test_case.in_order()) == 4
+    bst_test_case.insert(3)
+    assert next(bst_test_case.in_order()) == 3
 
 
 def test_in_order_traversal_second_val(bst_test_case):
@@ -168,6 +169,54 @@ def test_in_order_traversal_second_val(bst_test_case):
     gen = bst_test_case.in_order()
     next(gen)
     assert next(gen) == 9
+
+
+def test_in_order_traversal_eigth_val(bst_test_case_two):
+    """Test generator returns correct value in BST in order traversal."""
+    gen = bst_test_case_two.in_order()
+    next(gen)  # 1
+    next(gen)  # 2
+    next(gen)  # 3
+    next(gen)  # 4
+    next(gen)  # 5
+    next(gen)  # 6
+    next(gen)  # 7
+    assert next(gen) == 25
+
+
+def test_in_order_traversal_last_val(bst_test_case_two):
+    """Test generator returns correct value in BST in order traversal."""
+    gen = bst_test_case_two.in_order()
+    next(gen)  # 1
+    next(gen)  # 2
+    next(gen)  # 3
+    next(gen)  # 4
+    next(gen)  # 5
+    next(gen)  # 6
+    next(gen)  # 7
+    next(gen)  # 8
+    next(gen)  # 9
+    next(gen)  # 10
+    next(gen)  # 11
+    next(gen)  # 12
+    assert next(gen) == 48
+
+
+def test_in_order_traversal_penaltimate_val(bst_test_case_two):
+    """Test generator returns correct value in BST in order traversal."""
+    gen = bst_test_case_two.in_order()
+    next(gen)  # 1
+    next(gen)  # 2
+    next(gen)  # 3
+    next(gen)  # 4
+    next(gen)  # 5
+    next(gen)  # 6
+    next(gen)  # 7
+    next(gen)  # 8
+    next(gen)  # 9
+    next(gen)  # 10
+    next(gen)  # 11
+    assert next(gen) == 37
 
 
 def test_in_order_traversal_complete_traversal(bst_test_case):
@@ -182,16 +231,36 @@ def test_in_order_traversal_complete_traversal(bst_test_case):
         next(gen)
 
 
-def test_pre_order():
-    """Test the right order is returned."""
-    pass
+# def test_pre_order_empty():
+#     """Test the right order is returned."""
+#     bst = BST()
+#     with pytest.raises(StopIteration) as message:
+#         next(bst.in_order())
+#     assert "Nothing to traverse." in str(message)
+    
+
+# def test_pre_order_traversal(bst_test_case):
+#     """Test generator returns values in pre-order traversal."""
+#     assert next(bst_test_case.in_order()) is not None
 
 
-def test_post_order():
-    """Test post order returns values in expected order."""
-    pass
+# def test_pre_order_traversal_first_val(bst_test_case):
+#     """Test generator returns correct value in BST pre order traversal."""
+#     assert next(bst_test_case.pre_order()) == 10
 
 
-def test_breadth_first():
-    """Do you even read our docstrings?"""
+# def test_pre_order_traversal_second_val(bst_test_case):
+#     """Test generator returns correct value in BST pre order traversal."""
+#     gen = bst_test_case.pre_order()
+#     next(gen)
+#     assert next(gen) == 4
+
+
+# def test_post_order():
+#     """Test post order returns values in expected order."""
+#     pass
+
+
+# def test_breadth_first():
+#     """Do you even read our docstrings?"""
     pass

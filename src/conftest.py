@@ -189,3 +189,24 @@ def bst_test_case():
     instance.insert(37)
     instance.insert(9)
     return instance
+
+
+@pytest.fixture(scope="function")
+def bst_test_case_two():
+    """Return a test instance of a binary search tree."""
+    from bst import BST
+    instance = BST()
+    instance.insert(10)
+    instance.insert(4)
+    instance.insert(25)
+    instance.insert(37)
+    instance.insert(9)
+    instance.insert(3)
+    instance.insert(1)
+    instance.insert(8)
+    instance.insert(22)
+    instance.insert(36)
+    instance.insert(33)
+    instance.insert(34)
+    instance.insert(48)
+    return instance
