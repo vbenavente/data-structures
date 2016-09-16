@@ -50,7 +50,6 @@ class Node(object):
         except AttributeError:
             pass
 
-
     def _pre_order(self):
         """
         This internal method is a generator that will output preorder traversal
@@ -127,51 +126,44 @@ class BinarySearchTree(object):
         self.length += 1
 
     def _insert(self, val, current_node, data=None):
-        keep_going = True
-        new_depth = 0
         current_node = current_node
-        while keep_going:
-            if val < current_node.val:
-                if current_node.has_left_child():
-                    new_depth = self._insert(val, data, current_node.left)
-                else:
-                    current_node.left = Node(val, data, parent=current_node)
-                    keep_going = False
-            elif val > current_node.val:
-                if current_node.has_right_child():
-                    new_depth = self._insert(val, data, current_node)
-                else:
-                    current_node.right = Node(val, data, parent=current_node)
-                    keep_going = False
+        if val < current_node.val:
+            if current_node.has_left_child():
+                return self._insert(val, current_node.left)
             else:
-                keep_going = False
-        self.depth = new_depth + 1
-        return self.depth
+                current_node.left = Node(val)
+        else:
+            if current_node.has_right_child():
+                return self._insert(val, current_node.right)
+            else:
+                current_node.right = Node(val)
 
     def contains(self, val):
         """Will return True if val is in the BST, or False if it's not."""
-        result = _contains(val, self.root)
-        return result
+        return self._contains(val, self.root)
 
-    def _contanins(val, current_node):
+    def _contains(self, val, current_node):
         if val == current_node.val:
             return True
         elif current_node.right and val > current_node.val:
-            return _contains(val, current_node.right)
+            return self._contains(val, current_node.right)
         elif current_node.left and val < current_node.val:
-            return _contains(val, current_node.left)
+            return self._contains(val, current_node.left)
         else:
             return False
 
     def size(self):
+
         """Will return the integer size of the BST, zero if BST is empty."""
         return self.length
 
     def __len__(self):
+
         """Returns size of tree using builtin length method."""
         return self.length
 
     def depth(self, starting_point=None):
+
         """Will return the depth of the tree by counting "levels".  An empty
         BST will return 0, a BST with 1 value will return 1, a BST with 2
         values will return 2, and the value will fluctuate from then on
@@ -181,6 +173,7 @@ class BinarySearchTree(object):
         return max(starting_point.left, starting_point.right)
 
     def balance(self, starting_point=None):
+
         """Will return an integer that's positive or negative that represents
         the difference between depth on both sides from the root."""
         if starting_point is None:
@@ -188,16 +181,17 @@ class BinarySearchTree(object):
         return starting_point.left - starting_point.right
 
     def in_order(self, starting_point=None):
+
         """
         This function will return a generator that will return the values
         of the tree using in-order traversal, one value at a time.
-        In order =
         """
         if starting_point is None:
             starting_point = self.root
         return starting_point._in_order()
 
     def pre_order(self, starting_point=None):
+
         """
         This function will return a generator that will return the values
         of the tree using pre_order traversal, one value at a time.
@@ -207,6 +201,7 @@ class BinarySearchTree(object):
         return starting_point._pre_order()
 
     def post_order(self, starting_point=None):
+
         """
         This function will return a generator that will return the values
         of the tree using post_order traversal, one value at a time.
@@ -216,6 +211,7 @@ class BinarySearchTree(object):
         return starting_point._post_order()
 
     def breadth_first(self, starting_point=None):
+
         """
         This internal method is a generator that will output breadth first
         traversal of a binary tree(left child, right child, parent),
