@@ -262,6 +262,68 @@ def test_pre_order_traversal_complete_traversal(bst_test_case):
         next(gen)
 
 
+
+
+
+
+def test_post_order_empty():
+    '''Test appropostat error when post order is called on nothing.'''
+    bst = BST()
+    with pytest.raises(StopIteration) as message:
+        next(bst.post_order())
+    assert "Nothing to traverse." in str(message)
+
+
+def test_post_order_traversal(bst_test_case):
+    '''Test generator returns values in post-order traversal.'''
+    assert next(bst_test_case.post_order()) is not None
+
+
+def test_post_order_traversal_first_val(bst_test_case_two):
+    '''Test generator returns correct fist value in post order traversal.'''
+    assert next(bst_test_case_two.post_order()) == 1
+
+
+def test_post_order_traversal_second_val(bst_test_case_two):
+    '''Test generator returns correct second value post order traversal.'''
+    gen = bst_test_case_two.post_order()
+    next(gen)
+    assert next(gen) == 3
+
+
+def test_post_order_traversal_eigth_val(bst_test_case_two):
+    '''Test generator returns correct 8th value in post order traversal.'''
+    gen = bst_test_case_two.post_order()
+    for _ in range(7):
+        next(gen)
+    assert next(gen) == 33
+
+
+def test_post_order_traversal_last_val(bst_test_case_two):
+    '''Test generator returns correct last value for post order traversal.'''
+    gen = bst_test_case_two.post_order()
+    for _ in range(12):
+        next(gen)
+    assert next(gen) == 10
+
+
+def test_post_order_traversal_penaltimate_val(bst_test_case_two):
+    '''Test generator returns correct penultimate value for post order traversal.'''
+    gen = bst_test_case_two.post_order()
+    for _ in range(11):
+        next(gen)
+    assert next(gen) == 25
+
+
+def test_post_order_traversal_complete_traversal(bst_test_case):
+    '''Test generator returns appropreate error when next more than nodes.'''
+    gen = bst_test_case.pre_order()
+    for _ in range(5):
+        next(gen)
+    with pytest.raises(StopIteration):
+        next(gen)
+
+
 def test_post_order():
     '''Test post order returns values in expected order.'''
     pass

@@ -130,7 +130,6 @@ class BST(object):
         pending_list = []
         cur = self.root
         yielded = set()
-        # import pdb; pdb.set_trace()
         while True:
             if cur.val not in yielded:
                 yield cur.val
@@ -147,9 +146,28 @@ class BST(object):
                     break
 
     def post_order(self):
-        """Return a generator that returns values in bst using post_order traversal."""
-        pass
+        '''return a generator that will return the values in the tree
+        using pre-order traversal, one at a time.'''
+        if self.root is None:
+            raise StopIteration("Nothing to traverse.")
+        pending_list = []
+        cur = self.root
+        yielded = set()
+        while True:
+            if cur.val not in yielded:
+                pending_list.append(cur)
+            if cur.left and cur.left.val not in yielded:
+                cur = cur.left
+            elif cur.right and cur.right.val not in yielded:
+                cur = cur.right
+            elif cur.val not in yielded:
+                yield cur.val
+                yielded.add(cur.val)
+            else:
+                if pending_list:
+                    cur = pending_list.pop()
+                else:
+                    break
 
     def breadth_first(self):
         """Return a generator that returns values in bst using breadth-first traversal."""
-        pass
