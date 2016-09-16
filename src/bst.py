@@ -243,3 +243,43 @@ class BinarySearchTree(object):
                 if current.right:
                     unvisited.push(current.right)
                 yield current.val
+
+    def delete_node(self, val):
+        delete_me = self.find_node(val)
+        if delete_me is False:
+            return "That node is not in the BST."
+        left_childs = delete_me.in_order(delete_me.left)
+        right_childs = delete_me.in_order(delete_me.right)
+        left_list = []
+        for child in left_childs:
+            left_list.append(child)
+        left_choice = left_list[-1]
+        right_choice = right_childs.next()
+        a = right_choice.val - val
+        b = val - left_choice.val
+        if a > b:
+            delete_me.val = left_choice.val
+            # unhook left_choice's parents left pointer
+        else:
+            delete_me.val = right_choice.val
+            # unhook right_choice's parent right pointer
+
+    def find_node(self, val):
+        """Will return the node with the val we asked for or False if it
+        isn't in the BST."""
+        try:
+            return self._find_node(val, self.root)
+        except AttributeError:
+            pass
+
+    def _find_node(self, val, current_node):
+        """Helper method to find_node, recursively called and returns the node
+        or False if it isn't in the BST."""
+        if val == current_node.val:
+            return current_node
+        elif current_node.right and val > current_node.val:
+            return self._find_node(val, current_node.right)
+        elif current_node.left and val < current_node.val:
+            return self._find_node(val, current_node.left)
+        else:
+            return False
