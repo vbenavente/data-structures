@@ -188,7 +188,7 @@ def test_in_order_traversal_last_val(bst_test_case_two):
 
 
 def test_in_order_traversal_penaltimate_val(bst_test_case_two):
-    '''Test generator returns correct penultimate value in in-order traversal.'''
+    '''Returns correct penultimate value in in-order traversal.'''
     gen = bst_test_case_two.in_order()
     for _ in range(11):
         next(gen)
@@ -246,7 +246,7 @@ def test_pre_order_traversal_last_val(bst_test_case_two):
 
 
 def test_pre_order_traversal_penaltimate_val(bst_test_case_two):
-    '''Test generator returns correct penultimate value for pre order traversal.'''
+    '''Returns correct penultimate value for pre order traversal.'''
     gen = bst_test_case_two.pre_order()
     for _ in range(11):
         next(gen)
@@ -304,7 +304,7 @@ def test_post_order_traversal_last_val(bst_test_case_two):
 
 
 def test_post_order_traversal_penaltimate_val(bst_test_case_two):
-    '''Test generator returns correct penultimate value for post order traversal.'''
+    '''Returns correct penultimate value for post order traversal.'''
     gen = bst_test_case_two.post_order()
     for _ in range(11):
         next(gen)

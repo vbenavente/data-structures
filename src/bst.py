@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-o
 from collections import deque
 
+
 class Node(object):
     """Building our Node class."""
 
@@ -99,7 +100,7 @@ class BST(object):
         return left_depth - right_depth
 
     def in_order(self):
-        """Return a generator that returns values in bst using in-order traversal."""
+        """Returns values in bst using in-order traversal."""
         if self.root is None:
             raise StopIteration("Nothing to traverse.")
         pending_list = []
@@ -122,7 +123,7 @@ class BST(object):
                 else:
                     break
 
-    def pre_order(self): 
+    def pre_order(self):
         '''return a generator that will return the values in the tree
         using pre-order traversal, one at a time.'''
         if self.root is None:
@@ -170,7 +171,7 @@ class BST(object):
                     break
 
     def breadth_first(self):
-        """Return a generator that returns values in bst using breadth-first traversal."""
+        """Returns values in bst using breadth-first traversal."""
         if self.root is None:
             raise StopIteration("Nothing to traverse.")
         pending_list = deque()
