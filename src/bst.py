@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-o
 from collections import deque
 
+
 class Node(object):
     """Building our Node class."""
 
@@ -70,7 +71,7 @@ class BST(object):
         """Determine number of nodes in bst."""
         return self.length
 
-    def breadth_first_traversal(self, start, depth):
+    def _depth_helper(self, start, depth):
         """Helper function to determine depth."""
         if start is None:
             return 0
@@ -86,15 +87,99 @@ class BST(object):
                 pending_list.append((current_node.right, depth + 1))
         return depth
 
-
     def depth(self):
         """Determine max depth of bst."""
-        return self.breadth_first_traversal(self.root, 1)
+        return self._depth_helper(self.root, 1)
 
     def balance(self):
         """Determine balance of bst."""
         if self.root is None:
             return 0
-        left_depth = self.breadth_first_traversal(self.root.left, 1)
-        right_depth = self.breadth_first_traversal(self.root.right, 1)
+        left_depth = self._depth_helper(self.root.left, 1)
+        right_depth = self._depth_helper(self.root.right, 1)
         return left_depth - right_depth
+
+    def in_order(self):
+        """Returns values in bst using in-order traversal."""
+        if self.root is None:
+            raise StopIteration("Nothing to traverse.")
+        pending_list = []
+        cur = self.root
+        yielded = set()
+        while True:
+            if cur.left and cur.left.val not in yielded:
+                pending_list.append(cur)
+                cur = cur.left
+            elif cur and cur.val not in yielded:
+                yielded.add(cur.val)
+                pending_list.append(cur)
+                yield cur.val
+            elif cur.right and cur.right.val not in yielded:
+                pending_list.append(cur)
+                cur = cur.right
+            else:
+                if pending_list:
+                    cur = pending_list.pop()
+                else:
+                    break
+
+    def pre_order(self):
+        '''return a generator that will return the values in the tree
+        using pre-order traversal, one at a time.'''
+        if self.root is None:
+            raise StopIteration("Nothing to traverse.")
+        pending_list = []
+        cur = self.root
+        yielded = set()
+        while True:
+            if cur.val not in yielded:
+                yield cur.val
+                yielded.add(cur.val)
+                pending_list.append(cur)
+            if cur.left and cur.left.val not in yielded:
+                cur = cur.left
+            elif cur.right and cur.right.val not in yielded:
+                cur = cur.right
+            else:
+                if pending_list:
+                    cur = pending_list.pop()
+                else:
+                    break
+
+    def post_order(self):
+        '''return a generator that will return the values in the tree
+        using pre-order traversal, one at a time.'''
+        if self.root is None:
+            raise StopIteration("Nothing to traverse.")
+        pending_list = []
+        cur = self.root
+        yielded = set()
+        while True:
+            if cur.val not in yielded:
+                pending_list.append(cur)
+            if cur.left and cur.left.val not in yielded:
+                cur = cur.left
+            elif cur.right and cur.right.val not in yielded:
+                cur = cur.right
+            elif cur.val not in yielded:
+                yield cur.val
+                yielded.add(cur.val)
+            else:
+                if pending_list:
+                    cur = pending_list.pop()
+                else:
+                    break
+
+    def breadth_first(self):
+        """Returns values in bst using breadth-first traversal."""
+        if self.root is None:
+            raise StopIteration("Nothing to traverse.")
+        pending_list = deque()
+        pending_list.append(self.root)
+        while len(pending_list) > 0:
+            cur = pending_list.popleft()
+            yield cur.val
+            if cur.left:
+                pending_list.append(cur.left)
+            if cur.right:
+                pending_list.append(cur.right)
