@@ -1,4 +1,4 @@
-# Data-Structures
+# Data-Structures  [![Build Status](https://travis-ci.org/vbenavente/data-structures.svg?branch=master)](https://travis-ci.org/vbenavente/data-structures)
 - sample code for a number of classic data structures implemented in Python  
 
 ## Singly-Linked List  
