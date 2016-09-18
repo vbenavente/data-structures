@@ -159,7 +159,7 @@ def test_in_order_traversal(bst_test_case):
 
 
 def test_in_order_traversal_first_val(bst_test_case):
-    '''Test generator returns correct fist value in in-order traversal.'''
+    '''Test generator returns correct first value in in-order traversal.'''
     bst_test_case.insert(3)
     assert next(bst_test_case.in_order()) == 3
 
@@ -218,7 +218,7 @@ def test_pre_order_traversal(bst_test_case):
 
 
 def test_pre_order_traversal_first_val(bst_test_case):
-    '''Test generator returns correct fist value in pre order traversal.'''
+    '''Test generator returns correct first value in pre order traversal.'''
     assert next(bst_test_case.pre_order()) == 10
 
 
@@ -262,10 +262,6 @@ def test_pre_order_traversal_complete_traversal(bst_test_case):
         next(gen)
 
 
-
-
-
-
 def test_post_order_empty():
     '''Test appropostat error when post order is called on nothing.'''
     bst = BST()
@@ -280,7 +276,7 @@ def test_post_order_traversal(bst_test_case):
 
 
 def test_post_order_traversal_first_val(bst_test_case_two):
-    '''Test generator returns correct fist value in post order traversal.'''
+    '''Test generator returns correct first value in post order traversal.'''
     assert next(bst_test_case_two.post_order()) == 1
 
 
@@ -324,11 +320,34 @@ def test_post_order_traversal_complete_traversal(bst_test_case):
         next(gen)
 
 
-def test_post_order():
-    '''Test post order returns values in expected order.'''
-    pass
-
-
-def test_breadth_first():
+def test_breadth_first_empty():
     '''Do you even read our docstrings?'''
-    pass
+    bst = BST()
+    with pytest.raises(StopIteration) as message:
+        next(bst.breadth_first())
+    assert "Nothing to traverse." in str(message)
+
+
+def test_breadth_first_traversal(bst_test_case):
+    '''Test generator returns values in breadth-first traversal.'''
+    assert next(bst_test_case.breadth_first()) is not None
+
+
+def test_breadth_first_traversal_first_val(bst_test_case_two):
+    '''Returns correct first value in breadth first traversal.'''
+    assert next(bst_test_case_two.breadth_first()) == 10
+
+
+def test_breadth_first_traversal_second_val(bst_test_case_two):
+    '''Test generator returns correct second value breadth first traversal.'''
+    gen = bst_test_case_two.breadth_first()
+    next(gen)
+    assert next(gen) == 4
+
+
+def test_breadth_first_traversal_eigth_val(bst_test_case_two):
+    '''Test generator returns correct 8th value in breadth first traversal.'''
+    gen = bst_test_case_two.breadth_first()
+    for _ in range(7):
+        next(gen)
+    assert next(gen) == 1

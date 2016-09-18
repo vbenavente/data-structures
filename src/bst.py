@@ -171,3 +171,14 @@ class BST(object):
 
     def breadth_first(self):
         """Return a generator that returns values in bst using breadth-first traversal."""
+        if self.root is None:
+            raise StopIteration("Nothing to traverse.")
+        pending_list = deque()
+        pending_list.append(self.root)
+        while len(pending_list) > 0:
+            cur = pending_list.popleft()
+            yield cur.val
+            if cur.left:
+                pending_list.append(cur.left)
+            if cur.right:
+                pending_list.append(cur.right)
