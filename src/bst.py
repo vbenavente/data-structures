@@ -5,11 +5,12 @@ from collections import deque
 class Node(object):
     """Building our Node class."""
 
-    def __init__(self, val, left=None, right=None):
+    def __init__(self, val, left=None, right=None, parent=None):
         """Class implements a node."""
         self.val = val
         self.left = left
         self.right = right
+        self.parent = parent
 
 
 class BST(object):
@@ -183,3 +184,37 @@ class BST(object):
                 pending_list.append(cur.left)
             if cur.right:
                 pending_list.append(cur.right)
+
+    def _search(self, val):
+        cur = self.root
+        if not cur:
+            raise ValueError("Val not in BST")
+        if cur.val == val:
+            return cur
+        while True:
+            if val > cur.val and cur.right is not None:
+                parent = cur
+                cur = cur.right
+                cur.parent = parent
+                if cur.val == val:
+                    return cur
+            elif val < cur.val and cur.left is not None:
+                parent = cur
+                cur = cur.left
+                cur.parent = parent
+                if cur.val == val:
+                    return cur
+            else:
+                break
+
+    def delete(self, val):
+        cur = self._search(val)
+        if cur is None:
+            raise ValueError("Val not in BST")
+        if not cur.parent and not cur.right and not cur.left:
+            self.root = None
+        if cur.parent and not cur.right and not cur.left:
+            if cur.parent.val > cur.val:
+                cur.parent.left = None
+            elif cur.parent.val < cur.val:
+                cur.parent.right = None
