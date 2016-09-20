@@ -8,9 +8,39 @@ class Node(object):
     def __init__(self, val, left=None, right=None, parent=None):
         """Class implements a node."""
         self.val = val
-        self.left = left
-        self.right = right
-        self.parent = parent
+        self._left = left
+        self._right = right
+        self._parent = parent
+
+    @property
+    def left(self):
+        return self._left
+
+    @left.setter
+    def left(self, node):
+        if node:
+            self._left = node
+            node._parent = self
+
+    @left.deleter
+    def left(self):
+        self._left = None
+
+    @property
+    def right(self):
+        return self._right
+
+    @right.setter
+    def right(self, node):
+        if node:
+            self._right = node
+            node._parent = self
+
+    @right.deleter
+    def right(self):
+        self._right = None
+
+
 
 
 class BST(object):
@@ -208,13 +238,4 @@ class BST(object):
                 break
 
     def delete(self, val):
-        cur = self._search(val)
-        if cur is None:
-            raise ValueError("Val not in BST")
-        if not cur.parent and not cur.right and not cur.left:
-            self.root = None
-        if cur.parent and not cur.right and not cur.left:
-            if cur.parent.val > cur.val:
-                cur.parent.left = None
-            elif cur.parent.val < cur.val:
-                cur.parent.right = None
+        pass
