@@ -4,20 +4,75 @@ from __future__ import unicode_literals
 
 
 class Node(object):
+    """Example node class with example @property decorators
+
+    pieces of this code are significantly wrong (parent deletion for
+    instance) and you should test your implementation throughly"""
 
     def __init__(self, val, data=None, left=None, right=None,
                  parent=None):
-        """Instantiates a Node class object for use in our BST.
-
-        Data is a ride-along additional value holder that may be used
-        later."""
-
+        """sets self.whatever values for instantiating instances of
+        the class"""
         self.val = val
-        self.left = left
-        self.right = right
-        self.parent = parent
+        self._left = left
+        self._right = right
+        self._parent = parent
         self.data = data
         self.depth = 1
+
+    @property
+    def left(self):
+        """value getter for _left
+        syntax: node.left returns _left's value"""
+        return self._left
+
+    @left.setter
+    def left(self, other):
+        """value setter for _left, allows us to say 'set node.left = X'
+        elsewhere in our code and not have it throw wrenches at us"""
+        self._left = other
+        other._parent = self
+
+    @left.deleter
+    def left(self):
+        """allows us to say 'del node.left' else where in our code and get this
+        outcome"""
+        try:
+            self._left._parent = None
+        except AttributeError:
+            pass
+        self._left = None
+
+    @property
+    def right(self):
+        """returns value of _right"""
+        return self._right
+
+    @right.setter
+    def right(self, other):
+        """sets value of _right and right's parent"""
+        self._right = other
+        other._parent = self
+
+    @right.deleter
+    def right(self):
+        try:
+            self._right._parent = None
+        except AttributeError:
+            pass
+        self._right = None
+
+    @property
+    def parent(self):
+        return self._parent
+
+    @parent.setter
+    def parent(self, other):
+        self._parent = other
+        if other.val < self.val:
+            other._left = self
+        else:
+            other._right = self
 
     def has_left_child(self):
         """Returns true if there is a left child."""
@@ -257,38 +312,46 @@ class BinarySearchTree(object):
         delete_me = self.find_node(val)
         if delete_me is False:
             return "That node is not in the BST."
-        left_childs = delete_me.in_order(delete_me.left)
-        right_childs = delete_me.in_order(delete_me.right)
+        left_childs = self.in_order(delete_me.left)
+        right_childs = self.in_order(delete_me.right)
         left_list = []
         for child in left_childs:
             left_list.append(child)
         left_choice = left_list[-1]
         right_choice = right_childs.next()
-        a = right_choice.val - val
-        b = val - left_choice.val
+        a = right_choice - val
+        b = val - left_choice
         if a > b:
+            left_choice = self.find_node(left_choice)
+            if self.root == delete_me:
+                self.root = left_choice
+            if left_choice.left is not None:
+                left_choice.left.parent = left_choice.parent
             delete_me.val = left_choice.val
-            # unhook left_choice's parents left pointer
         else:
+            right_choice = self.find_node(right_choice)
+            import pdb; pdb.set_trace()
+            if self.root == delete_me:
+                self.root = right_choice
+            if right_choice.right is not None:
+                right_choice.right.parent = right_choice.parent
             delete_me.val = right_choice.val
-            # unhook right_choice's parent right pointer
 
     def find_node(self, val):
         """Will return the node with the val we asked for or False if it
         isn't in the BST."""
-        try:
-            return self._find_node(val, self.root)
-        except AttributeError:
-            pass
+        import pdb; pdb.set_trace()
+        return self._find_node(val, self.root)
+
 
     def _find_node(self, val, current_node):
         """Helper method to find_node, recursively called and returns the node
         or False if it isn't in the BST."""
         if val == current_node.val:
             return current_node
-        elif current_node.right and val > current_node.val:
+        elif current_node.right:
             return self._find_node(val, current_node.right)
-        elif current_node.left and val < current_node.val:
+        elif current_node.left:
             return self._find_node(val, current_node.left)
         else:
             return False
