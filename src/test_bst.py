@@ -353,38 +353,56 @@ def test_breadth_first_traversal_eigth_val(bst_test_case_two):
     assert next(gen) == 1
 
 
-# def test_delete_empty():
-#     """Return error message when BST is empty."""
-#     bst = BST()
-#     with pytest.raises(ValueError) as message:
-#         bst.delete(5)
-#     assert "Val not in BST" in str(message)
-#
+def test_delete_empty():
+    """Return error message when BST is empty."""
+    bst = BST()
+    with pytest.raises(ValueError) as message:
+        bst.delete(5)
+    assert "Val not in BST" in str(message)
 
-# def test_delete_root():
-#     """Self.root is none if it is only node and deleted."""
-#     bst = BST([5])
-#     bst.delete(5)
-#     assert bst.root is None
-#
-#
-# def test_delete_leaf_node_left():
-#     """BST no longer has pointer to deleted leaf node."""
-#     bst = BST([10, 5, 20])
-#     bst.delete(5)
-#     assert not bst.contains(5)
-#
-#
-# def test_delete_leaf_node_right():
-#     """BST no longer has pointer to deleted leaf node."""
-#     bst = BST([10, 5, 20])
-#     bst.delete(20)
-#     assert not bst.contains(20)
-#
-#
-# def test_delete_node_not_in_bst():
-#     """Return error message when node not in BST."""
-#     bst = BST([10, 5, 20])
-#     with pytest.raises(ValueError) as message:
-#         bst.delete(19)
-#     assert "Val not in BST" in str(message)
+
+def test_delete_root():
+    """Self.root is none if it is only node and deleted."""
+    bst = BST([5])
+    bst.delete(5)
+    assert bst.root is None
+
+
+def test_delete_leaf_node_left():
+    """BST no longer has pointer to deleted leaf node."""
+    bst = BST([10, 5, 20])
+    bst.delete(5)
+    assert not bst.contains(5)
+
+
+def test_delete_leaf_node_right():
+    """BST no longer has pointer to deleted leaf node."""
+    bst = BST([10, 5, 20])
+    bst.delete(20)
+    assert not bst.contains(20)
+
+
+def test_delete_node_not_in_bst():
+    """Return error message when node not in BST."""
+    bst = BST([10, 5, 20])
+    assert bst.delete(29) is None
+
+
+def test_delete_node_in_bst_1(bst_test_case_two):
+    """Return error message when node not in BST."""
+    bst_test_case_two.delete(22)
+    assert not bst_test_case_two.contains(22)
+
+
+def test_delete_node_in_bst_2(bst_test_case_two):
+    """Return error message when node not in BST."""
+    bst_test_case_two.delete(37)
+    assert bst_test_case_two._search(25).right.val == 36
+    assert not bst_test_case_two.contains(37)
+
+
+def test_delete_node_in_bst_3():
+    """Return error message when node not in BST."""
+    bst = BST([10, 5, 20, 18])
+    bst.delete(20)
+    assert not bst.contains(20)

@@ -18,9 +18,11 @@ class Node(object):
 
     @left.setter
     def left(self, node):
-        if node:
-            self._left = node
+        self._left = node
+        try:
             node._parent = self
+        except AttributeError:
+            pass
 
     @left.deleter
     def left(self):
@@ -32,15 +34,15 @@ class Node(object):
 
     @right.setter
     def right(self, node):
-        if node:
-            self._right = node
+        self._right = node
+        try:
             node._parent = self
+        except AttributeError:
+            pass
 
     @right.deleter
     def right(self):
         self._right = None
-
-
 
 
 class BST(object):
@@ -130,12 +132,12 @@ class BST(object):
         right_depth = self._depth_helper(self.root.right, 1)
         return left_depth - right_depth
 
-    def in_order(self):
+    def in_order(self, start=None):
         """Returns values in bst using in-order traversal."""
         if self.root is None:
             raise StopIteration("Nothing to traverse.")
         pending_list = []
-        cur = self.root
+        cur = start or self.root
         yielded = set()
         while True:
             if cur.left and cur.left.val not in yielded:
@@ -223,19 +225,48 @@ class BST(object):
             return cur
         while True:
             if val > cur.val and cur.right is not None:
-                parent = cur
                 cur = cur.right
-                cur.parent = parent
                 if cur.val == val:
                     return cur
             elif val < cur.val and cur.left is not None:
-                parent = cur
                 cur = cur.left
-                cur.parent = parent
                 if cur.val == val:
                     return cur
             else:
                 break
 
     def delete(self, val):
-        pass
+        cur = self._search(val)
+        if not cur:
+            return
+        if self.size() == 1:
+            self.root = None
+            return
+        sub_bst = list(self.in_order(cur))
+        index_of_val = sub_bst.index(val)
+        if len(sub_bst) == 1:
+            replacement = None
+            if cur.val > cur._parent.val:
+                del cur._parent.right
+            else:
+                del cur._parent.left
+        else:
+            try:
+                replacement = Node(sub_bst[index_of_val - 1])
+                if cur.val > cur._parent.val:
+                    cur._parent.right = replacement
+                else:
+                    cur._parent.left = replacement
+            except IndexError:
+                try:
+                    replacement = Node(sub_bst[index_of_val + 1])
+                    if cur.val > cur._parent.val:
+                        cur._parent.right = replacement
+                    else:
+                        cur._parent.left = replacement
+                except IndexError:
+                    replacement = None
+                    if cur.val > cur._parent.val:
+                        cur._parent.right = replacement
+                    else:
+                        cur._parent.left = replacement
