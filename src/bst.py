@@ -245,28 +245,21 @@ class BST(object):
         sub_bst = list(self.in_order(cur))
         index_of_val = sub_bst.index(val)
         if len(sub_bst) == 1:
-            replacement = None
             if cur.val > cur._parent.val:
-                del cur._parent.right
+                cur._parent.right = None
             else:
-                del cur._parent.left
+                cur._parent.left = None
         else:
-            try:
+            if sub_bst[index_of_val - 1] < cur.val:
                 replacement = Node(sub_bst[index_of_val - 1])
+                replacement.right = cur.right
+            else:
+                replacement = Node(sub_bst[index_of_val + 1])
+                replacement.left = cur.left
+            if cur._parent:
                 if cur.val > cur._parent.val:
                     cur._parent.right = replacement
                 else:
                     cur._parent.left = replacement
-            except IndexError:
-                try:
-                    replacement = Node(sub_bst[index_of_val + 1])
-                    if cur.val > cur._parent.val:
-                        cur._parent.right = replacement
-                    else:
-                        cur._parent.left = replacement
-                except IndexError:
-                    replacement = None
-                    if cur.val > cur._parent.val:
-                        cur._parent.right = replacement
-                    else:
-                        cur._parent.left = replacement
+            else:
+                self.root = replacement

@@ -4,6 +4,22 @@ from bst import BST
 import pytest
 
 
+def test_node_left_deleter():
+    from bst import Node
+    node = Node(5)
+    node.left = Node(3)
+    del node.left
+    assert node.left is None
+
+
+def test_node_right_deleter():
+    from bst import Node
+    node = Node(5)
+    node.right = Node(7)
+    del node.right
+    assert node.left is None
+
+
 def test_insert_from_empty():
     '''Test insert into empty binary search tree.'''
     bst = BST()
@@ -388,9 +404,17 @@ def test_delete_node_not_in_bst():
     assert bst.delete(29) is None
 
 
+def test_delete_root_small_bst():
+    """Delete root, and replace it with replacement."""
+    bst = BST([10, 5, 20])
+    bst.delete(10)
+    assert not bst.contains(10)
+
+
 def test_delete_node_in_bst_1(bst_test_case_two):
     """Return error message when node not in BST."""
     bst_test_case_two.delete(22)
+    assert bst_test_case_two._search(25).left is None
     assert not bst_test_case_two.contains(22)
 
 
@@ -398,11 +422,27 @@ def test_delete_node_in_bst_2(bst_test_case_two):
     """Return error message when node not in BST."""
     bst_test_case_two.delete(37)
     assert bst_test_case_two._search(25).right.val == 36
+    assert bst_test_case_two._search(48)._parent.val == 36
     assert not bst_test_case_two.contains(37)
 
 
-def test_delete_node_in_bst_3():
+def test_delete_node_in_bst_3(bst_test_case_two):
     """Return error message when node not in BST."""
-    bst = BST([10, 5, 20, 18])
-    bst.delete(20)
-    assert not bst.contains(20)
+    bst_test_case_two.delete(25)
+    assert bst_test_case_two._search(10).right.val == 22
+    assert bst_test_case_two._search(37)._parent.val == 22
+    assert not bst_test_case_two.contains(20)
+
+
+def test_delete_node_in_bst_4(bst_test_case_two):
+    """Return error message when node not in BST."""
+    bst_test_case_two.delete(8)
+    assert bst_test_case_two._search(4).right.val == 9
+    assert not bst_test_case_two.contains(8)
+
+
+def test_delete_node_in_bst_5(bst_test_case_two):
+    """Return error message when node not in BST."""
+    bst_test_case_two.delete(3)
+    assert bst_test_case_two._search(4).left.val == 1
+    assert not bst_test_case_two.contains(3)
