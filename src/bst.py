@@ -128,7 +128,7 @@ class BinarySearchTree(object):
             self.root = root
 
     def insert(self, val, data=None):
-        """Inserts a value  into the BST.  If the value is already in
+        """Inserts a value into the BST.  If the value is already in
         the BST it will be ingored."""
         if not self.contains(val):
             if self.root:
@@ -191,13 +191,15 @@ class BinarySearchTree(object):
         the difference between depth on both sides from the root."""
         if starting_point is None:
             starting_point = self.root
-        return starting_point.left - starting_point.right
+        return starting_point.left.depth - starting_point.right.depth
 
     def in_order(self, starting_point=None):
         """
         This function will return a generator that will return the values
         of the tree using in-order traversal, one value at a time.
         """
+        if self.length is None:
+            raise IndexError("You can't in-order traverse an empty Tree.")
         if starting_point is None:
             starting_point = self.root
         return starting_point._in_order()
@@ -207,6 +209,8 @@ class BinarySearchTree(object):
         This function will return a generator that will return the values
         of the tree using pre_order traversal, one value at a time.
         """
+        if self.length is None:
+            raise IndexError("You can't pre-order traverse an empty Tree.")
         if starting_point is None:
             starting_point = self.root
         return starting_point._pre_order()
@@ -216,6 +220,8 @@ class BinarySearchTree(object):
         This function will return a generator that will return the values
         of the tree using post_order traversal, one value at a time.
         """
+        if self.length is None:
+            raise IndexError("You can't post-order traverse an empty Tree.")
         if starting_point is None:
             starting_point = self.root
         return starting_point._post_order()
@@ -226,12 +232,14 @@ class BinarySearchTree(object):
         traversal of a binary tree(left child, right child, parent),
         one value at a time.
         """
+        if self.length is None:
+            raise IndexError("You can't breadth-first traverse an empty Tree.")
         from dll import DoublyLinkedList
         unvisited = DoublyLinkedList()
         if starting_point is None:
             starting_point = self.root
         elif self.contains(starting_point) is False:
-            raise IndexError('Starting point is not in the tree')
+            raise IndexError('Starting point is not in the Tree.')
         unvisited.push(starting_point)
         visited = []
         while unvisited.size() > 0:
@@ -244,7 +252,8 @@ class BinarySearchTree(object):
                     unvisited.push(current.right)
                 yield current.val
 
-    def delete_node(self, val):
+    def delete(self, val):
+        """Removes a node from the Tree, returns None."""
         delete_me = self.find_node(val)
         if delete_me is False:
             return "That node is not in the BST."
