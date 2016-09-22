@@ -412,14 +412,14 @@ def test_delete_root_small_bst():
 
 
 def test_delete_node_in_bst_1(bst_test_case_two):
-    """Return error message when node not in BST."""
+    """Test after node deleted, no longer in BST."""
     bst_test_case_two.delete(22)
     assert bst_test_case_two._search(25).left is None
     assert not bst_test_case_two.contains(22)
 
 
 def test_delete_node_in_bst_2(bst_test_case_two):
-    """Return error message when node not in BST."""
+    """Test after node deleted, no longer in BST."""
     bst_test_case_two.delete(37)
     assert bst_test_case_two._search(25).right.val == 36
     assert bst_test_case_two._search(48)._parent.val == 36
@@ -427,7 +427,7 @@ def test_delete_node_in_bst_2(bst_test_case_two):
 
 
 def test_delete_node_in_bst_3(bst_test_case_two):
-    """Return error message when node not in BST."""
+    """Test after node deleted, no longer in BST."""
     bst_test_case_two.delete(25)
     assert bst_test_case_two._search(10).right.val == 22
     assert bst_test_case_two._search(37)._parent.val == 22
@@ -435,14 +435,14 @@ def test_delete_node_in_bst_3(bst_test_case_two):
 
 
 def test_delete_node_in_bst_4(bst_test_case_two):
-    """Return error message when node not in BST."""
+    """Test after node deleted, no longer in BST."""
     bst_test_case_two.delete(8)
     assert bst_test_case_two._search(4).right.val == 9
     assert not bst_test_case_two.contains(8)
 
 
 def test_delete_node_in_bst_5(bst_test_case_two):
-    """Return error message when node not in BST."""
+    """Test after node deleted, no longer in BST."""
     bst_test_case_two.delete(3)
     assert bst_test_case_two._search(4).left.val == 1
     assert not bst_test_case_two.contains(3)

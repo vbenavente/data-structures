@@ -263,3 +263,4 @@ class BST(object):
                     cur._parent.left = replacement
             else:
                 self.root = replacement
+        self.length -= 1
