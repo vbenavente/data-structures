@@ -69,7 +69,7 @@ class Node(object):
     @parent.setter
     def parent(self, other):
         self._parent = other
-        if other.val < self.val:
+        if other.val > self.val:
             other._left = self
         else:
             other._right = self
@@ -261,7 +261,7 @@ class BinarySearchTree(object):
         This function will return a generator that will return the values
         of the tree using in-order traversal, one value at a time.
         """
-        if self.length is None:
+        if self.length == 0:
             raise IndexError("You can't in-order traverse an empty Tree.")
         if starting_point is None:
             starting_point = self.root
@@ -272,7 +272,7 @@ class BinarySearchTree(object):
         This function will return a generator that will return the values
         of the tree using pre_order traversal, one value at a time.
         """
-        if self.length is None:
+        if self.length == 0:
             raise IndexError("You can't pre-order traverse an empty Tree.")
         if starting_point is None:
             starting_point = self.root
@@ -283,7 +283,7 @@ class BinarySearchTree(object):
         This function will return a generator that will return the values
         of the tree using post_order traversal, one value at a time.
         """
-        if self.length is None:
+        if self.length == 0:
             raise IndexError("You can't post-order traverse an empty Tree.")
         if starting_point is None:
             starting_point = self.root
@@ -295,7 +295,7 @@ class BinarySearchTree(object):
         traversal of a binary tree(left child, right child, parent),
         one value at a time.
         """
-        if self.length is None:
+        if self.length == 0:
             raise IndexError("You can't breadth-first traverse an empty Tree.")
         from dll import DoublyLinkedList
         unvisited = DoublyLinkedList()
@@ -338,7 +338,6 @@ class BinarySearchTree(object):
             delete_me.val = left_choice.val
         else:
             right_choice = self.find_node(right_choice)
-            import pdb; pdb.set_trace()
             if self.root == delete_me:
                 self.root = right_choice
             if right_choice.right is not None:
