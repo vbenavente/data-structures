@@ -84,19 +84,23 @@ class Node(object):
 
     def _insert(self, val, data=None):
         """Helper method to BST.insert method."""
-        if val < self.val:
-            if self.has_left_child():
-                self.left._insert(val)
+        try:
+            if val < self.val:
+                if self.has_left_child():
+                    self.left._insert(val)
+                else:
+                    self.left = Node(val, data)
             else:
-                self.left = Node(val, data)
-        else:
-            if self.has_right_child():
-                self.right._insert(val, data)
-            else:
-                self.right = Node(val)
-        ld = self.left.depth if self.left else 0
-        rd = self.right.depth if self.right else 0
-        self.depth = 1 + max(ld, rd)
+                if self.has_right_child():
+                    self.right._insert(val, data)
+                else:
+                    self.right = Node(val)
+            ld = self.left.depth if self.left else 0
+            rd = self.right.depth if self.right else 0
+            self.depth = 1 + max(ld, rd)
+        except TypeError:
+            raise(TypeError('Insert values must be the same type'))
+
 
     def _in_order(self):
         """
@@ -202,14 +206,18 @@ class BinarySearchTree(object):
     def _contains(self, val, current_node):
         """Helper method to contains, recursively called and returns True
         if we find the node we're looking for, False if not."""
-        if val == current_node.val:
-            return True
-        elif current_node.right and val > current_node.val:
-            return self._contains(val, current_node.right)
-        elif current_node.left and val < current_node.val:
-            return self._contains(val, current_node.left)
-        else:
-            return False
+        try:
+            if val == current_node.val:
+                return True
+            elif current_node.right and val > current_node.val:
+                return self._contains(val, current_node.right)
+            elif current_node.left and val < current_node.val:
+                return self._contains(val, current_node.left)
+            else:
+                return False
+        except TypeError:
+            raise(TypeError('Node values must be the same type'))
+
 
     def size(self):
         """Will return the integer size of the BST, zero if BST is empty."""
@@ -340,18 +348,19 @@ class BinarySearchTree(object):
     def find_node(self, val):
         """Will return the node with the val we asked for or False if it
         isn't in the BST."""
-        import pdb; pdb.set_trace()
         return self._find_node(val, self.root)
-
 
     def _find_node(self, val, current_node):
         """Helper method to find_node, recursively called and returns the node
         or False if it isn't in the BST."""
-        if val == current_node.val:
-            return current_node
-        elif current_node.right:
-            return self._find_node(val, current_node.right)
-        elif current_node.left:
-            return self._find_node(val, current_node.left)
-        else:
-            return False
+        try:
+            if val == current_node.val:
+                return current_node
+            elif current_node.right and val > current_node.val:
+                return self._find_node(val, current_node.right)
+            elif current_node.left and val < current_node.val:
+                return self._find_node(val, current_node.left)
+            else:
+                return False
+        except TypeError:
+            raise(TypeError('Node values must be the same type'))
