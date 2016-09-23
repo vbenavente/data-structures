@@ -95,9 +95,6 @@ class Node(object):
                     self.right._insert(val, data)
                 else:
                     self.right = Node(val)
-            ld = self.left.depth if self.left else 0
-            rd = self.right.depth if self.right else 0
-            self.depth = 1 + max(ld, rd)
         except TypeError:
             raise(TypeError('Insert values must be the same type'))
 
@@ -194,6 +191,8 @@ class BinarySearchTree(object):
             else:
                 self.root = Node(val, data)
             self.length += 1
+        self._check_balance_and_call(self.find_node(val))
+        self._update_balance(self.root)
 
     def contains(self, val):
         """Will return True if val is in the BST, or False if it's not."""
@@ -341,8 +340,8 @@ class BinarySearchTree(object):
             if right_choice.right is not None:
                 right_choice.right.parent = right_choice.parent
             delete_me.val = right_choice.val
-        self._check_balance(delete_me)
-        self._update_children(delete_me)
+        self._check_balance_and_call(delete_me)
+        self._update_balance(self.root)
         self.length -= 1
 
     def find_node(self, val):
@@ -402,18 +401,24 @@ class BinarySearchTree(object):
     def _check_balance_and_call(self, starting_point, previous=None):
         """Checks the balance of parents of a given node up to the root, calls
         _determine_rotations_and_call if rotations needed."""
+        if starting_point is None:
+            pass
         bal = self.balance(starting_point)
+        if previous is None:
+            if bal > 0:
+                previous = starting_point.right
+            elif bal < 0:
+                previous = starting_point.left
         if bal > 1:
             self._determine_rotations_and_call(starting_point, previous)
-            break
+            return
         if bal < -1:
             self._determine_rotations_and_call(starting_point, previous)
-            break
+            return
         if starting_point.parent is None:
-            break
+            return
         self._check_balance_and_call(starting_point.parent, starting_point)
-        break
-        # TODO - determine which child should be previous if deletion
+        return
 
     def _determine_rotations_and_call(self, starting_point, previous):
         """Determine which rotations are needed and call them, then call
