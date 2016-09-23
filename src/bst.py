@@ -101,7 +101,6 @@ class Node(object):
         except TypeError:
             raise(TypeError('Insert values must be the same type'))
 
-
     def _in_order(self):
         """
         This internal method is a generator that will output in order traversal
@@ -127,8 +126,8 @@ class Node(object):
 
     def _pre_order(self):
         """
-        This internal method is a generator that will output preorder traversal
-        of a binary tree(parent, left child, right child), one value at a time.
+        Returns a generator that will output preorder traversalof a binary
+        tree(parent, left child, right child), one value at a time.
         """
         yield self.val
         try:
@@ -150,8 +149,8 @@ class Node(object):
 
     def _post_order(self):
         """
-        This internal method is a generator that will output postorder traversal
-        of a binary tree(left child, right child, parent), one value at a time.
+        Returns a generator that will output postorder traversalof a binary
+        tree(left child, right child, parent), one value at a time.
         """
         try:
             for node in self.left._post_order():
@@ -217,7 +216,6 @@ class BinarySearchTree(object):
                 return False
         except TypeError:
             raise(TypeError('Node values must be the same type'))
-
 
     def size(self):
         """Will return the integer size of the BST, zero if BST is empty."""
@@ -326,7 +324,7 @@ class BinarySearchTree(object):
         for child in left_childs:
             left_list.append(child)
         left_choice = left_list[-1]
-        right_choice = right_childs.next()
+        right_choice = right_childs.__next__()
         a = right_choice - val
         b = val - left_choice
         if a > b:
@@ -338,12 +336,15 @@ class BinarySearchTree(object):
             delete_me.val = left_choice.val
         else:
             right_choice = self.find_node(right_choice)
-            import pdb; pdb.set_trace()
+            # import pdb; pdb.set_trace()
             if self.root == delete_me:
                 self.root = right_choice
             if right_choice.right is not None:
                 right_choice.right.parent = right_choice.parent
             delete_me.val = right_choice.val
+        self._check_balance(delete_me)
+        self._update_children(delete_me)
+        self.length -= 1
 
     def find_node(self, val):
         """Will return the node with the val we asked for or False if it
@@ -364,3 +365,85 @@ class BinarySearchTree(object):
                 return False
         except TypeError:
             raise(TypeError('Node values must be the same type'))
+
+    def _left_rotation(self, pivot_parent):
+        """Performs a left rotation on a given section of our BST."""
+        a = pivot_parent
+        b = pivot_parent.right_child
+        try:
+            z = pivot_parent.parent
+        except AttributeError:
+            z = None
+            self.root = b
+        try:
+            w = pivot_parent.right_child.left_child
+        except AttributeError:
+            w = None
+        b.left = a
+        a.right = w
+        b.parent = z
+
+    def _right_rotation(self, pivot_parent):
+        """Performs a right rotation on a given section of our BST."""
+        a = pivot_parent
+        b = pivot_parent.left_child
+        try:
+            z = pivot_parent.parent
+        except AttributeError:
+            z = None
+            self.root = b
+        try:
+            w = pivot_parent.left_child.right_child
+        except AttributeError:
+            w = None
+        a.left = w
+        b.right = a
+        b.parent = z
+
+    def _check_balance_and_call(self, starting_point, previous=None):
+        """Checks the balance of parents of a given node up to the root, calls
+        _determine_rotations_and_call if rotations needed."""
+        bal = self.balance(starting_point)
+        if bal > 1:
+            self._determine_rotations_and_call(starting_point, previous)
+            break
+        if bal < -1:
+            self._determine_rotations_and_call(starting_point, previous)
+            break
+        if starting_point.parent is None:
+            break
+        self._check_balance_and_call(starting_point.parent, starting_point)
+        break
+        # TODO - determine which child should be previous if deletion
+
+    def _determine_rotations_and_call(self, starting_point, previous):
+        """Determine which rotations are needed and call them, then call
+        _update_balance."""
+        start_bal = self.balance(starting_point)
+        if previous is not None:
+            prev_bal = self.balance(previous)
+        else:
+            prev_bal = 0
+        if start_bal < -1:
+            if prev_bal > 0:
+                self._right_rotation(starting_point)
+            self._left_rotation(starting_point)
+        else:
+            if prev_bal < 0:
+                self._left_rotation(starting_point)
+            self._right_rotation(starting_point)
+
+    def _update_balance(self, starting_point):
+        """Updates the balance of the BST, it's intended this will be called
+        on self.root. Recursively calls itself until there are no more
+        children to update, then resets the depth value of all nodes."""
+        if starting_point.left:
+            left_depth = self._update_balance(starting_point.left)
+        else:
+            left_depth = 0
+        if starting_point.right:
+            right_depth = self._update_balance(starting_point.right)
+        else:
+            right_depth = 0
+        starting_point.depth = max(left_depth, right_depth) + 1
+        return starting_point.depth
