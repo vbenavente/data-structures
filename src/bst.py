@@ -69,10 +69,13 @@ class Node(object):
     @parent.setter
     def parent(self, other):
         self._parent = other
-        if other.val > self.val:
-            other._left = self
-        else:
-            other._right = self
+        try:
+            if other.val > self.val:
+                other._left = self
+            else:
+                other._right = self
+        except AttributeError:
+            pass
 
     def has_left_child(self):
         """Returns true if there is a left child."""
@@ -251,7 +254,9 @@ class BinarySearchTree(object):
         the difference between depth on both sides from the root."""
         if starting_point is None:
             starting_point = self.root
-        return starting_point.left.depth - starting_point.right.depth
+        left_depth = starting_point.left.depth if starting_point.left else 0
+        right_depth = starting_point.right.depth if starting_point.right else 0
+        return left_depth - right_depth
 
     def in_order(self, starting_point=None):
         """
@@ -367,14 +372,14 @@ class BinarySearchTree(object):
     def _left_rotation(self, pivot_parent):
         """Performs a left rotation on a given section of our BST."""
         a = pivot_parent
-        b = pivot_parent.right_child
+        b = pivot_parent.right
         try:
             z = pivot_parent.parent
         except AttributeError:
             z = None
             self.root = b
         try:
-            w = pivot_parent.right_child.left_child
+            w = pivot_parent.right.left
         except AttributeError:
             w = None
         b.left = a
@@ -384,14 +389,14 @@ class BinarySearchTree(object):
     def _right_rotation(self, pivot_parent):
         """Performs a right rotation on a given section of our BST."""
         a = pivot_parent
-        b = pivot_parent.left_child
+        b = pivot_parent.left
         try:
             z = pivot_parent.parent
         except AttributeError:
             z = None
             self.root = b
         try:
-            w = pivot_parent.left_child.right_child
+            w = pivot_parent.left.right
         except AttributeError:
             w = None
         a.left = w
@@ -401,8 +406,9 @@ class BinarySearchTree(object):
     def _check_balance_and_call(self, starting_point, previous=None):
         """Checks the balance of parents of a given node up to the root, calls
         _determine_rotations_and_call if rotations needed."""
+        # import pdb; pdb.set_trace()
         if starting_point is None:
-            pass
+            return
         bal = self.balance(starting_point)
         if previous is None:
             if bal > 0:
