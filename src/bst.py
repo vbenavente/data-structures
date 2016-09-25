@@ -124,12 +124,13 @@ class BST(object):
         """Determine max depth of bst."""
         return self._depth_helper(self.root, 1)
 
-    def balance(self):
+    def balance(self, start=None):
         """Determine balance of bst."""
         if self.root is None:
             return 0
-        left_depth = self._depth_helper(self.root.left, 1)
-        right_depth = self._depth_helper(self.root.right, 1)
+        cur = start or self.root
+        left_depth = self._depth_helper(cur.left, 1)
+        right_depth = self._depth_helper(cur.right, 1)
         return left_depth - right_depth
 
     def in_order(self, start=None):
@@ -264,3 +265,39 @@ class BST(object):
             else:
                 self.root = replacement
         self.length -= 1
+
+    def right_rotation(self, node):
+        parent = node.left
+        parent.right = node
+        parent._parent.left = None
+        return parent
+
+    def left_rotation(self, node):
+        parent = node.right
+        parent.left = node
+        parent._parent.right = None
+        return parent
+
+    def right_left_rotation(self, node):
+        node.right = self.right_rotation(node.right)
+        node = self.left_rotation(node)
+        return node
+
+    def left_right_rotation(self, node):
+        node.left = self.left_rotation(node.left)
+        node = self.right_rotation(node)
+        return node
+
+    def self_balancing(self):
+        cur = self.root
+        if self.balance(cur) <= 1 and self.balance(cur) >= -1:
+            return
+        while self.balance(cur) > 1 or self.balance(cur) < -1:
+            if cur.left:
+                cur = cur.left
+            else:
+                cur = cur.right
+        if cur.right:
+            cur._parent = self.left_right_rotation(cur._parent)
+        else:
+            cur._parent = self.right_left_rotation(cur._parent)

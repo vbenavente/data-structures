@@ -446,3 +446,60 @@ def test_delete_node_in_bst_5(bst_test_case_two):
     bst_test_case_two.delete(3)
     assert bst_test_case_two._search(4).left.val == 1
     assert not bst_test_case_two.contains(3)
+
+
+def test_right_rotation():
+    """Test rotation balances tree."""
+    bst = BST([5, 4, 3])
+    new_root = bst.right_rotation(bst.root)
+    assert new_root.val == 4
+    assert new_root.left.val == 3
+    assert new_root.right.val == 5
+
+
+def test_left_rotation():
+    """Test left rotation balances tree."""
+    bst = BST([10, 15, 25])
+    new_root = bst.left_rotation(bst.root)
+    assert new_root.val == 15
+    assert new_root.left.val == 10
+    assert new_root.right.val == 25
+
+
+def test_right_left_rotation():
+    """Test right left rotation balances tree."""
+    bst = BST([20, 30, 25])
+    new_root = bst.right_left_rotation(bst.root)
+    assert new_root.val == 25
+    assert new_root.left.val == 20
+    assert new_root.right.val == 30
+
+
+def test_left_right_rotation():
+    """Test left right rotation balances tree."""
+    bst = BST([10, 5, 8])
+    new_root = bst.left_right_rotation(bst.root)
+    assert new_root.val == 8
+    assert new_root.left.val == 5
+    assert new_root.right.val == 10
+
+
+def test_self_balancing_needs_right_left():
+    """Test self balancing balances bst."""
+    bst = BST([20, 30, 25])
+    bst.self_balancing()
+    assert bst.balance() <= 1
+
+
+def test_self_balancing_needs_left_right():
+    """Test self balancing balances bst."""
+    bst = BST([10, 5, 8])
+    bst.self_balancing()
+    assert bst.balance() <= 1
+
+
+def test_self_balancing_already_balanced():
+    """Test self balancing when already balanced."""
+    bst = BST([10, 5, 20])
+    bst.self_balancing()
+    assert bst.balance() == 0
