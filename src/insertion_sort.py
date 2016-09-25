@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
 """The following code implements an insertion_sort function designed
 to be used on a standart Python list."""
+from __future__ import unicode_literals
 import random
 import datetime
 
 
 def insertion_sort(sort_lst):
+    if not isinstance(sort_lst, list):
+        raise TypeError("Your input must be a Python list.")
     sort_position = -1
     while sort_position < len(sort_lst):
         sort_position += 1
@@ -52,6 +55,6 @@ if __name__ == "__main__":
     print("")
     print("Input for insertion_sort: random.sample(range(100000), random.randrange(2, 10000))")
     time_7 = datetime.datetime.now()
-    print("Output:", insertion_sort(demo_list_3))
+    print("Output:", insertion_sort(demo_list_4))
     time_8 = datetime.datetime.now()
     print("Run time:", time_8 - time_7)
