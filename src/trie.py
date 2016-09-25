@@ -25,6 +25,14 @@ class Trie(object):
         """Inserts a new value into our trie tree."""
         if not isinstance(value, str):
             raise TypeError("Input must be a string")
+        value.reserse()
+        first = value.pop()
+        if first in self.root.####
+        for character in value:
+            # check for membership of char in root node.  If found, follow
+            # that relationship
+            # if not found, add the key w/ new node as
+            pass
 
     def contains(self, value):
         """Returns true if value is in trie, false if not."""
