@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+import copy
 import random
 import pytest
 
@@ -16,8 +17,9 @@ for x in range(0, 10):
 @pytest.mark.parametrize('test_list', TEST_LIST)
 def test_insertion_sort_random(test_list):
     from insert_sort import insert_sort
+    start_list = copy.copy(test_list)
     insert_sort(test_list)
-    assert test_list == sorted(test_list)
+    assert test_list == sorted(start_list)
 
 
 def test_best_case():
