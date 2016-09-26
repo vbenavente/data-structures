@@ -15,7 +15,6 @@ class Trie(object):
         start['#'] = '#'
 
     def contains(self, token):
-        # import pdb; pdb.set_trace()
         start = self.root
         counter = 0
         while counter < len(token):

@@ -35,3 +35,21 @@ def test_insert_multiple():
             }
         }
     }
+
+
+def test_contain_true():
+    """Test if a trie contains a word."""
+    trie = Trie(['cow', 'coward', 'company'])
+    assert trie.contains('cow')
+
+
+def test_contain_false_1():
+    """Test if a trie contains a word."""
+    trie = Trie(['cow', 'coward', 'company'])
+    assert not trie.contains('co')
+
+
+def test_contain_false_2():
+    """Test if a trie contains a word."""
+    trie = Trie(['cow', 'coward', 'company'])
+    assert not trie.contains('something')
