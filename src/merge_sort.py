@@ -11,18 +11,16 @@ class MergeSort(object):
         """This function will call the recursive merge sort method and returb a
         sorted list"""
         if len(merge_list) <= 1:
-            mid_point = len(merge_list)//2
+            mid_point = len(merge_list) // 2
             left = merge_list[:mid_point]
             right = merge_list[mid_point:]
 
         self._merge_sort_recursive(merge_list, left, right)
         self._merge_sort_recursive(merge_list, left, right)
 
-        return merge_list
-
     def _merge_sort_recursive(self, merge_list, left, right):
 
-        """This is the recurwssive method that will operate on the list to merge
+        """This is the recurssive method that will operate on the list to merge
         sort the supplied list"""
 
         left_i = 0
