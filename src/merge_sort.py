@@ -3,6 +3,8 @@
 # python found at the URL below. I've attempted to make the function a class
 # with a recursive method:
 # http://interactivepython.org/runestone/static/pythonds/SortSearch/TheMergeSort.html
+import timeit
+import random
 
 
 class MergeSort(object):
@@ -45,3 +47,15 @@ class MergeSort(object):
             merge_list[ml_i] = right[right_i]
             right_i += 1
             ml_i += 1
+
+presorted_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+pre_sorted_rev_list = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+rand_list = random.sample(range(1000), random.randrange(2, 100))
+
+if __name__ == '__main__':
+
+    from merge_sort import MergeSort
+
+    print(timeit.timeit("MergeSort().merge_sort(presorted_list)"))
+    print(timeit.timeit("MergeSort().merge_sort(presorted_rev_list)"))
+    print(timeit.timeit("MergeSort().merge_sort(rand_list)"))
