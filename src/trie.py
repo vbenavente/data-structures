@@ -14,5 +14,18 @@ class Trie(object):
             start = start.setdefault(letter, {})
         start['#'] = '#'
 
-    def conatins(self, token):
-        pass
+    def contains(self, token):
+        # import pdb; pdb.set_trace()
+        start = self.root
+        counter = 0
+        while counter < len(token):
+            try:
+                start = start[token[counter]]
+            except KeyError:
+                return False
+            counter += 1
+            try:
+                return start['#'] == '#'
+            except KeyError:
+                pass
+        return False

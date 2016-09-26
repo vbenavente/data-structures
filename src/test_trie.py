@@ -14,8 +14,24 @@ def test_trie_with_iterable():
     assert len(trie.root) == 3
 
 
-def test_insert():
+def test_insert_one():
     """Test new token inserted in trie."""
     trie = Trie()
     trie.insert('cow')
     assert trie.root['c'] == {'o': {'w': {'#': '#'}}}
+
+
+def test_insert_multiple():
+    """Test multiple tokens inserted in trie."""
+    trie = Trie()
+    trie.insert('cow')
+    trie.insert('coward')
+    trie.insert('template')
+    assert trie.root['c'] == {
+        'o': {
+            'w': {
+                '#': '#',
+                'a': {'r': {'d': {'#': '#'}}},
+            }
+        }
+    }
