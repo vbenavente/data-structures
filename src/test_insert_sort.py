@@ -24,9 +24,9 @@ def test_insertion_sort_random(test_list):
 
 def test_best_case():
     from insert_sort import BEST_CASE
-    assert type(BEST_CASE) is list
+    assert isinstance(BEST_CASE, list)
 
 
 def test_worst_case():
     from insert_sort import WORST_CASE
-    assert type(WORST_CASE) is list
+    assert isinstance(WORST_CASE, list)
