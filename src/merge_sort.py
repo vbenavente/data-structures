@@ -21,17 +21,19 @@ def merge_sort(a_list):
 def _merge(left, right):
     """Takes two lists and returns single sorted list."""
     new_list = []
-    while left and right:
-        if left[0] < right[0]:
-            new_list.append(left[0])
-            left = left[1:]
+    left_idx = 0
+    right_idx = 0
+    while left_idx < len(left) and right_idx < len(right):
+        if left[left_idx] < right[right_idx]:
+            new_list.append(left[left_idx])
+            left_idx += 1
         else:
-            new_list.append(right[0])
-            right = right[1:]
-    while left:
-        new_list.append(left[0])
-        left = left[1:]
-    while right:
-        new_list.append(right[0])
-        right = right[1:]
+            new_list.append(right[right_idx])
+            right_idx += 1
+    while left_idx < len(left):
+        new_list.extend([left[left_idx]])
+        left_idx += 1
+    while right_idx < len(right):
+        new_list.extend([right[right_idx]])
+        right_idx += 1
     return new_list
