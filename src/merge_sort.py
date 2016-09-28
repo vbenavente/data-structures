@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+import timeit
+
+BEST_CASE = [x for x in range(0, 1000)]
+WORST_CASE = BEST_CASE[::-1]
 
 
 def merge_sort(a_list):
@@ -37,3 +41,15 @@ def _merge(left, right):
         new_list.extend([right[right_idx]])
         right_idx += 1
     return new_list
+
+
+if __name__ == '__main__':
+    print("Best Case: a list already in order")
+    print("number of runs: 1000 / average time: " + str((timeit.Timer(
+        "merge_sort(BEST_CASE)", setup="from __main__ import merge_sort, BEST_CASE").timeit(
+            number=1000))/1000))
+    print("Worst Case: a list in reverse order")
+    print("number of runs: 1000 / average time: " + str(
+        (timeit.Timer(
+            "merge_sort(WORST_CASE)", setup="from __main__ import merge_sort, WORST_CASE").timeit(
+                number=1000))/1000))
