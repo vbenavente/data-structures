@@ -43,6 +43,11 @@
   - depth-first traversal walks through a data structure by fully exploring it's first selection and then moving on to the next and fully exploring it in turn  
   - breadth-first traversal walks through nodes by spreading out from the initial starting point and visiting every closer node before stepping through to visit their neighbors  
 
+## Merge Sort  
+- sorts a list by breaking down a list into its smallest element  
+- then adjacent elements are compared and merged in order  
+- final result is a sorted list implemented by splitting, ordering and merging
+
 ### Cited Sources  
   - https://github.com/welliam/data-structures/blob/traversal/src/adjacency_list.py  
   - Code review in class from Wednesday where we went over the above  
