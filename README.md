@@ -51,7 +51,14 @@
 - implements edge weights on edges in our graph  
 
 ## Binary Search Tree  
-- http://interactivepython.org/runestone/static/pythonds/Trees/SearchTreeImplementation.html
+- http://interactivepython.org/runestone/static/pythonds/Trees/SearchTreeImplementation.html  
+
+## Insert Sort  
+- implements insert sort  
+- compares each value in list with previous value
+- inserts number when it is no longer less than previous value  
+- best case is an already sorted list  
+- worst case is a reversed list
 
 ### Singly vs. Doubly Linked Lists  
 - A Singly Linked-List  
