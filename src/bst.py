@@ -264,3 +264,28 @@ class BST(object):
             else:
                 self.root = replacement
         self.length -= 1
+
+        def self_balancing(self):
+            cur = self.root
+            if self.balance(cur) <= 1 or self.balance(cur) >= -1:
+                return
+
+        def right_rotation(self, node):
+            parent = node.left
+            parent.right = node
+            return parent
+
+        def left_rotation(self, node):
+            parent = node.right
+            parent.left = node
+            return parent
+
+        def right_left_rotation(self, node):
+            node.right = self.right_rotation(node.right)
+            node = self.left_rotation(node)
+            return node
+
+        def left_right_rotation(self, node):
+            node.left = self.left_rotation(node.left)
+            node = self.right_rotation(node)
+            return node
