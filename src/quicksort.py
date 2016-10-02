@@ -4,17 +4,16 @@ interactive python page.
 
 https://en.wikipedia.org/wiki/Quicksort
 interactivepython.org/runestone/static/pythonds/SortSearch/TheQuickSort.html
+pythonschool.net/data-structures-algorithms/quicksort
 """
 
 
 def qs(list_to_sort):
     import pdb; pdb.set_trace()
-    low = list_to_sort[0]
-    high = list_to_sort[-1]
-    return qsh(list_to_sort, low, high)
+    return qsh(list_to_sort, 0, len(list_to_sort) - 1)
 
 
-def qsh(list_to_sort, low=None, high=None):
+def qsh(list_to_sort, low, high):
     """
     This implementation of Hoare's Partitioning Scheme uses two picot points
     which start at either end of the provided list and move towards each other
@@ -31,7 +30,7 @@ def qsh(list_to_sort, low=None, high=None):
     return list_to_sort
 
 
-def part(list_to_sort, low=None, high=None):
+def part(list_to_sort, low, high):
     pivot = list_to_sort[low]
     start = low + 1
     end = high
@@ -44,10 +43,8 @@ def part(list_to_sort, low=None, high=None):
         if start > end:
             processing = False
         else:
-            list_to_sort[start], list_to_sort[end] = list_to_sort[end],
-            list_to_sort[start]
+            list_to_sort[start], list_to_sort[end] = list_to_sort[end], list_to_sort[start]
 
-    list_to_sort[low], list_to_sort[high] = list_to_sort[high],
-    list_to_sort[low]
+    list_to_sort[low], list_to_sort[high] = list_to_sort[high], list_to_sort[low]
 
     return end
