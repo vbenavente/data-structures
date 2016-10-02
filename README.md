@@ -35,9 +35,6 @@
 - this implementation is a directed simple graph  
 - Nic helped us with del_edge  
 
-### Cited Sources
-  - http://stackoverflow.com/questions/11351032/named-tuple-and-optional-keyword-arguments  
-
 ## Graph Traversal  
 - implements two new methods on our simple graph  
   - depth-first traversal walks through a data structure by fully exploring it's first selection and then moving on to the next and fully exploring it in turn  
@@ -47,9 +44,16 @@
 - implement quick sort in python  
 - a comparison sort, sorts items of any type for which a "lesser than" relation exists  
 
+## Radix Sort  
+- implement radix sort in python  
+- a non-comparative integer sorting algorithm
+- sorts data with integer keys by grouping keys by the individual digits which share the same significant position and value
+
 ### Cited Sources  
   - https://github.com/welliam/data-structures/blob/traversal/src/adjacency_list.py  
   - Code review in class from Wednesday where we went over the above  
+  - http://stackoverflow.com/questions/11351032/named-tuple-and-optional-keyword-arguments  
+  - Wikipedia.com
 
 ## Graph Weights
 - implements edge weights on edges in our graph  
