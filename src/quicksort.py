@@ -16,12 +16,9 @@ def qs(list_to_sort, low=None, high=None):
     final index
     """
 
-    low = list_to_sort[0]
-    high = list_to_sort[-1]
-
     if low < high:
         q = part(list_to_sort, low, high)
-        qs(list_to_sort, low, q)
+        qs(list_to_sort, low, q - 1)
         qs(list_to_sort, q + 1, high)
 
     return list_to_sort
@@ -32,6 +29,7 @@ def part(list_to_sort, low=None, high=None):
     start = low + 1
     end = high
     processing = True
+    import pdb; pdb.set_trace()
     while processing:
         while list_to_sort[start] <= pivot and start <= end:
             start = start + 1
