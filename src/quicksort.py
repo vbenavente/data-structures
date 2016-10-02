@@ -29,14 +29,18 @@ def qs(list_to_sort, low=None, high=None):
 
 def part(list_to_sort, low=None, high=None):
     pivot = list_to_sort[low]
-    start = low - 1
-    end = high + 1
+    start = low + 1
+    end = high
     processing = True
     while processing:
-        while list_to_sort[start] < pivot:
+        while list_to_sort[start] <= pivot and start <= end:
             start = start + 1
-        while list_to_sort[end] > pivot:
+        while list_to_sort[end] >= pivot and start >= end:
             end = end - 1
-        if start >= end:
-            return end
-    list_to_sort[start], list_to_sort[end] = list_to_sort[end], list_to_sort[start]
+        if start > end:
+            processing = False
+        else:
+            list_to_sort[start], list_to_sort[end] = list_to_sort[end], list_to_sort[start]
+
+    list_to_sort[low], list_to_sort[high] = list_to_sort[high], list_to_sort[low]
+    return end
