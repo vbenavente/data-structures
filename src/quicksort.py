@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """ This module is an implementation of the Hoare Quicksort algorithm.
 
 This implementation of Hoare's Partitioning Scheme uses two picot points
@@ -13,12 +14,17 @@ interactivepython.org/runestone/static/pythonds/SortSearch/TheQuickSort.html
 pythonschool.net/data-structures-algorithms/quicksort
 """
 
+import random
+import timeit
 
 def qs(list_to_sort):
     """This is the main function that the user calls with a list of numbers"""
     # import pdb; pdb.set_trace()
     if isinstance(list_to_sort, list):
-        return qsh(list_to_sort, 0, len(list_to_sort) - 1)
+        try:
+            return qsh(list_to_sort, 0, len(list_to_sort) - 1)
+        except TypeError:
+            raise TypeError('Input type must be a list of integers')
     else:
         raise TypeError('Input type must be a list of integers')
 
@@ -60,3 +66,26 @@ def part(list_to_sort, low, high):
     list_to_sort[low], list_to_sort[end] = list_to_sort[end], list_to_sort[low]
 
     return end
+
+
+if __name__ == '__main__':
+
+    """Adapted from Derek's Radix Main block"""
+
+    print('')
+    print('Hoare\'s Quick Sort algorithm')
+    print('')
+    print(
+        '''
+        Performance characteristics of the Quicksort algorithm over
+        500 executions.
+        '''
+        )
+    print('')
+    print('Input: 20 random integer inputs under 100')
+    result = timeit.timeit('qs(random.sample(range(100), 20))',
+                           setup='''from __main__ import qs, qsh, part, random''',
+                           number=500)
+    print('Total elapsed time: ', result)
+    print('Avg. time per execution: ', result / 500)
+    print('')
