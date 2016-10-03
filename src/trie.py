@@ -24,11 +24,12 @@ class Trie(object):
                 start = start[token[counter]]
             except KeyError:
                 return False
+            if counter == len(token) - 1:
+                try:
+                    return start['#'] == '#'
+                except KeyError:
+                    pass
             counter += 1
-            try:
-                return start['#'] == '#'
-            except KeyError:
-                pass
         return False
 
     def search(self, char):
