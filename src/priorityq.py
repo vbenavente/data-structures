@@ -15,12 +15,12 @@ class Priorityq(object):
         if iterable is None:
             self.heap = Heap()
         else:
-            if type(iterable) is not list:
+            if not isinstance(iterable, list):
                 raise IndexError("Enter a list of tuples, each with 2 values.")
             for i in iterable:
-                if type(i) is not tuple:
+                if not isinstance(i, tuple):
                     raise IndexError("Enter a list of tuples, each with 2 values.")
-                elif type(i[0]) is not int:
+                elif not isinstance(i[0], int):
                     raise IndexError("First value in tuple must be an integer.")
                 self.order += 1
                 new_tuple = (i[0], self.order, i[1])
