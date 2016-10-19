@@ -43,6 +43,12 @@
   - depth-first traversal walks through a data structure by fully exploring it's first selection and then moving on to the next and fully exploring it in turn  
   - breadth-first traversal walks through nodes by spreading out from the initial starting point and visiting every closer node before stepping through to visit their neighbors  
 
+## Quick Sort  
+- implement quick sort in python  
+- a comparison sort, sorts items of any type for which a "lesser than" relation exists  
+- it is not a stable sort, this means the relative order of equal sort items is not preserved  
+- this is not an in-place sort, because a new list is returned
+
 ### Cited Sources  
   - https://github.com/welliam/data-structures/blob/traversal/src/adjacency_list.py  
   - Code review in class from Wednesday where we went over the above  
