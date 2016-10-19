@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from radix_sort import radix_sort
 
-BEST_CASE = [x for x in range(0, 100)]
-WORST_CASE = BEST_CASE[::-1]
+SORTED_LIST = [x for x in range(0, 100)]
+REVERSE_SORT = SORTED_LIST[::-1]
 
 
 def test_radix_sort():
@@ -44,11 +44,11 @@ def test_radix_sort_all_duplicates():
 
 def test_radix_sort_already_sorted():
     """Test sort returns sorted list if already sorted."""
-    result = radix_sort(BEST_CASE)
-    assert result == BEST_CASE
+    result = radix_sort(SORTED_LIST)
+    assert result == SORTED_LIST
 
 
 def test_radix_sort_reverse_sort_passed():
     """Test sort works when passed list is reversed."""
-    result = radix_sort(WORST_CASE)
-    assert result == sorted(WORST_CASE)
+    result = radix_sort(REVERSE_SORT)
+    assert result == sorted(REVERSE_SORT)
