@@ -1,3 +1,4 @@
+# !/usr/bin/env python
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 import timeit
@@ -20,13 +21,19 @@ def quick_sort(a_list):
         else:
             left.append(a_list[1])
             right.append(a_list[0])
+        return left + right
     else:
         hi = a_list[-1]
         low = a_list[0]
         midpoint = a_list[len(a_list)//2]
         pivot = sorted([low, hi, midpoint])[1]
         for item in a_list:
-            if item < pivot:
+            if item == pivot:
+                if item in left:
+                    right.append(item)
+                else:
+                    left.append(item)
+            elif item < pivot:
                 left.append(item)
             else:
                 right.append(item)
