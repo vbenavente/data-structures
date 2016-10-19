@@ -51,7 +51,13 @@
 - implements edge weights on edges in our graph  
 
 ## Binary Search Tree  
-- http://interactivepython.org/runestone/static/pythonds/Trees/SearchTreeImplementation.html
+- http://interactivepython.org/runestone/static/pythonds/Trees/SearchTreeImplementation.html  
+
+## Trie  
+- a python implementation of trie  
+- an ordered tree data structure that is used to store an ordered set  
+- class has insert method that inserts value token into tree  
+- class has contains method that checks if token is already present, returns boolean  
 
 ### Singly vs. Doubly Linked Lists  
 - A Singly Linked-List  
