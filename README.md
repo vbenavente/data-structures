@@ -46,6 +46,8 @@
 ## Quick Sort  
 - implement quick sort in python  
 - a comparison sort, sorts items of any type for which a "lesser than" relation exists  
+- it is not a stable sort, this means the relative order of equal sort items is not preserved  
+- this is not an in-place sort, because a new list is returned
 
 ### Cited Sources  
   - https://github.com/welliam/data-structures/blob/traversal/src/adjacency_list.py  
