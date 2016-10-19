@@ -9,6 +9,13 @@ WORST_CASE = [123, 333, 444, 555, 666, 10000000000000000]
 
 def radix_sort(my_list):
     """Implement radix sort in python."""
+    if len(my_list) <= 1:
+        return my_list
+    if len(my_list) == 2:
+        if my_list[0] < my_list[1]:
+            return [my_list[0], my_list[1]]
+        else:
+            return [my_list[1], my_list[0]]
     buckets = OrderedDict()
     for _ in range(10):
         buckets[str(_)] = deque()
@@ -31,10 +38,12 @@ def radix_sort(my_list):
 if __name__ == '__main__':  # pragma: no cover
     print("Best Case: a list already in order")
     print("number of runs: 1000 / average time: " + str((timeit.Timer(
-        "radix_sort(BEST_CASE)", setup="from __main__ import radix_sort, BEST_CASE").timeit(
+        "radix_sort(BEST_CASE)",
+        setup="from __main__ import radix_sort, BEST_CASE").timeit(
             number=1000))/1000))
     print("Worst Case: a list in reverse order")
     print("number of runs: 1000 / average time: " + str(
         (timeit.Timer(
-            "radix_sort(WORST_CASE)", setup="from __main__ import radix_sort, WORST_CASE").timeit(
+            "radix_sort(WORST_CASE)",
+            setup="from __main__ import radix_sort, WORST_CASE").timeit(
                 number=1000)/1000)))

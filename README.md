@@ -46,8 +46,10 @@
 
 ## Radix Sort  
 - implement radix sort in python  
-- a non-comparative integer sorting algorithm
-- sorts data with integer keys by grouping keys by the individual digits which share the same significant position and value
+- a non-comparative integer sorting algorithm  
+- sorts data with integer keys  
+- groups keys by the individual digits which share the same significant position and value  
+- this is a least significant digit radix sort, it is a stable, not in-place algorithm  
 
 ### Cited Sources  
   - https://github.com/welliam/data-structures/blob/traversal/src/adjacency_list.py  
